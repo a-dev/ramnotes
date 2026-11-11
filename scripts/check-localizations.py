@@ -47,7 +47,7 @@ SAME_AS_ENGLISH = {
     "es": {"General", "Error"},
     "pt": {"Regular"},
     "de": {"Normal", "Export", "Startup", "Filename", "Support", "Status", "Windows", "System", "Control–Backslash"},
-    "fr": {"Services", "Support", "Version %@", "Collection", "Notes"},
+    "fr": {"Actions…", "Services", "Support", "Version %@", "Collection", "Notes"},
 }
 
 PRODUCT = "RAMnotes"

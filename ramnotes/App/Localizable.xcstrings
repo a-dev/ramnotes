@@ -4767,9 +4767,8 @@
         }
       }
     },
-    "Command-click to toggle notes; Shift-click or Shift-arrow to select a range. Press Return to open selected notes or Shift-F10 for batch actions." : {
+    "Command-click to toggle notes. Shift-click or Shift-arrow to select a range. Press Return to open selected notes or Shift-F10 for batch actions." : {
       "comment" : "Accessibility help of the note table. Keep key names consistent with the user's keyboard terms",
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4814,9 +4813,6 @@
           }
         }
       }
-    },
-    "Command-click to toggle notes. Shift-click or Shift-arrow to select a range. Press Return to open selected notes or Shift-F10 for batch actions." : {
-      "comment" : "Accessibility help of the note table. Keep key names consistent with the user's keyboard terms"
     },
     "Commands" : {
       "comment" : "Help menu item that pops up a menu of all commands\nNote list header button and accessibility label that pops up the menu of all commands",
@@ -13818,9 +13814,8 @@
         }
       }
     },
-    "Original missing; local text preserved: %@" : {
+    "Original missing. Local text preserved: %@" : {
       "comment" : "Note list footer about a recovery note. The value is the original file name",
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -13865,9 +13860,6 @@
           }
         }
       }
-    },
-    "Original missing. Local text preserved: %@" : {
-      "comment" : "Note list footer about a recovery note. The value is the original file name"
     },
     "Original unavailable. Local text preserved: %@" : {
       "comment" : "Note list footer about retained text. The value is the original file name",
@@ -13918,7 +13910,51 @@
       }
     },
     "Original unavailable. Local text preserved." : {
-      "comment" : "Line below a note card title about retained text"
+      "comment" : "Line below a note card title about retained text",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الأصل غير متاح. تم الاحتفاظ بالنص المحلي."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Original nicht verfügbar. Der lokale Text wurde aufbewahrt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Original no disponible. Texto local conservado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Original indisponible. Le texte local a été conservé."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "元のファイルを使用できません。ローカルのテキストを保持しています。"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Original indisponível. Texto local preservado."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "原始文件不可用。本地文本已保留。"
+          }
+        }
+      }
     },
     "Other shortcuts" : {
       "comment" : "Settings section title for the list of fixed shortcuts",
@@ -15615,7 +15651,183 @@
       }
     },
     "Remove %lld Notes from List" : {
-      "comment" : "Note list context menu: remove several selected unavailable notes from the list without deleting files"
+      "comment" : "Note list context menu: remove several selected unavailable notes from the list without deleting files",
+      "localizations" : {
+        "ar" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "إزالة %lld ملاحظات من القائمة"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "إزالة %lld ملاحظة من القائمة"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "إزالة %lld ملاحظة من القائمة"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "إزالة %lld ملاحظة من القائمة"
+                }
+              },
+              "two" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "إزالة ملاحظتين من القائمة (%lld)"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "إزالة %lld ملاحظة من القائمة"
+                }
+              }
+            }
+          }
+        },
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Notiz aus der Liste entfernen"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Notizen aus der Liste entfernen"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Remove %lld Note from List"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Remove %lld Notes from List"
+                }
+              }
+            }
+          }
+        },
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Quitar %lld notas de la lista"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Quitar %lld nota de la lista"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Quitar %lld notas de la lista"
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Retirer %lld notes de la liste"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Retirer %lld note de la liste"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Retirer %lld notes de la liste"
+                }
+              }
+            }
+          }
+        },
+        "ja" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld件のメモをリストから取り除く"
+                }
+              }
+            }
+          }
+        },
+        "pt" : {
+          "variations" : {
+            "plural" : {
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Remover %lld Notas da Lista"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Remover %lld Nota da Lista"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Remover %lld Notas da Lista"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "从列表中移除 %lld 条笔记"
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "Remove from List" : {
       "comment" : "Button that removes an unavailable note from the list without deleting files\nNote row context menu item that removes an unavailable note from the list without deleting files",
@@ -15665,10 +15877,98 @@
       }
     },
     "Removes the selected unavailable notes from the list. Does not delete any files." : {
-      "comment" : "Tooltip of the batch Remove from List item"
+      "comment" : "Tooltip of the batch Remove from List item",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يزيل الملاحظات المحددة غير المتاحة من القائمة دون حذف أي ملفات."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entfernt die ausgewählten nicht verfügbaren Notizen aus der Liste. Dabei werden keine Dateien gelöscht."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quita de la lista las notas seleccionadas que no están disponibles. No se elimina ningún archivo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retire de la liste les notes indisponibles sélectionnées. Aucun fichier n’est supprimé."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択した使用できないメモをリストから取り除きます。ファイルは削除されません。"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove da lista as notas indisponíveis selecionadas. Nenhum arquivo é apagado."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从列表中移除所选的不可用笔记。不会删除任何文件。"
+          }
+        }
+      }
     },
     "Removing this entry does not delete any files." : {
-      "comment" : "Tooltip of Remove from List"
+      "comment" : "Tooltip of Remove from List",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إزالة هذا العنصر لا تحذف أي ملفات."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durch das Entfernen dieses Eintrags werden keine Dateien gelöscht."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar esta entrada no elimina ningún archivo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer cette entrée ne supprime aucun fichier."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この項目を削除してもファイルは削除されません。"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remover este item não apaga nenhum arquivo."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移除此条目不会删除任何文件。"
+          }
+        }
+      }
     },
     "Renamed %@ → %@" : {
       "comment" : "A file was renamed during a move to avoid a name clash. Both values are file names. The arrow separates old and new name",
@@ -16093,9 +16393,8 @@
         }
       }
     },
-    "Save failed: %@. Keep this window open. Saving retries automatically; export your text to keep a copy." : {
+    "Save failed: %@. Keep this window open. Saving retries automatically. Export your text to keep a copy." : {
       "comment" : "Shown in a note window when saving fails and no recovery journal exists. The value is the system error",
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -16140,9 +16439,6 @@
           }
         }
       }
-    },
-    "Save failed: %@. Keep this window open. Saving retries automatically. Export your text to keep a copy." : {
-      "comment" : "Shown in a note window when saving fails and no recovery journal exists. The value is the system error"
     },
     "Save status" : {
       "comment" : "Accessibility label of the note window's save status text",
@@ -18027,7 +18323,50 @@
       }
     },
     "The disk “%@” is not connected." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "القرص «%@» غير متصل."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Volume „%@“ ist nicht verbunden."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El disco «%@» no está conectado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le disque « %@ » n’est pas connecté."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ディスク「%@」が接続されていません。"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O disco “%@” não está conectado."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "磁盘“%@”未连接。"
+          }
+        }
+      }
     },
     "The file is no longer missing, so RAMnotes keeps this note in the list." : {
       "comment" : "Error when Remove from List finds the note file again. Keep the product name RAMnotes unchanged.",
@@ -18734,9 +19073,8 @@
         }
       }
     },
-    "The original is unavailable. Open its preserved text; RAMnotes reconnects when the folder returns." : {
+    "The original is unavailable. Open its preserved text. RAMnotes reconnects when the folder returns." : {
       "comment" : "Note list message. Keep the product name RAMnotes unchanged.",
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -18781,9 +19119,6 @@
           }
         }
       }
-    },
-    "The original is unavailable. Open its preserved text. RAMnotes reconnects when the folder returns." : {
-      "comment" : "Note list message. Keep the product name RAMnotes unchanged."
     },
     "The original note is at %@. This window keeps text loaded from the local recovery journal." : {
       "comment" : "Status text of the recovery viewer window. The value is the file path of the original note",
@@ -19068,7 +19403,51 @@
       }
     },
     "This note is unavailable: %@. All your edits were saved before this happened." : {
-      "comment" : "Shown in a note window when its storage becomes unavailable and no edit is waiting to be saved. The value is the system error"
+      "comment" : "Shown in a note window when its storage becomes unavailable and no edit is waiting to be saved. The value is the system error",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذه الملاحظة غير متاحة: %@. حُفظت جميع تعديلاتك قبل ذلك."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Notiz ist nicht verfügbar: %@. Alle Änderungen wurden zuvor gesichert."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta nota no está disponible: %@. Todos tus cambios se guardaron antes de que esto ocurriera."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette note est indisponible : %@. Toutes vos modifications ont été enregistrées avant que cela ne se produise."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このメモは使用できません：%@。使用できなくなる前に、すべての変更が保存されました。"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta nota está indisponível: %@. Todas as suas alterações foram salvas antes que isso acontecesse."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此笔记不可用：%@。在此之前，你的所有更改均已存储。"
+          }
+        }
+      }
     },
     "This note is unavailable. Locate the file, or wait for it to become available." : {
       "comment" : "Message in the Note location panel when no more specific reason is known",

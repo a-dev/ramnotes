@@ -15,16 +15,17 @@
       "shouldTranslate" : false
     },
     "CFBundleName" : {
-      "comment" : "Bundle name",
-      "extractionState" : "extracted_with_value",
+      "comment" : "Product name. Never translate.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "RAMnotes"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "NSHumanReadableCopyright" : {
       "comment" : "Copyright line shown in the About window: a year and the author name. Not translated.",
