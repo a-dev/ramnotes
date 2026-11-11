@@ -1,0 +1,82 @@
+{
+  "configurations" : [
+    {
+      "id" : "386D932F-AAF5-4BD7-80BE-647AC3299E28",
+      "name" : "en",
+      "options" : {
+        "language" : "en",
+        "region" : "US"
+      }
+    },
+    {
+      "id" : "B96B9529-0C2D-4C23-B17F-C40FEA51B824",
+      "name" : "es",
+      "options" : {
+        "language" : "es",
+        "region" : "ES"
+      }
+    },
+    {
+      "id" : "EF653B34-D1A4-4B84-BFA5-573BF1A54F97",
+      "name" : "pt",
+      "options" : {
+        "language" : "pt",
+        "region" : "BR"
+      }
+    },
+    {
+      "id" : "22DA53D2-CC50-4081-8351-43DC3231A961",
+      "name" : "de",
+      "options" : {
+        "language" : "de",
+        "region" : "DE"
+      }
+    },
+    {
+      "id" : "485EB291-5762-4C0F-95B4-27845955E42E",
+      "name" : "fr",
+      "options" : {
+        "language" : "fr",
+        "region" : "FR"
+      }
+    },
+    {
+      "id" : "3C0C9E30-62BC-4D7C-9A28-B8E51D4D59FC",
+      "name" : "ar",
+      "options" : {
+        "language" : "ar",
+        "region" : "SA"
+      }
+    },
+    {
+      "id" : "D55B7F08-5488-4A84-9B3E-E917DBBBFAA9",
+      "name" : "ja",
+      "options" : {
+        "language" : "ja",
+        "region" : "JP"
+      }
+    },
+    {
+      "id" : "B591BD92-E6CD-44F3-B6AF-30446990FB4A",
+      "name" : "zh-Hans",
+      "options" : {
+        "language" : "zh-Hans",
+        "region" : "CN"
+      }
+    }
+  ],
+  "defaultOptions" : {},
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ramnotes.xcodeproj",
+        "identifier" : "A00000000000000000000004",
+        "name" : "ramnotesUITests"
+      },
+      "selectedTests" : [
+        "ScreenshotTests"
+      ]
+    }
+  ],
+  "version" : 1
+}

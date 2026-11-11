@@ -1,0 +1,54 @@
+# Swift Package Manager / Xcode build output (any depth)
+.build/
+build/
+DerivedData/
+.swiftpm/
+
+# Vendored third-party sources and dependencies
+Vendor/
+
+## App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Xcode user state. The shared .xcodeproj itself stays tracked.
+xcuserdata/
+*.xcuserstate
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.local.xcconfig
+
+# macOS Finder metadata
+.DS_Store
+
+# Python release/fixture test imports
+scripts/__pycache__/
+
+# Temporary files and caches
+tmp/
+.audit/
+
+# Generated fixtures and recovery data
+generated-fixtures/
+recovery-data/
+
+# Python bytecode cache
+__pycache__/
+
+# Private agent configuration and signing secrets
+.claude/agents/
+.claude/settings.json
+.claude/worktrees/
+.env
+.env.*
+*.p12
+*.pfx
+*.p8
+*.key
+*.pem
+*.mobileprovision
+*.provisionprofile

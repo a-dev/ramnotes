@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "B42C7E8F-9012-4B23-CD45-67EF8901BC23",
+      "name" : "Default",
+      "options" : { }
+    }
+  ],
+  "defaultOptions" : { },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:RAMnotes.xcodeproj",
+        "identifier" : "AFD50000000000000000000E",
+        "name" : "ramnotesDomainTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:RAMnotes.xcodeproj",
+        "identifier" : "A00000000000000000000003",
+        "name" : "ramnotesTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:RAMnotes.xcodeproj",
+        "identifier" : "A00000000000000000000004",
+        "name" : "ramnotesUITests"
+      },
+      "skippedTests" : [
+        "ScreenshotTests"
+      ]
+    }
+  ],
+  "version" : 1
+}

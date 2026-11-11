@@ -1,0 +1,7 @@
+EFF Short Wordlist #1
+Copyright Electronic Frontier Foundation.
+Source: https://www.eff.org/files/2016/09/08/eff_short_wordlist_1.txt
+Copyright policy: https://www.eff.org/copyright
+Licensed under Creative Commons Attribution 4.0 International:
+https://creativecommons.org/licenses/by/4.0/
+Changes: dice labels removed; hyphenated yo-yo omitted; vocabulary embedded as Swift string data.
