@@ -1,42 +1,91 @@
 # RAMnotes
 
-Plain-text notes for your Mac.
-
-RAMnotes keeps your notes in small windows on your Mac. Use a note for a quick thought or a checklist beside your work. Press **Control-Backslash** to show or hide your open notes while you work in another app.
-
-Your notes are ordinary `.txt` files. RAMnotes saves your changes automatically, and you can open the files in other text editors.
+RAMnotes is sticky notes for your Mac. One shortcut shows your notes, and the same shortcut hides them. Each note is a text file, so your AI tools can read and edit it.
 
 **[Visit ramnotes.com](https://ramnotes.com/)**
 
 Read [RAM and notes](https://ramnotes.com/articles/ram-and-notes) for the ideas behind the app.
 
-## Your notes beside your work
+## Show and hide
 
-Open several notes at once. Arrange the windows where you want them. RAMnotes remembers their positions and your place in each note. Hide the windows when you need the space. Use the same shortcut to show them again.
+- Control-Backslash shows or hides your open notes from any app.
+- Or put the pointer on the menu bar and scroll.
+- Control-Command-Backslash shows your open notes and the note list.
+- You can change both shortcuts in Settings.
+- Your notes open at the place where you stopped.
+- RAMnotes has no Dock icon and no menu bar icon.
 
-Enable **Always on top** to keep notes visible while you work in other apps. RAMnotes has no Dock icon or menu bar icon.
+## Notes in an AI project
 
-## Find a note and keep writing
+Example:
 
-Press **Control-Command-Backslash** to show your open notes and the note list. Use the list to search your notes or create a note.
+1. Save a note named `agent-inbox.txt` in your project folder.
+2. Write tasks, links, and ideas in the note while you work.
+3. Tell your AI tool to read the file. For example, refer to it in `AGENTS.md` or in a scheduled task.
+4. The AI tool does the tasks and edits the file.
+5. Open the note in RAMnotes to see the changes.
 
-Use **Command-F** to search within a note. Use **Shift-Command-F** to search your collection. You can change both shortcuts that show or hide your notes in Settings.
+RAMnotes has no AI functions. It reads and writes the `.txt` file. Your AI tools do the other steps.
 
-## Keep your files where you want them
+![Control shortcut shows and hides notes from any app](./docs/design/screenshots/control.jpg)
 
-Use a default notes folder or choose a separate location for any individual note. Use **Move To** to move a note to another folder. To edit an existing text file in place, add it from Finder. Each note can stay in a different folder.
+## Notes in any folder
 
-For example, save a note with project instructions in an AI project folder. Add the file to RAMnotes to edit it. Give your AI tools access to the same file as part of the project. RAMnotes saves your changes directly to that file. You do not need to copy the text between RAMnotes and the project.
+A note can be in any folder on your Mac. Each note can be in a different folder.
 
-Editing or moving an added note to the Trash affects the original file.
+- Set a default folder for new notes.
+- Use **Move To** to put a note in another folder.
+- Add a `.txt` file from Finder to edit it in place.
 
-## Make it comfortable
+Your notes are ordinary `.txt` files. Other apps can read and change the same files. To sync your notes, set the default folder to a folder in iCloud Drive, Google Drive, Dropbox, or a similar service.
 
-Choose your font, text size, line spacing, and light or dark appearance. Change your shortcuts in Settings. Choose whether RAMnotes starts when you log in.
+Editing an added note, or moving it to the Trash, affects the original file.
+
+## Note windows
+
+- Open several notes at once.
+- **Always on top** keeps a note above other apps.
+- Each note can have one of six color tints.
+- Each note has its own text size. Change it with Command-Plus and Command-Minus.
+- RAMnotes remembers the position of each window and your place in each note.
+- RAMnotes saves your changes automatically.
+
+## Search
+
+- Command-F searches in the current note.
+- Shift-Command-F searches all your notes.
+- The note list has a search field.
+
+## Settings
+
+- Default notes folder
+- Font, default text size, and line spacing
+- Light or dark appearance
+- Shortcuts
+- Launch at login
+
+## Privacy
+
+RAMnotes does not connect to the internet. It needs no account and it collects no data. It reads and writes only the files and folders that you select.
+
+## Limits
+
+- Plain text only. No rich text, no Markdown preview, no tags, no notebooks.
+- Notes must be UTF-8 `.txt` files.
+- The note list shows files directly in the default folder and files that you add. It does not scan subfolders.
+- RAMnotes has no sync service of its own.
+- RAMnotes can miss a change from another app if that app keeps the file's modification timestamp.
+- macOS can require a normal desktop Space to show notes over a fullscreen app.
+
+## Languages
+
+English, Spanish, Brazilian Portuguese, German, French, Arabic, Japanese, and Simplified Chinese.
+
+RAMnotes uses your Mac's language settings. To choose a different language for RAMnotes, open **System Settings > General > Language & Region > Applications**. Restart RAMnotes after you change the language.
 
 ## Requirements
 
-RAMnotes runs on **Apple Silicon Macs with macOS 27.0 or later**.
+An Apple Silicon Mac with macOS 27.0 or later. RAMnotes does not support Intel Macs, iPhone, or iPad.
 
 ## Install
 
@@ -45,39 +94,18 @@ RAMnotes runs on **Apple Silicon Macs with macOS 27.0 or later**.
 3. Drag **RAMnotes** to **Applications**.
 4. Open RAMnotes from **Applications**.
 
-The note list appears when you first open RAMnotes. Choose **New Note** to create a note. Use **Add Existing Files** to add your text files.
+The note list appears when you first open RAMnotes.
 
-Open Settings with the gear button in the note list. Choose your default notes folder there. Enable **Launch at login** if you want RAMnotes to start when you sign in.
-
-## Supported languages
-
-RAMnotes supports these languages:
-
-- English
-- Spanish
-- Brazilian Portuguese
-- German
-- French
-- Arabic
-- Japanese
-- Simplified Chinese
-
-RAMnotes uses your Mac's language settings. To choose a different language for RAMnotes, open **System Settings > General > Language & Region > Applications**. Restart RAMnotes after you change the language.
-
-## Current limits
-
-- Notes must be UTF-8 `.txt` files. RAMnotes does not support rich-text formatting or Markdown previews.
-- The note list includes files directly in your default folder and files you add individually. It does not scan subfolders.
-- RAMnotes has no tags, notebooks, or built-in sync service.
-- Changes from another app can go undetected if that app preserves the file's modification timestamp.
-- macOS can require a normal desktop Space to show notes over a fullscreen app.
-- RAMnotes supports Apple Silicon Macs only. It does not support Intel Macs, iPhone, or iPad.
+- Choose **New Note** to create a note.
+- Choose **Add Existing Files** to add your text files.
+- Click the gear button to open Settings. Choose your default notes folder there.
 
 ## Recover unsaved text
 
-If RAMnotes cannot save a note, the note window shows a warning. Use **Export** to save the text to an accessible location. Use **Restore File Access** or **Locate File** when the warning offers those actions.
-
-If another app changes a file while RAMnotes has unsaved edits, RAMnotes preserves those edits in a separate recovery note. Review the original and the recovery note before you delete either file.
+- If RAMnotes cannot save a note, the note window shows a warning.
+- Use **Export** to save the text to an accessible location.
+- Use **Restore File Access** or **Locate File** when the warning offers those actions.
+- If another app changes a file while RAMnotes has unsaved edits, RAMnotes keeps your edits in a separate recovery note. Review both notes before you delete either file.
 
 ## Uninstall
 
@@ -87,9 +115,9 @@ If another app changes a file while RAMnotes has unsaved edits, RAMnotes preserv
 4. Choose **Quit RAMnotes** in Settings.
 5. Move **RAMnotes** from **Applications** to the Trash in Finder.
 
-Moving the app to the Trash leaves its settings and stored data on your Mac. Files you keep in other folders remain in those folders.
+Moving the app to the Trash leaves its settings and stored data on your Mac. Files in other folders stay in those folders.
 
-The initial default notes folder is inside the app's data container. That container also holds recovery data. Do not delete the container with a cleanup tool unless you first copy the notes and preserve any unsaved text.
+The initial default notes folder is inside the app's data container. That container also holds recovery data. Do not delete the container with a cleanup tool unless you first copy your notes and save any unsaved text.
 
 ## Help and feedback
 

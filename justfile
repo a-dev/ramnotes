@@ -33,7 +33,7 @@ _build-release force='':
 # Build the App Store configuration and zip it as RAMnotes-mas-release.zip.
 _build-mas-release force='':
     xcodebuild -project RAMnotes.xcodeproj -scheme RAMnotesMAS -configuration AppStore -destination '{{destination}}' -derivedDataPath "{{derived_data}}" {{if force == '--force' { 'clean' } else { '' }}} build
-    @just _zip AppStore/RAMnotesMAS.app RAMnotes-mas-release.zip
+    @just _zip AppStore/RAMnotes.app RAMnotes-mas-release.zip
 
 _zip product name:
     ditto -c -k --sequesterRsrc --keepParent "{{derived_data}}/Build/Products/{{product}}" "{{zip_dir}}/{{name}}"

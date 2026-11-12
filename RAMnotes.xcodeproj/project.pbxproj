@@ -7,23 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AFD700000000000000000001 /* ramnotes/App/Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AFD700000000000000000002 /* ramnotes/App/Localizable.xcstrings */; };
-		8D2AB5F63098D18500120C5F /* ramnotes/App/Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AFD700000000000000000002 /* ramnotes/App/Localizable.xcstrings */; };
-		AFD800000000000000000001 /* ramnotes/App/InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AFD800000000000000000002 /* ramnotes/App/InfoPlist.xcstrings */; };
-		8D2AB5F73098D18500120C57 /* ramnotes/App/InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AFD800000000000000000002 /* ramnotes/App/InfoPlist.xcstrings */; };
+		049CD3EA5D926D5369D673B6 /* ramnotes/App/AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D465C8389A57B6D0ED81ADC3 /* ramnotes/App/AppCoordinator.swift */; };
+		05DBC06CD2C043EAAEB84525 /* ramnotes/Presentation/NoteList/NoteListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8766F609FD47759ED588F1 /* ramnotes/Presentation/NoteList/NoteListItem.swift */; };
 		07F3DF8DF0C5C7310DB4EB49 /* ramnotesTests/Editing/WindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974D7213BACEAF5E2FB1BD8 /* ramnotesTests/Editing/WindowTests.swift */; };
 		0DCDE7B52C3472056073E3BB /* ramnotes/Invocation/LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F6D411B7DC4A488FE51CF /* ramnotes/Invocation/LoginService.swift */; };
+		1053D6C099FB5B83F607AB4A /* ramnotes/Presentation/Settings/SettingsPageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F253BCA0C0462E9388187A /* ramnotes/Presentation/Settings/SettingsPageLayout.swift */; };
+		10C3A0A141BD79C8BA4AFB27 /* ramnotes/Presentation/Settings/AboutSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18495534CCC73BB51BBF52FA /* ramnotes/Presentation/Settings/AboutSettingsPage.swift */; };
+		146B20352B802647C25F08C0 /* ramnotes/Presentation/Settings/ShortcutSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ACC838F909CE34F7ECB405 /* ramnotes/Presentation/Settings/ShortcutSettingsPage.swift */; };
 		146C73BC9C809C87FB265D1E /* ramnotes/Search/SearchIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707DC4BC0B86B797EC74F316 /* ramnotes/Search/SearchIndex.swift */; };
 		22A76BDAA9D21F790B9F8E7C /* ramnotes/Windows/WindowPlacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5348E67CECB9757059C3C1B4 /* ramnotes/Windows/WindowPlacement.swift */; };
+		25F96F0C8B6BA31BF6CE2AC5 /* ramnotes/Application/Notes/CollectionReadSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0082376A4C3CDE2B237AE /* ramnotes/Application/Notes/CollectionReadSnapshot.swift */; };
+		2C385C8F9B822C4510497FAF /* ramnotes/App/AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D465C8389A57B6D0ED81ADC3 /* ramnotes/App/AppCoordinator.swift */; };
 		2E84146824102B2490E510A2 /* ramnotes/Invocation/GestureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE38EF6B872239251B02ABA /* ramnotes/Invocation/GestureService.swift */; };
+		307CE5DFF2C349729880E6D1 /* ramnotes/Application/Contracts/RetainedEditSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5403A5A0CA494D968D4B3CF1 /* ramnotes/Application/Contracts/RetainedEditSummary.swift */; };
+		35D6825F8366DD62FA008D0B /* ramnotes/Presentation/Settings/AboutSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18495534CCC73BB51BBF52FA /* ramnotes/Presentation/Settings/AboutSettingsPage.swift */; };
 		3EC23E623D9002321D3259C0 /* ramnotesTests/Invocation/LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F991D37B51389230369A43 /* ramnotesTests/Invocation/LoginTests.swift */; };
+		41179382D433D6D3204034CB /* ramnotes/App/Debug/DebugFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617BEE8720A0E9AE20D8C24E /* ramnotes/App/Debug/DebugFixtures.swift */; };
 		4288AD6EE75A411D388B99EB /* ramnotes/Settings/SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445E4088C39747FCE500A8F1 /* ramnotes/Settings/SettingsController.swift */; };
 		43C0AE63AB1B7ED83158EA50 /* ramnotes/Windows/WindowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54292E75438C9639A4EB567A /* ramnotes/Windows/WindowCoordinator.swift */; };
 		4F12B50E13F104353D6AA2C9 /* ramnotesTests/Editing/PlacementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348D94C546ED63F10DE4121 /* ramnotesTests/Editing/PlacementTests.swift */; };
+		507F00EFB4D3A49C9FD2970E /* ramnotes/Application/Notes/CollectionReadSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0082376A4C3CDE2B237AE /* ramnotes/Application/Notes/CollectionReadSnapshot.swift */; };
+		5545CAB5A503D04E0EF4801A /* ramnotes/Presentation/Settings/SettingsPageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F253BCA0C0462E9388187A /* ramnotes/Presentation/Settings/SettingsPageLayout.swift */; };
 		6297AF8BCCAB8DA7CD9EB877 /* ramnotesUITests/SettingsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AC3CD82F7A70E74C31DBDA /* ramnotesUITests/SettingsIntegrationTests.swift */; };
+		6467CE40B9961DB6AE26FBD0 /* ramnotes/Presentation/Settings/ShortcutSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ACC838F909CE34F7ECB405 /* ramnotes/Presentation/Settings/ShortcutSettingsPage.swift */; };
 		66CF2EDDBF65A3EC104D0F7D /* ramnotesTests/Editing/RecoveryInteractionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA55F850A70B084438F50ED9 /* ramnotesTests/Editing/RecoveryInteractionTests.swift */; };
 		6BECD9B9E1926F201C1D6717 /* ramnotesTests/Search/DiscoveryLifecycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45654D0450AC75EF995B252 /* ramnotesTests/Search/DiscoveryLifecycleTests.swift */; };
 		71E3D49B2A8C4F6D9A1B2C3D /* ramnotesUITests/ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6F1A94C3B4E7D8F0A1B2C /* ramnotesUITests/ScreenshotTests.swift */; };
+		72C08AD5122D8127A12C8D60 /* ramnotes/Presentation/Settings/EditorSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9955827B2239D04ECEC3B80 /* ramnotes/Presentation/Settings/EditorSettingsPage.swift */; };
+		73BDBAC929014D3523ABDA05 /* ramnotes/Presentation/Settings/EditorSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9955827B2239D04ECEC3B80 /* ramnotes/Presentation/Settings/EditorSettingsPage.swift */; };
+		8018AEC1208C47B6A8F3FA1E /* ramnotes/Application/Search/SearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE03C0AF6CC42A6B98C54A3 /* ramnotes/Application/Search/SearchQuery.swift */; };
+		8184669E44294EBD9AAAFA90 /* ramnotes/Application/Contracts/RetainedEditSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5403A5A0CA494D968D4B3CF1 /* ramnotes/Application/Contracts/RetainedEditSummary.swift */; };
 		891A995937E0D74403D24BC0 /* ramnotes/Editing/RecoveryWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93683F6AE9748978DA22D44A /* ramnotes/Editing/RecoveryWindowController.swift */; };
 		8D2AB5C53098D18500120C56 /* ramnotes/Windows/NoteLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0600000000000000000002 /* ramnotes/Windows/NoteLocationController.swift */; };
 		8D2AB5C63098D18500120C56 /* ramnotes/Application/Notes/NoteStore+DefaultFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0400000000000000000002 /* ramnotes/Application/Notes/NoteStore+DefaultFolder.swift */; };
@@ -36,27 +49,14 @@
 		8D2AB5CD3098D18500120C56 /* ramnotes/App/FolderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1000000000000000000002 /* ramnotes/App/FolderState.swift */; };
 		8D2AB5CE3098D18500120C56 /* ramnotes/Infrastructure/Files/FolderScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000226 /* ramnotes/Infrastructure/Files/FolderScanner.swift */; };
 		8D2AB5CF3098D18500120C56 /* ramnotes/Application/Notes/CollectionSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1300000000000000000002 /* ramnotes/Application/Notes/CollectionSession.swift */; };
-		ED17A0000000000000000003 /* ramnotes/Application/Notes/EditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED17A0000000000000000002 /* ramnotes/Application/Notes/EditState.swift */; };
-		ED2D00000000000000000003 /* ramnotes/Application/Notes/ReconcileDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D00000000000000000002 /* ramnotes/Application/Notes/ReconcileDiff.swift */; };
 		8D2AB5D03098D18500120C56 /* ramnotes/Infrastructure/Access/FolderAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000225 /* ramnotes/Infrastructure/Access/FolderAccess.swift */; };
-		AC070000000000000000001D /* ramnotes/Infrastructure/Persistence/IdentityMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC070000000000000000001C /* ramnotes/Infrastructure/Persistence/IdentityMap.swift */; };
-		AC0700000000000000000014 /* ramnotes/Infrastructure/Access/FolderGrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000013 /* ramnotes/Infrastructure/Access/FolderGrants.swift */; };
 		8D2AB5D13098D18500120C56 /* ramnotes/Infrastructure/Files/TrashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000224 /* ramnotes/Infrastructure/Files/TrashService.swift */; };
 		8D2AB5D23098D18500120C56 /* ramnotes/Infrastructure/Files/ExternalEventAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000222 /* ramnotes/Infrastructure/Files/ExternalEventAdapter.swift */; };
 		8D2AB5D33098D18500120C56 /* ramnotes/Infrastructure/Persistence/RecoveryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000220 /* ramnotes/Infrastructure/Persistence/RecoveryStore.swift */; };
 		8D2AB5D43098D18500120C56 /* ramnotes/Application/Notes/NoteStore+External.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000223 /* ramnotes/Application/Notes/NoteStore+External.swift */; };
 		8D2AB5D53098D18500120C56 /* ramnotes/Application/Notes/NoteStore+Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000221 /* ramnotes/Application/Notes/NoteStore+Saving.swift */; };
 		8D2AB5D63098D18500120C56 /* ramnotes/Application/Notes/NoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000211 /* ramnotes/Application/Notes/NoteStore.swift */; };
-		AC070000000000000000001A /* ramnotes/Application/Discovery/IdentityResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000019 /* ramnotes/Application/Discovery/IdentityResolution.swift */; };
-		AC0700000000000000000017 /* ramnotes/Application/Discovery/DiscoveryValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000016 /* ramnotes/Application/Discovery/DiscoveryValues.swift */; };
-		AC0700000000000000000011 /* ramnotes/Application/Notes/NoteStore+Trash.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000010 /* ramnotes/Application/Notes/NoteStore+Trash.swift */; };
-		AC070000000000000000000E /* ramnotes/Application/Notes/NoteStore+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC070000000000000000000D /* ramnotes/Application/Notes/NoteStore+Registration.swift */; };
-		AC070000000000000000000B /* ramnotes/Application/Notes/NoteStore+LocationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC070000000000000000000A /* ramnotes/Application/Notes/NoteStore+LocationAccess.swift */; };
-		AC0700000000000000000008 /* ramnotes/Application/Notes/NoteStore+Forgetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000007 /* ramnotes/Application/Notes/NoteStore+Forgetting.swift */; };
-		AC0700000000000000000005 /* ramnotes/Application/Notes/NoteStore+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000004 /* ramnotes/Application/Notes/NoteStore+Access.swift */; };
-		AC0700000000000000000002 /* ramnotes/Application/Notes/NoteStore+Opening.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000001 /* ramnotes/Application/Notes/NoteStore+Opening.swift */; };
 		8D2AB5D73098D18500120C56 /* ramnotes/Infrastructure/Files/StorageFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000210 /* ramnotes/Infrastructure/Files/StorageFiles.swift */; };
-		ED4000000000000000000003 /* ramnotes/Infrastructure/Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4000000000000000000002 /* ramnotes/Infrastructure/Log.swift */; };
 		8D2AB5D83098D18500120C56 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000201 /* main.swift */; };
 		8D2AB5D93098D18500120C56 /* ramnotes/Editing/NoteOperationError+Presentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD00000000000000000204 /* ramnotes/Editing/NoteOperationError+Presentation.swift */; };
 		8D2AB5DA3098D18500120C56 /* ramnotes/Infrastructure/Persistence/CatalogPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD00000000000000000203 /* ramnotes/Infrastructure/Persistence/CatalogPersistence.swift */; };
@@ -65,11 +65,6 @@
 		8D2AB5DD3098D18500120C56 /* ramnotes/Application/Recovery/RecoveryPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD04000000000000000203 /* ramnotes/Application/Recovery/RecoveryPolicy.swift */; };
 		8D2AB5DE3098D18500120C56 /* ramnotes/Application/Recovery/NoteStore+Recovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD04000000000000000204 /* ramnotes/Application/Recovery/NoteStore+Recovery.swift */; };
 		8D2AB5DF3098D18500120C56 /* ramnotes/Infrastructure/Persistence/NoteRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD00000000000000000202 /* ramnotes/Infrastructure/Persistence/NoteRecords.swift */; };
-		C8C3A6ABBA984B4EA7D46ADB /* ramnotes/Application/Contracts/NoteAccessFailure.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC8DF4D769A42CC87191F95 /* ramnotes/Application/Contracts/NoteAccessFailure.swift */; };
-		8184669E44294EBD9AAAFA90 /* ramnotes/Application/Contracts/RetainedEditSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5403A5A0CA494D968D4B3CF1 /* ramnotes/Application/Contracts/RetainedEditSummary.swift */; };
-		FFDC1BBFFDB44E2E8CDAD345 /* ramnotes/Application/NoteText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662C57670645412EACE9B083 /* ramnotes/Application/NoteText.swift */; };
-		8018AEC1208C47B6A8F3FA1E /* ramnotes/Application/Search/SearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE03C0AF6CC42A6B98C54A3 /* ramnotes/Application/Search/SearchQuery.swift */; };
-		05DBC06CD2C043EAAEB84525 /* ramnotes/Presentation/NoteList/NoteListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8766F609FD47759ED588F1 /* ramnotes/Presentation/NoteList/NoteListItem.swift */; };
 		8D2AB5E03098D18500120C56 /* ramnotes/Application/NoteContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD00000000000000000201 /* ramnotes/Application/NoteContracts.swift */; };
 		8D2AB5E13098D18500120C56 /* ramnotes/Application/LocationWorkflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD300000000000000000202 /* ramnotes/Application/LocationWorkflow.swift */; };
 		8D2AB5E23098D18500120C56 /* ramnotes/Application/DeletionWorkflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD300000000000000000201 /* ramnotes/Application/DeletionWorkflow.swift */; };
@@ -93,33 +88,104 @@
 		8D2AB5F43098D18500120C56 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AF0100000000000000000006 /* PrivacyInfo.xcprivacy */; };
 		8D2AB5F53098D18500120C56 /* ramnotes/App/ThirdPartyNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = AFD600000000000000000002 /* ramnotes/App/ThirdPartyNotices.txt */; };
 		8D2AB5F63098D18500120C56 /* ramnotesLoginHelper.app in Embed Login Helper */ = {isa = PBXBuildFile; fileRef = BB2200000000000000000003 /* ramnotesLoginHelper.app */; };
+		8D2AB5F63098D18500120C5F /* ramnotes/App/Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AFD700000000000000000002 /* ramnotes/App/Localizable.xcstrings */; };
+		8D2AB5F73098D18500120C57 /* ramnotes/App/InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AFD800000000000000000002 /* ramnotes/App/InfoPlist.xcstrings */; };
+		970666B5B7E341E38AAF1DDD /* ramnotes/Application/Search/SearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE03C0AF6CC42A6B98C54A3 /* ramnotes/Application/Search/SearchQuery.swift */; };
+		970C90C790644C5BB6E8AA70 /* ramnotes/Application/NoteText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662C57670645412EACE9B083 /* ramnotes/Application/NoteText.swift */; };
 		9B60FD8A3DE91D9DEC23213C /* ramnotesTests/Editing/TransitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B1D479DCEE481397B87EC /* ramnotesTests/Editing/TransitionTests.swift */; };
 		A00000000000000000000101 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000201 /* main.swift */; };
+		A00000000000000000000103 /* ramnotes/Infrastructure/Persistence/MetadataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000203 /* ramnotes/Infrastructure/Persistence/MetadataStore.swift */; };
+		A00000000000000000000104 /* ramnotesTests/Storage/FoundationPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000204 /* ramnotesTests/Storage/FoundationPersistenceTests.swift */; };
+		A00000000000000000000105 /* LaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000205 /* LaunchTests.swift */; };
+		A00000000000000000000106 /* TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000209 /* TestFixture.swift */; };
 		A0000000000000000000E001 /* NoteIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000D001 /* NoteIdentity.swift */; };
 		A0000000000000000000E002 /* NoteSavePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000D002 /* NoteSavePolicy.swift */; };
 		A0000000000000000000E003 /* NoteFilename.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000D003 /* NoteFilename.swift */; };
 		A0000000000000000000E004 /* FilenameVocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000D004 /* FilenameVocabulary.swift */; };
 		A0000000000000000000E005 /* LocationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000D005 /* LocationOperation.swift */; };
 		A0000000000000000000E006 /* NoteRegistrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000D006 /* NoteRegistrationPolicy.swift */; };
-		A00000000000000000000103 /* ramnotes/Infrastructure/Persistence/MetadataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000203 /* ramnotes/Infrastructure/Persistence/MetadataStore.swift */; };
-		A00000000000000000000104 /* ramnotesTests/Storage/FoundationPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000204 /* ramnotesTests/Storage/FoundationPersistenceTests.swift */; };
-		A00000000000000000000105 /* LaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000205 /* LaunchTests.swift */; };
-		A00000000000000000000106 /* TestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000209 /* TestFixture.swift */; };
+		A1B2C3D4E5F60718293A4B01 /* ramnotes/Presentation/Settings/WindowsSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B03 /* ramnotes/Presentation/Settings/WindowsSettingsPage.swift */; };
+		A1B2C3D4E5F60718293A4B02 /* ramnotes/Presentation/Settings/WindowsSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B03 /* ramnotes/Presentation/Settings/WindowsSettingsPage.swift */; };
 		A5963519925B31A689BC44FF /* ramnotesTests/Editing/SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B9C3F0D25074B0FB313B90 /* ramnotesTests/Editing/SettingsTests.swift */; };
 		A622AAE3505204FA03DA2D4F /* ramnotesTests/Invocation/GestureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB01C7DE9BBE6B4DBDE1F4B /* ramnotesTests/Invocation/GestureTests.swift */; };
+		A63DCE114BAC4AA789B3ABC7 /* ramnotes/Presentation/NoteList/NoteListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8766F609FD47759ED588F1 /* ramnotes/Presentation/NoteList/NoteListItem.swift */; };
 		AA1100000000000000000001 /* ramnotes/Invocation/ShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000002 /* ramnotes/Invocation/ShortcutService.swift */; };
 		AB0300000000000000000001 /* ramnotes/Application/Notes/NoteStore+LocationMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0300000000000000000002 /* ramnotes/Application/Notes/NoteStore+LocationMove.swift */; };
 		AB0300000000000000000003 /* ramnotesTests/Storage/LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0300000000000000000004 /* ramnotesTests/Storage/LocationTests.swift */; };
 		AB0400000000000000000001 /* ramnotes/Application/Notes/NoteStore+DefaultFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0400000000000000000002 /* ramnotes/Application/Notes/NoteStore+DefaultFolder.swift */; };
 		AB0600000000000000000001 /* ramnotes/Windows/NoteLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0600000000000000000002 /* ramnotes/Windows/NoteLocationController.swift */; };
+		AC0700000000000000000002 /* ramnotes/Application/Notes/NoteStore+Opening.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000001 /* ramnotes/Application/Notes/NoteStore+Opening.swift */; };
+		AC0700000000000000000003 /* ramnotes/Application/Notes/NoteStore+Opening.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000001 /* ramnotes/Application/Notes/NoteStore+Opening.swift */; };
+		AC0700000000000000000005 /* ramnotes/Application/Notes/NoteStore+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000004 /* ramnotes/Application/Notes/NoteStore+Access.swift */; };
+		AC0700000000000000000006 /* ramnotes/Application/Notes/NoteStore+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000004 /* ramnotes/Application/Notes/NoteStore+Access.swift */; };
+		AC0700000000000000000008 /* ramnotes/Application/Notes/NoteStore+Forgetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000007 /* ramnotes/Application/Notes/NoteStore+Forgetting.swift */; };
+		AC0700000000000000000009 /* ramnotes/Application/Notes/NoteStore+Forgetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000007 /* ramnotes/Application/Notes/NoteStore+Forgetting.swift */; };
+		AC070000000000000000000B /* ramnotes/Application/Notes/NoteStore+LocationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC070000000000000000000A /* ramnotes/Application/Notes/NoteStore+LocationAccess.swift */; };
+		AC070000000000000000000C /* ramnotes/Application/Notes/NoteStore+LocationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC070000000000000000000A /* ramnotes/Application/Notes/NoteStore+LocationAccess.swift */; };
+		AC070000000000000000000E /* ramnotes/Application/Notes/NoteStore+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC070000000000000000000D /* ramnotes/Application/Notes/NoteStore+Registration.swift */; };
+		AC070000000000000000000F /* ramnotes/Application/Notes/NoteStore+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC070000000000000000000D /* ramnotes/Application/Notes/NoteStore+Registration.swift */; };
+		AC0700000000000000000011 /* ramnotes/Application/Notes/NoteStore+Trash.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000010 /* ramnotes/Application/Notes/NoteStore+Trash.swift */; };
+		AC0700000000000000000012 /* ramnotes/Application/Notes/NoteStore+Trash.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000010 /* ramnotes/Application/Notes/NoteStore+Trash.swift */; };
+		AC0700000000000000000014 /* ramnotes/Infrastructure/Access/FolderGrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000013 /* ramnotes/Infrastructure/Access/FolderGrants.swift */; };
+		AC0700000000000000000015 /* ramnotes/Infrastructure/Access/FolderGrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000013 /* ramnotes/Infrastructure/Access/FolderGrants.swift */; };
+		AC0700000000000000000017 /* ramnotes/Application/Discovery/DiscoveryValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000016 /* ramnotes/Application/Discovery/DiscoveryValues.swift */; };
+		AC0700000000000000000018 /* ramnotes/Application/Discovery/DiscoveryValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000016 /* ramnotes/Application/Discovery/DiscoveryValues.swift */; };
+		AC070000000000000000001A /* ramnotes/Application/Discovery/IdentityResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000019 /* ramnotes/Application/Discovery/IdentityResolution.swift */; };
+		AC070000000000000000001B /* ramnotes/Application/Discovery/IdentityResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000019 /* ramnotes/Application/Discovery/IdentityResolution.swift */; };
+		AC070000000000000000001D /* ramnotes/Infrastructure/Persistence/IdentityMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC070000000000000000001C /* ramnotes/Infrastructure/Persistence/IdentityMap.swift */; };
+		AC070000000000000000001E /* ramnotes/Infrastructure/Persistence/IdentityMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC070000000000000000001C /* ramnotes/Infrastructure/Persistence/IdentityMap.swift */; };
 		AC0800000000000000000001 /* ramnotes/Application/Lifecycle/LifecycleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0800000000000000000002 /* ramnotes/Application/Lifecycle/LifecycleController.swift */; };
 		AC0900000000000000000001 /* ramnotes/Editing/RecoveryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0900000000000000000002 /* ramnotes/Editing/RecoveryController.swift */; };
+		AC408C6191C7138ABF3096DE /* ramnotes/Presentation/Settings/TypographyNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4D2D0AD0F36357DE94E1F5 /* ramnotes/Presentation/Settings/TypographyNumber.swift */; };
+		AC409DD17A7384A69C15C9C9 /* ramnotes/Presentation/Controls/SharedControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47AA366B479C23C658A6B2 /* ramnotes/Presentation/Controls/SharedControls.swift */; };
+		AC4117102790A7357A43644E /* ramnotes/Presentation/Windows/WindowMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44BC881396A8954FA94EF9 /* ramnotes/Presentation/Windows/WindowMetadata.swift */; };
+		AC4129794B2B5DC428403080 /* ramnotes/Application/MetadataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4351600BD818EF4CBEF1C6 /* ramnotes/Application/MetadataPersistence.swift */; };
+		AC4131583D21035113B7D4F1 /* ramnotes/Presentation/Appearance/NoteTonePalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4333C50CFF134074B39FE6 /* ramnotes/Presentation/Appearance/NoteTonePalette.swift */; };
+		AC41BCEF2E82675C4D65CBB7 /* ramnotes/Presentation/Appearance/NoteBackgroundTone.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4E01B99635A5A96C21B36E /* ramnotes/Presentation/Appearance/NoteBackgroundTone.swift */; };
+		AC4296ABD79A9D3031884FEB /* ramnotes/Presentation/Recovery/RecoveryActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC41F4AB45F9053C28383935 /* ramnotes/Presentation/Recovery/RecoveryActionsView.swift */; };
+		AC4329E4A4FC186D2571C63B /* ramnotes/Presentation/NoteList/NoteDragPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC455874381AE6E4EB244651 /* ramnotes/Presentation/NoteList/NoteDragPromise.swift */; };
+		AC43E91F4DC86C4B2EA36CEC /* ramnotes/Presentation/Formatting/PathIsolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47544581BB26D0F9B8B522 /* ramnotes/Presentation/Formatting/PathIsolation.swift */; };
+		AC4477E61F4B3B2279AFF071 /* ramnotes/Presentation/NoteList/NoteDragPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC455874381AE6E4EB244651 /* ramnotes/Presentation/NoteList/NoteDragPromise.swift */; };
+		AC44C00C115ED9F497242D3E /* ramnotes/Presentation/Controls/ShortcutRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B3FCDE34494D84DD78602 /* ramnotes/Presentation/Controls/ShortcutRecorder.swift */; };
+		AC44E70067120002B338C892 /* ramnotes/Presentation/NoteList/NoteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4D2A18B036A467F2AF525D /* ramnotes/Presentation/NoteList/NoteListCell.swift */; };
+		AC4543AE7B26DCEB40A9341B /* ramnotes/Presentation/Appearance/NoteBackgroundTone.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4E01B99635A5A96C21B36E /* ramnotes/Presentation/Appearance/NoteBackgroundTone.swift */; };
+		AC45A0617CB693D38848CC2B /* ramnotes/Presentation/NoteList/NoteListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC438E4F85D3640FC4BC69CF /* ramnotes/Presentation/NoteList/NoteListTableView.swift */; };
+		AC461B9E1503E9ADEA772580 /* ramnotes/Presentation/Windows/GroupWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC438467AC12DBFFE0B5F3CF /* ramnotes/Presentation/Windows/GroupWindow.swift */; };
+		AC4629AB3E81CB98CCBE5663 /* ramnotes/Settings/AppShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4CAB264EBAFFDB234B910F /* ramnotes/Settings/AppShortcut.swift */; };
+		AC4672B171B41E4BA5DF64C2 /* ramnotes/Presentation/NoteList/NoteListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC438E4F85D3640FC4BC69CF /* ramnotes/Presentation/NoteList/NoteListTableView.swift */; };
+		AC46A6BB7A76DC73D99CBA2D /* ramnotes/Presentation/Appearance/EditorTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4E7BF25A706FEB81BDE20A /* ramnotes/Presentation/Appearance/EditorTypography.swift */; };
+		AC477F0DA2EE66EF90816133 /* ramnotes/Presentation/Formatting/PathIsolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47544581BB26D0F9B8B522 /* ramnotes/Presentation/Formatting/PathIsolation.swift */; };
+		AC479D0FDFB75D46AB1FF3D7 /* ramnotes/Presentation/Appearance/InterfaceTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC46F93FAF20699504E33A74 /* ramnotes/Presentation/Appearance/InterfaceTypography.swift */; };
+		AC47FE2F4E5054DEEB89500C /* ramnotes/Presentation/Windows/WindowMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44BC881396A8954FA94EF9 /* ramnotes/Presentation/Windows/WindowMetadata.swift */; };
+		AC48274058B47DA28FC895EC /* ramnotes/Presentation/Controls/ShortcutRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B3FCDE34494D84DD78602 /* ramnotes/Presentation/Controls/ShortcutRecorder.swift */; };
+		AC48468C23CEADD3434B74FF /* ramnotes/Presentation/Appearance/NoteTonePalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4333C50CFF134074B39FE6 /* ramnotes/Presentation/Appearance/NoteTonePalette.swift */; };
+		AC487FFB15D916EB147E560F /* ramnotes/Settings/AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CE151ACA29A43F09A177 /* ramnotes/Settings/AppSettings.swift */; };
+		AC4897C589B54008A5AC7749 /* ramnotes/Settings/AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CE151ACA29A43F09A177 /* ramnotes/Settings/AppSettings.swift */; };
+		AC48C0CAC4C97C8552A40D85 /* ramnotes/Presentation/Editing/PlainTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47347266B2828994B58677 /* ramnotes/Presentation/Editing/PlainTextView.swift */; };
+		AC4909CF95E378D1EC195C7F /* ramnotes/Presentation/Recovery/RecoveryActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC41F4AB45F9053C28383935 /* ramnotes/Presentation/Recovery/RecoveryActionsView.swift */; };
+		AC4979166FA27AE208457FA2 /* ramnotes/Presentation/Controls/WindowHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4E7027B0DB390700030488 /* ramnotes/Presentation/Controls/WindowHeader.swift */; };
+		AC49DF7B8350F04614F91D5C /* ramnotes/Presentation/NoteList/NoteListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47AD20D93C9AC70242FACA /* ramnotes/Presentation/NoteList/NoteListRow.swift */; };
+		AC4A07FE98B44D98176F5C25 /* ramnotes/Presentation/Appearance/InterfaceTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC46F93FAF20699504E33A74 /* ramnotes/Presentation/Appearance/InterfaceTypography.swift */; };
+		AC4A16B2CE443461365D4FF5 /* ramnotes/Presentation/NoteList/NoteListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47AD20D93C9AC70242FACA /* ramnotes/Presentation/NoteList/NoteListRow.swift */; };
+		AC4A5786F8F55AEE178075E6 /* ramnotes/Presentation/Formatting/NoteLocationPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F734A28C6404608AC4246 /* ramnotes/Presentation/Formatting/NoteLocationPresentation.swift */; };
+		AC4A927D02F0303B6C02B53A /* ramnotes/Presentation/Controls/SharedControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47AA366B479C23C658A6B2 /* ramnotes/Presentation/Controls/SharedControls.swift */; };
+		AC4B0946B1994EAD9130BE55 /* ramnotes/Presentation/Settings/TypographyNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4D2D0AD0F36357DE94E1F5 /* ramnotes/Presentation/Settings/TypographyNumber.swift */; };
+		AC4C1C18B0CD38355AC87439 /* ramnotes/Settings/AppShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4CAB264EBAFFDB234B910F /* ramnotes/Settings/AppShortcut.swift */; };
+		AC4CC998D74EEA65A5B08ED3 /* ramnotes/Presentation/Formatting/NoteLocationPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F734A28C6404608AC4246 /* ramnotes/Presentation/Formatting/NoteLocationPresentation.swift */; };
+		AC4DB428C7E8F63A80D1ED26 /* ramnotes/Presentation/NoteList/NoteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4D2A18B036A467F2AF525D /* ramnotes/Presentation/NoteList/NoteListCell.swift */; };
+		AC4E22CEDBAE962E1A34C383 /* ramnotes/Presentation/NoteList/NoteListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4242805C50328E354423D9 /* ramnotes/Presentation/NoteList/NoteListHeader.swift */; };
+		AC4E3A392823507A913534A4 /* ramnotes/Presentation/Windows/GroupWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC438467AC12DBFFE0B5F3CF /* ramnotes/Presentation/Windows/GroupWindow.swift */; };
+		AC4E8CF20ABF1FE9747E94A9 /* ramnotes/Invocation/ShortcutChord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4724A7B2EB2467C5706231 /* ramnotes/Invocation/ShortcutChord.swift */; };
+		AC4EC0735CDB41E283009F5E /* ramnotes/Application/MetadataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4351600BD818EF4CBEF1C6 /* ramnotes/Application/MetadataPersistence.swift */; };
+		AC4ECDE7DC10582C7CE95005 /* ramnotes/Presentation/Appearance/EditorTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4E7BF25A706FEB81BDE20A /* ramnotes/Presentation/Appearance/EditorTypography.swift */; };
+		AC4ED2440EEFBE2B73423F1B /* ramnotes/Invocation/ShortcutChord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4724A7B2EB2467C5706231 /* ramnotes/Invocation/ShortcutChord.swift */; };
+		AC4F0848C985CA16C13F3D64 /* ramnotes/Presentation/Editing/PlainTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47347266B2828994B58677 /* ramnotes/Presentation/Editing/PlainTextView.swift */; };
+		AC4F546E643B8D6968232C01 /* ramnotes/Presentation/NoteList/NoteListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4242805C50328E354423D9 /* ramnotes/Presentation/NoteList/NoteListHeader.swift */; };
+		AC4FAC69CF9BA5AB88DF6170 /* ramnotes/Presentation/Controls/WindowHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4E7027B0DB390700030488 /* ramnotes/Presentation/Controls/WindowHeader.swift */; };
 		AD1000000000000000000001 /* ramnotes/App/FolderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1000000000000000000002 /* ramnotes/App/FolderState.swift */; };
 		AD1100000000000000000001 /* ramnotes/App/ListWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1100000000000000000002 /* ramnotes/App/ListWindowController.swift */; };
 		AD1200000000000000000001 /* ramnotes/App/SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1200000000000000000002 /* ramnotes/App/SettingsCoordinator.swift */; };
 		AD1300000000000000000001 /* ramnotes/Application/Notes/CollectionSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1300000000000000000002 /* ramnotes/Application/Notes/CollectionSession.swift */; };
-		ED17A0000000000000000001 /* ramnotes/Application/Notes/EditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED17A0000000000000000002 /* ramnotes/Application/Notes/EditState.swift */; };
-		ED2D00000000000000000001 /* ramnotes/Application/Notes/ReconcileDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D00000000000000000002 /* ramnotes/Application/Notes/ReconcileDiff.swift */; };
 		AF0100000000000000000001 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = AF0100000000000000000002 /* AppIcon.icon */; };
 		AF0100000000000000000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF0100000000000000000004 /* Assets.xcassets */; };
 		AF0100000000000000000005 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AF0100000000000000000006 /* PrivacyInfo.xcprivacy */; };
@@ -132,11 +198,8 @@
 		AFD500000000000000000006 /* ramnotesDomainTests/NoteRulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD500000000000000000003 /* ramnotesDomainTests/NoteRulesTests.swift */; };
 		AFD500000000000000000051 /* ramnotesTests/Storage/RecoverySaveStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD500000000000000000050 /* ramnotesTests/Storage/RecoverySaveStateTests.swift */; };
 		AFD600000000000000000001 /* ramnotes/App/ThirdPartyNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = AFD600000000000000000002 /* ramnotes/App/ThirdPartyNotices.txt */; };
-		DF55A6348C314C0E85A89351 /* ramnotes/Application/Contracts/NoteAccessFailure.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC8DF4D769A42CC87191F95 /* ramnotes/Application/Contracts/NoteAccessFailure.swift */; };
-		307CE5DFF2C349729880E6D1 /* ramnotes/Application/Contracts/RetainedEditSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5403A5A0CA494D968D4B3CF1 /* ramnotes/Application/Contracts/RetainedEditSummary.swift */; };
-		970C90C790644C5BB6E8AA70 /* ramnotes/Application/NoteText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662C57670645412EACE9B083 /* ramnotes/Application/NoteText.swift */; };
-		970666B5B7E341E38AAF1DDD /* ramnotes/Application/Search/SearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE03C0AF6CC42A6B98C54A3 /* ramnotes/Application/Search/SearchQuery.swift */; };
-		A63DCE114BAC4AA789B3ABC7 /* ramnotes/Presentation/NoteList/NoteListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8766F609FD47759ED588F1 /* ramnotes/Presentation/NoteList/NoteListItem.swift */; };
+		AFD700000000000000000001 /* ramnotes/App/Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AFD700000000000000000002 /* ramnotes/App/Localizable.xcstrings */; };
+		AFD800000000000000000001 /* ramnotes/App/InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AFD800000000000000000002 /* ramnotes/App/InfoPlist.xcstrings */; };
 		AFDD00000000000000000101 /* ramnotes/Application/NoteContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD00000000000000000201 /* ramnotes/Application/NoteContracts.swift */; };
 		AFDD00000000000000000102 /* ramnotes/Infrastructure/Persistence/NoteRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD00000000000000000202 /* ramnotes/Infrastructure/Persistence/NoteRecords.swift */; };
 		AFDD00000000000000000103 /* ramnotes/Infrastructure/Persistence/CatalogPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD00000000000000000203 /* ramnotes/Infrastructure/Persistence/CatalogPersistence.swift */; };
@@ -146,18 +209,10 @@
 		AFDD04000000000000000103 /* ramnotes/Application/Recovery/RecoveryPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD04000000000000000203 /* ramnotes/Application/Recovery/RecoveryPolicy.swift */; };
 		AFDD04000000000000000104 /* ramnotes/Application/Recovery/NoteStore+Recovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD04000000000000000204 /* ramnotes/Application/Recovery/NoteStore+Recovery.swift */; };
 		B00000000000000000000110 /* ramnotes/Infrastructure/Files/StorageFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000210 /* ramnotes/Infrastructure/Files/StorageFiles.swift */; };
-		ED4000000000000000000001 /* ramnotes/Infrastructure/Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4000000000000000000002 /* ramnotes/Infrastructure/Log.swift */; };
 		B00000000000000000000111 /* ramnotes/Application/Notes/NoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000211 /* ramnotes/Application/Notes/NoteStore.swift */; };
-		AC070000000000000000001B /* ramnotes/Application/Discovery/IdentityResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000019 /* ramnotes/Application/Discovery/IdentityResolution.swift */; };
-		AC0700000000000000000018 /* ramnotes/Application/Discovery/DiscoveryValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000016 /* ramnotes/Application/Discovery/DiscoveryValues.swift */; };
-		AC0700000000000000000012 /* ramnotes/Application/Notes/NoteStore+Trash.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000010 /* ramnotes/Application/Notes/NoteStore+Trash.swift */; };
-		AC070000000000000000000F /* ramnotes/Application/Notes/NoteStore+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC070000000000000000000D /* ramnotes/Application/Notes/NoteStore+Registration.swift */; };
-		AC070000000000000000000C /* ramnotes/Application/Notes/NoteStore+LocationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC070000000000000000000A /* ramnotes/Application/Notes/NoteStore+LocationAccess.swift */; };
-		AC0700000000000000000009 /* ramnotes/Application/Notes/NoteStore+Forgetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000007 /* ramnotes/Application/Notes/NoteStore+Forgetting.swift */; };
-		AC0700000000000000000006 /* ramnotes/Application/Notes/NoteStore+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000004 /* ramnotes/Application/Notes/NoteStore+Access.swift */; };
-		AC0700000000000000000003 /* ramnotes/Application/Notes/NoteStore+Opening.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000001 /* ramnotes/Application/Notes/NoteStore+Opening.swift */; };
 		B00000000000000000000112 /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000212 /* StorageTests.swift */; };
 		B077542F6611A5CBC685FC15 /* ramnotes/Application/Notes/NoteStore+Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DDB9F7998DC7011890AC14 /* ramnotes/Application/Notes/NoteStore+Availability.swift */; };
+		B089243C2A3ADB1FE5A7D024 /* ramnotes/Presentation/Recovery/RecoveryBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E0BF911E986D8D441626AB /* ramnotes/Presentation/Recovery/RecoveryBannerView.swift */; };
 		BB2200000000000000000002 /* ramnotesLoginHelper/main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2200000000000000000001 /* ramnotesLoginHelper/main.swift */; };
 		BB2200000000000000000004 /* ramnotesLoginHelper.app in Embed Login Helper */ = {isa = PBXBuildFile; fileRef = BB2200000000000000000003 /* ramnotesLoginHelper.app */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C00000000000000000000120 /* ramnotes/Infrastructure/Persistence/RecoveryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000220 /* ramnotes/Infrastructure/Persistence/RecoveryStore.swift */; };
@@ -166,93 +221,38 @@
 		C00000000000000000000123 /* ramnotes/Application/Notes/NoteStore+External.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000223 /* ramnotes/Application/Notes/NoteStore+External.swift */; };
 		C00000000000000000000124 /* ramnotes/Infrastructure/Files/TrashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000224 /* ramnotes/Infrastructure/Files/TrashService.swift */; };
 		C00000000000000000000125 /* ramnotes/Infrastructure/Access/FolderAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000225 /* ramnotes/Infrastructure/Access/FolderAccess.swift */; };
-		AC070000000000000000001E /* ramnotes/Infrastructure/Persistence/IdentityMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC070000000000000000001C /* ramnotes/Infrastructure/Persistence/IdentityMap.swift */; };
-		AC0700000000000000000015 /* ramnotes/Infrastructure/Access/FolderGrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0700000000000000000013 /* ramnotes/Infrastructure/Access/FolderGrants.swift */; };
 		C00000000000000000000126 /* ramnotes/Infrastructure/Files/FolderScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000226 /* ramnotes/Infrastructure/Files/FolderScanner.swift */; };
+		C36F61E4975A375D696D1732 /* ramnotes/Presentation/Settings/GeneralSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E94FD1A11FF1B42EADBB43 /* ramnotes/Presentation/Settings/GeneralSettingsPage.swift */; };
+		C8C3A6ABBA984B4EA7D46ADB /* ramnotes/Application/Contracts/NoteAccessFailure.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC8DF4D769A42CC87191F95 /* ramnotes/Application/Contracts/NoteAccessFailure.swift */; };
 		CD6F5146D7DC63E1A12B9772 /* ramnotes/Presentation/Windows/NoteWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED1BE70DEC6FAA792C61579 /* ramnotes/Presentation/Windows/NoteWindowController.swift */; };
 		D00000000000000000000130 /* SavingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00000000000000000000230 /* SavingTests.swift */; };
 		DD6DF300093ABEA0FEB29156 /* ramnotesTests/Search/SearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FBC36FF6278309FC0F40 /* ramnotesTests/Search/SearchTests.swift */; };
+		DF06EC861743097CCC1AC375 /* ramnotes/Presentation/Recovery/RecoveryBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E0BF911E986D8D441626AB /* ramnotes/Presentation/Recovery/RecoveryBannerView.swift */; };
+		DF55A6348C314C0E85A89351 /* ramnotes/Application/Contracts/NoteAccessFailure.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC8DF4D769A42CC87191F95 /* ramnotes/Application/Contracts/NoteAccessFailure.swift */; };
 		E00000000000000000000140 /* ExternalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00000000000000000000240 /* ExternalTests.swift */; };
+		E0F16A2307977F4815B1A9B9 /* ramnotes/App/Debug/DebugFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617BEE8720A0E9AE20D8C24E /* ramnotes/App/Debug/DebugFixtures.swift */; };
+		E37F1D628539A6399420CDC3 /* ramnotes/App/AppMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35E9AB70C56AACC443725F1 /* ramnotes/App/AppMenuController.swift */; };
+		ED17A0000000000000000001 /* ramnotes/Application/Notes/EditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED17A0000000000000000002 /* ramnotes/Application/Notes/EditState.swift */; };
+		ED17A0000000000000000003 /* ramnotes/Application/Notes/EditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED17A0000000000000000002 /* ramnotes/Application/Notes/EditState.swift */; };
+		ED2D00000000000000000001 /* ramnotes/Application/Notes/ReconcileDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D00000000000000000002 /* ramnotes/Application/Notes/ReconcileDiff.swift */; };
+		ED2D00000000000000000003 /* ramnotes/Application/Notes/ReconcileDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D00000000000000000002 /* ramnotes/Application/Notes/ReconcileDiff.swift */; };
 		ED2D00000000000000000010 /* ReconcileDiffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D00000000000000000020 /* ReconcileDiffTests.swift */; };
+		ED4000000000000000000001 /* ramnotes/Infrastructure/Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4000000000000000000002 /* ramnotes/Infrastructure/Log.swift */; };
+		ED4000000000000000000003 /* ramnotes/Infrastructure/Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4000000000000000000002 /* ramnotes/Infrastructure/Log.swift */; };
+		EFA05D404F5F86829886DB06 /* ramnotes/Presentation/Settings/GeneralSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E94FD1A11FF1B42EADBB43 /* ramnotes/Presentation/Settings/GeneralSettingsPage.swift */; };
 		F00000000000000000000150 /* TrashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000260 /* TrashTests.swift */; };
 		F03C9D3693BC4710A61282D9 /* ramnotesUITests/WorkflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A3FECEC35386596F0D1E2C /* ramnotesUITests/WorkflowTests.swift */; };
 		F1298E6DFFED097809C0FB0A /* ramnotesTests/Invocation/ShortcutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469692EFC2CF9A95F68540C /* ramnotesTests/Invocation/ShortcutTests.swift */; };
 		F17000000000000000000001 /* ramnotesTests/Editing/DeletionWorkflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17000000000000000000002 /* ramnotesTests/Editing/DeletionWorkflowTests.swift */; };
 		F17000000000000000000003 /* ramnotesTests/Support/RecoveryTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17000000000000000000004 /* ramnotesTests/Support/RecoveryTestSupport.swift */; };
 		F449733306F8B86271173810 /* ramnotes/Presentation/NoteList/NoteListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBFBEFD6721BAF40562F5B /* ramnotes/Presentation/NoteList/NoteListController.swift */; };
+		F9687CBE4C8BF68458DDA116 /* ramnotes/App/AppMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35E9AB70C56AACC443725F1 /* ramnotes/App/AppMenuController.swift */; };
 		FE1000000000000000000001 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = FE1000000000000000000002 /* Sparkle */; };
-		G0000000000000000000ID01 /* IdentityMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = G0000000000000000000ID02 /* IdentityMapTests.swift */; };
+		FFDC1BBFFDB44E2E8CDAD345 /* ramnotes/Application/NoteText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662C57670645412EACE9B083 /* ramnotes/Application/NoteText.swift */; };
 		G00000000000000000000160 /* FolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = G00000000000000000000270 /* FolderTests.swift */; };
+		G0000000000000000000ID01 /* IdentityMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = G0000000000000000000ID02 /* IdentityMapTests.swift */; };
 		H00000000000000000000101 /* ramnotes/Presentation/Editing/NoteEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = H00000000000000000000201 /* ramnotes/Presentation/Editing/NoteEditorController.swift */; };
 		H00000000000000000000102 /* ramnotesTests/Editing/EditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = H00000000000000000000202 /* ramnotesTests/Editing/EditorTests.swift */; };
-		AC48C0CAC4C97C8552A40D85 /* ramnotes/Presentation/Editing/PlainTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47347266B2828994B58677 /* ramnotes/Presentation/Editing/PlainTextView.swift */; };
-		AC4F0848C985CA16C13F3D64 /* ramnotes/Presentation/Editing/PlainTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47347266B2828994B58677 /* ramnotes/Presentation/Editing/PlainTextView.swift */; };
-		AC48468C23CEADD3434B74FF /* ramnotes/Presentation/Appearance/NoteTonePalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4333C50CFF134074B39FE6 /* ramnotes/Presentation/Appearance/NoteTonePalette.swift */; };
-		AC4131583D21035113B7D4F1 /* ramnotes/Presentation/Appearance/NoteTonePalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4333C50CFF134074B39FE6 /* ramnotes/Presentation/Appearance/NoteTonePalette.swift */; };
-		AC45A0617CB693D38848CC2B /* ramnotes/Presentation/NoteList/NoteListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC438E4F85D3640FC4BC69CF /* ramnotes/Presentation/NoteList/NoteListTableView.swift */; };
-		AC4672B171B41E4BA5DF64C2 /* ramnotes/Presentation/NoteList/NoteListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC438E4F85D3640FC4BC69CF /* ramnotes/Presentation/NoteList/NoteListTableView.swift */; };
-		AC44E70067120002B338C892 /* ramnotes/Presentation/NoteList/NoteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4D2A18B036A467F2AF525D /* ramnotes/Presentation/NoteList/NoteListCell.swift */; };
-		AC4DB428C7E8F63A80D1ED26 /* ramnotes/Presentation/NoteList/NoteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4D2A18B036A467F2AF525D /* ramnotes/Presentation/NoteList/NoteListCell.swift */; };
-		AC4A16B2CE443461365D4FF5 /* ramnotes/Presentation/NoteList/NoteListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47AD20D93C9AC70242FACA /* ramnotes/Presentation/NoteList/NoteListRow.swift */; };
-		AC49DF7B8350F04614F91D5C /* ramnotes/Presentation/NoteList/NoteListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47AD20D93C9AC70242FACA /* ramnotes/Presentation/NoteList/NoteListRow.swift */; };
-		AC4329E4A4FC186D2571C63B /* ramnotes/Presentation/NoteList/NoteDragPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC455874381AE6E4EB244651 /* ramnotes/Presentation/NoteList/NoteDragPromise.swift */; };
-		AC4477E61F4B3B2279AFF071 /* ramnotes/Presentation/NoteList/NoteDragPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC455874381AE6E4EB244651 /* ramnotes/Presentation/NoteList/NoteDragPromise.swift */; };
-		AC4F546E643B8D6968232C01 /* ramnotes/Presentation/NoteList/NoteListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4242805C50328E354423D9 /* ramnotes/Presentation/NoteList/NoteListHeader.swift */; };
-		AC4E22CEDBAE962E1A34C383 /* ramnotes/Presentation/NoteList/NoteListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4242805C50328E354423D9 /* ramnotes/Presentation/NoteList/NoteListHeader.swift */; };
-		AC461B9E1503E9ADEA772580 /* ramnotes/Presentation/Windows/GroupWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC438467AC12DBFFE0B5F3CF /* ramnotes/Presentation/Windows/GroupWindow.swift */; };
-		AC4E3A392823507A913534A4 /* ramnotes/Presentation/Windows/GroupWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC438467AC12DBFFE0B5F3CF /* ramnotes/Presentation/Windows/GroupWindow.swift */; };
-		AC4FAC69CF9BA5AB88DF6170 /* ramnotes/Presentation/Controls/WindowHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4E7027B0DB390700030488 /* ramnotes/Presentation/Controls/WindowHeader.swift */; };
-		AC4979166FA27AE208457FA2 /* ramnotes/Presentation/Controls/WindowHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4E7027B0DB390700030488 /* ramnotes/Presentation/Controls/WindowHeader.swift */; };
-		AC409DD17A7384A69C15C9C9 /* ramnotes/Presentation/Controls/SharedControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47AA366B479C23C658A6B2 /* ramnotes/Presentation/Controls/SharedControls.swift */; };
-		AC4A927D02F0303B6C02B53A /* ramnotes/Presentation/Controls/SharedControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47AA366B479C23C658A6B2 /* ramnotes/Presentation/Controls/SharedControls.swift */; };
-		AC4296ABD79A9D3031884FEB /* ramnotes/Presentation/Recovery/RecoveryActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC41F4AB45F9053C28383935 /* ramnotes/Presentation/Recovery/RecoveryActionsView.swift */; };
-		AC4909CF95E378D1EC195C7F /* ramnotes/Presentation/Recovery/RecoveryActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC41F4AB45F9053C28383935 /* ramnotes/Presentation/Recovery/RecoveryActionsView.swift */; };
-		AC4897C589B54008A5AC7749 /* ramnotes/Settings/AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CE151ACA29A43F09A177 /* ramnotes/Settings/AppSettings.swift */; };
-		AC487FFB15D916EB147E560F /* ramnotes/Settings/AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CE151ACA29A43F09A177 /* ramnotes/Settings/AppSettings.swift */; };
-		AC4629AB3E81CB98CCBE5663 /* ramnotes/Settings/AppShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4CAB264EBAFFDB234B910F /* ramnotes/Settings/AppShortcut.swift */; };
-		AC4C1C18B0CD38355AC87439 /* ramnotes/Settings/AppShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4CAB264EBAFFDB234B910F /* ramnotes/Settings/AppShortcut.swift */; };
-		AC47FE2F4E5054DEEB89500C /* ramnotes/Presentation/Windows/WindowMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44BC881396A8954FA94EF9 /* ramnotes/Presentation/Windows/WindowMetadata.swift */; };
-		AC4117102790A7357A43644E /* ramnotes/Presentation/Windows/WindowMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44BC881396A8954FA94EF9 /* ramnotes/Presentation/Windows/WindowMetadata.swift */; };
-		AC41BCEF2E82675C4D65CBB7 /* ramnotes/Presentation/Appearance/NoteBackgroundTone.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4E01B99635A5A96C21B36E /* ramnotes/Presentation/Appearance/NoteBackgroundTone.swift */; };
-		AC4543AE7B26DCEB40A9341B /* ramnotes/Presentation/Appearance/NoteBackgroundTone.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4E01B99635A5A96C21B36E /* ramnotes/Presentation/Appearance/NoteBackgroundTone.swift */; };
-		AC4EC0735CDB41E283009F5E /* ramnotes/Application/MetadataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4351600BD818EF4CBEF1C6 /* ramnotes/Application/MetadataPersistence.swift */; };
-		AC4129794B2B5DC428403080 /* ramnotes/Application/MetadataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4351600BD818EF4CBEF1C6 /* ramnotes/Application/MetadataPersistence.swift */; };
-		AC4ECDE7DC10582C7CE95005 /* ramnotes/Presentation/Appearance/EditorTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4E7BF25A706FEB81BDE20A /* ramnotes/Presentation/Appearance/EditorTypography.swift */; };
-		AC46A6BB7A76DC73D99CBA2D /* ramnotes/Presentation/Appearance/EditorTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4E7BF25A706FEB81BDE20A /* ramnotes/Presentation/Appearance/EditorTypography.swift */; };
-		AC4A07FE98B44D98176F5C25 /* ramnotes/Presentation/Appearance/InterfaceTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC46F93FAF20699504E33A74 /* ramnotes/Presentation/Appearance/InterfaceTypography.swift */; };
-		AC479D0FDFB75D46AB1FF3D7 /* ramnotes/Presentation/Appearance/InterfaceTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC46F93FAF20699504E33A74 /* ramnotes/Presentation/Appearance/InterfaceTypography.swift */; };
-		AC408C6191C7138ABF3096DE /* ramnotes/Presentation/Settings/TypographyNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4D2D0AD0F36357DE94E1F5 /* ramnotes/Presentation/Settings/TypographyNumber.swift */; };
-		AC4B0946B1994EAD9130BE55 /* ramnotes/Presentation/Settings/TypographyNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4D2D0AD0F36357DE94E1F5 /* ramnotes/Presentation/Settings/TypographyNumber.swift */; };
-		AC4E8CF20ABF1FE9747E94A9 /* ramnotes/Invocation/ShortcutChord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4724A7B2EB2467C5706231 /* ramnotes/Invocation/ShortcutChord.swift */; };
-		AC4ED2440EEFBE2B73423F1B /* ramnotes/Invocation/ShortcutChord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4724A7B2EB2467C5706231 /* ramnotes/Invocation/ShortcutChord.swift */; };
-		AC44C00C115ED9F497242D3E /* ramnotes/Presentation/Controls/ShortcutRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B3FCDE34494D84DD78602 /* ramnotes/Presentation/Controls/ShortcutRecorder.swift */; };
-		AC48274058B47DA28FC895EC /* ramnotes/Presentation/Controls/ShortcutRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B3FCDE34494D84DD78602 /* ramnotes/Presentation/Controls/ShortcutRecorder.swift */; };
-		AC43E91F4DC86C4B2EA36CEC /* ramnotes/Presentation/Formatting/PathIsolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47544581BB26D0F9B8B522 /* ramnotes/Presentation/Formatting/PathIsolation.swift */; };
-		AC477F0DA2EE66EF90816133 /* ramnotes/Presentation/Formatting/PathIsolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47544581BB26D0F9B8B522 /* ramnotes/Presentation/Formatting/PathIsolation.swift */; };
-		AC4A5786F8F55AEE178075E6 /* ramnotes/Presentation/Formatting/NoteLocationPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F734A28C6404608AC4246 /* ramnotes/Presentation/Formatting/NoteLocationPresentation.swift */; };
-		AC4CC998D74EEA65A5B08ED3 /* ramnotes/Presentation/Formatting/NoteLocationPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F734A28C6404608AC4246 /* ramnotes/Presentation/Formatting/NoteLocationPresentation.swift */; };
-		B089243C2A3ADB1FE5A7D024 /* ramnotes/Presentation/Recovery/RecoveryBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E0BF911E986D8D441626AB /* ramnotes/Presentation/Recovery/RecoveryBannerView.swift */; };
-		DF06EC861743097CCC1AC375 /* ramnotes/Presentation/Recovery/RecoveryBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E0BF911E986D8D441626AB /* ramnotes/Presentation/Recovery/RecoveryBannerView.swift */; };
-		1053D6C099FB5B83F607AB4A /* ramnotes/Presentation/Settings/SettingsPageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F253BCA0C0462E9388187A /* ramnotes/Presentation/Settings/SettingsPageLayout.swift */; };
-		5545CAB5A503D04E0EF4801A /* ramnotes/Presentation/Settings/SettingsPageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F253BCA0C0462E9388187A /* ramnotes/Presentation/Settings/SettingsPageLayout.swift */; };
-		C36F61E4975A375D696D1732 /* ramnotes/Presentation/Settings/GeneralSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E94FD1A11FF1B42EADBB43 /* ramnotes/Presentation/Settings/GeneralSettingsPage.swift */; };
-		A1B2C3D4E5F60718293A4B01 /* ramnotes/Presentation/Settings/WindowsSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B03 /* ramnotes/Presentation/Settings/WindowsSettingsPage.swift */; };
-		EFA05D404F5F86829886DB06 /* ramnotes/Presentation/Settings/GeneralSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E94FD1A11FF1B42EADBB43 /* ramnotes/Presentation/Settings/GeneralSettingsPage.swift */; };
-		A1B2C3D4E5F60718293A4B02 /* ramnotes/Presentation/Settings/WindowsSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B03 /* ramnotes/Presentation/Settings/WindowsSettingsPage.swift */; };
-		73BDBAC929014D3523ABDA05 /* ramnotes/Presentation/Settings/EditorSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9955827B2239D04ECEC3B80 /* ramnotes/Presentation/Settings/EditorSettingsPage.swift */; };
-		72C08AD5122D8127A12C8D60 /* ramnotes/Presentation/Settings/EditorSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9955827B2239D04ECEC3B80 /* ramnotes/Presentation/Settings/EditorSettingsPage.swift */; };
-		146B20352B802647C25F08C0 /* ramnotes/Presentation/Settings/ShortcutSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ACC838F909CE34F7ECB405 /* ramnotes/Presentation/Settings/ShortcutSettingsPage.swift */; };
-		6467CE40B9961DB6AE26FBD0 /* ramnotes/Presentation/Settings/ShortcutSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ACC838F909CE34F7ECB405 /* ramnotes/Presentation/Settings/ShortcutSettingsPage.swift */; };
-		35D6825F8366DD62FA008D0B /* ramnotes/Presentation/Settings/AboutSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18495534CCC73BB51BBF52FA /* ramnotes/Presentation/Settings/AboutSettingsPage.swift */; };
-		10C3A0A141BD79C8BA4AFB27 /* ramnotes/Presentation/Settings/AboutSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18495534CCC73BB51BBF52FA /* ramnotes/Presentation/Settings/AboutSettingsPage.swift */; };
-		2C385C8F9B822C4510497FAF /* ramnotes/App/AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D465C8389A57B6D0ED81ADC3 /* ramnotes/App/AppCoordinator.swift */; };
-		049CD3EA5D926D5369D673B6 /* ramnotes/App/AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D465C8389A57B6D0ED81ADC3 /* ramnotes/App/AppCoordinator.swift */; };
-		E37F1D628539A6399420CDC3 /* ramnotes/App/AppMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35E9AB70C56AACC443725F1 /* ramnotes/App/AppMenuController.swift */; };
-		F9687CBE4C8BF68458DDA116 /* ramnotes/App/AppMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35E9AB70C56AACC443725F1 /* ramnotes/App/AppMenuController.swift */; };
-		41179382D433D6D3204034CB /* ramnotes/App/Debug/DebugFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617BEE8720A0E9AE20D8C24E /* ramnotes/App/Debug/DebugFixtures.swift */; };
-		E0F16A2307977F4815B1A9B9 /* ramnotes/App/Debug/DebugFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617BEE8720A0E9AE20D8C24E /* ramnotes/App/Debug/DebugFixtures.swift */; };
-		25F96F0C8B6BA31BF6CE2AC5 /* ramnotes/Application/Notes/CollectionReadSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0082376A4C3CDE2B237AE /* ramnotes/Application/Notes/CollectionReadSnapshot.swift */; };
-		507F00EFB4D3A49C9FD2970E /* ramnotes/Application/Notes/CollectionReadSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0082376A4C3CDE2B237AE /* ramnotes/Application/Notes/CollectionReadSnapshot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -305,17 +305,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AFD700000000000000000002 /* ramnotes/App/Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = ramnotes/App/Localizable.xcstrings; sourceTree = SOURCE_ROOT; };
-		AFD800000000000000000002 /* ramnotes/App/InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = ramnotes/App/InfoPlist.xcstrings; sourceTree = SOURCE_ROOT; };
 		0469692EFC2CF9A95F68540C /* ramnotesTests/Invocation/ShortcutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Invocation/ShortcutTests.swift; sourceTree = SOURCE_ROOT; };
 		053F6D411B7DC4A488FE51CF /* ramnotes/Invocation/LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Invocation/LoginService.swift; sourceTree = SOURCE_ROOT; };
+		18495534CCC73BB51BBF52FA /* ramnotes/Presentation/Settings/AboutSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/AboutSettingsPage.swift; sourceTree = SOURCE_ROOT; };
 		1CE38EF6B872239251B02ABA /* ramnotes/Invocation/GestureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Invocation/GestureService.swift; sourceTree = SOURCE_ROOT; };
+		27ACC838F909CE34F7ECB405 /* ramnotes/Presentation/Settings/ShortcutSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/ShortcutSettingsPage.swift; sourceTree = SOURCE_ROOT; };
 		2974D7213BACEAF5E2FB1BD8 /* ramnotesTests/Editing/WindowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Editing/WindowTests.swift; sourceTree = SOURCE_ROOT; };
 		38AC3CD82F7A70E74C31DBDA /* ramnotesUITests/SettingsIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesUITests/SettingsIntegrationTests.swift; sourceTree = SOURCE_ROOT; };
 		445E4088C39747FCE500A8F1 /* ramnotes/Settings/SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Settings/SettingsController.swift; sourceTree = SOURCE_ROOT; };
+		4BE0082376A4C3CDE2B237AE /* ramnotes/Application/Notes/CollectionReadSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Notes/CollectionReadSnapshot.swift; sourceTree = SOURCE_ROOT; };
 		5348E67CECB9757059C3C1B4 /* ramnotes/Windows/WindowPlacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Windows/WindowPlacement.swift; sourceTree = SOURCE_ROOT; };
+		5403A5A0CA494D968D4B3CF1 /* ramnotes/Application/Contracts/RetainedEditSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Contracts/RetainedEditSummary.swift; sourceTree = SOURCE_ROOT; };
 		54292E75438C9639A4EB567A /* ramnotes/Windows/WindowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Windows/WindowCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		56F991D37B51389230369A43 /* ramnotesTests/Invocation/LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Invocation/LoginTests.swift; sourceTree = SOURCE_ROOT; };
+		59E94FD1A11FF1B42EADBB43 /* ramnotes/Presentation/Settings/GeneralSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/GeneralSettingsPage.swift; sourceTree = SOURCE_ROOT; };
+		60F253BCA0C0462E9388187A /* ramnotes/Presentation/Settings/SettingsPageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/SettingsPageLayout.swift; sourceTree = SOURCE_ROOT; };
+		617BEE8720A0E9AE20D8C24E /* ramnotes/App/Debug/DebugFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/App/Debug/DebugFixtures.swift; sourceTree = SOURCE_ROOT; };
+		662C57670645412EACE9B083 /* ramnotes/Application/NoteText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/NoteText.swift; sourceTree = SOURCE_ROOT; };
 		66B9C3F0D25074B0FB313B90 /* ramnotesTests/Editing/SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Editing/SettingsTests.swift; sourceTree = SOURCE_ROOT; };
 		707DC4BC0B86B797EC74F316 /* ramnotes/Search/SearchIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Search/SearchIndex.swift; sourceTree = SOURCE_ROOT; };
 		82D6F1A94C3B4E7D8F0A1B2C /* ramnotesUITests/ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesUITests/ScreenshotTests.swift; sourceTree = SOURCE_ROOT; };
@@ -324,12 +330,6 @@
 		92DDB9F7998DC7011890AC14 /* ramnotes/Application/Notes/NoteStore+Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+Availability.swift"; sourceTree = SOURCE_ROOT; };
 		93683F6AE9748978DA22D44A /* ramnotes/Editing/RecoveryWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Editing/RecoveryWindowController.swift; sourceTree = SOURCE_ROOT; };
 		A00000000000000000000201 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		A0000000000000000000D001 /* NoteIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteIdentity.swift; sourceTree = "<group>"; };
-		A0000000000000000000D002 /* NoteSavePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSavePolicy.swift; sourceTree = "<group>"; };
-		A0000000000000000000D003 /* NoteFilename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFilename.swift; sourceTree = "<group>"; };
-		A0000000000000000000D004 /* FilenameVocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilenameVocabulary.swift; sourceTree = "<group>"; };
-		A0000000000000000000D005 /* LocationOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOperation.swift; sourceTree = "<group>"; };
-		A0000000000000000000D006 /* NoteRegistrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRegistrationPolicy.swift; sourceTree = "<group>"; };
 		A00000000000000000000203 /* ramnotes/Infrastructure/Persistence/MetadataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Persistence/MetadataStore.swift; sourceTree = SOURCE_ROOT; };
 		A00000000000000000000204 /* ramnotesTests/Storage/FoundationPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Storage/FoundationPersistenceTests.swift; sourceTree = SOURCE_ROOT; };
 		A00000000000000000000205 /* LaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTests.swift; sourceTree = "<group>"; };
@@ -338,19 +338,57 @@
 		A00000000000000000000208 /* ramnotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = ramnotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00000000000000000000209 /* TestFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFixture.swift; sourceTree = "<group>"; };
 		A0000000000000000000020A /* ramnotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ramnotes.entitlements; sourceTree = "<group>"; };
+		A0000000000000000000D001 /* NoteIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteIdentity.swift; sourceTree = "<group>"; };
+		A0000000000000000000D002 /* NoteSavePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSavePolicy.swift; sourceTree = "<group>"; };
+		A0000000000000000000D003 /* NoteFilename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFilename.swift; sourceTree = "<group>"; };
+		A0000000000000000000D004 /* FilenameVocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilenameVocabulary.swift; sourceTree = "<group>"; };
+		A0000000000000000000D005 /* LocationOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOperation.swift; sourceTree = "<group>"; };
+		A0000000000000000000D006 /* NoteRegistrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRegistrationPolicy.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A4B03 /* ramnotes/Presentation/Settings/WindowsSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/WindowsSettingsPage.swift; sourceTree = SOURCE_ROOT; };
 		AA1100000000000000000002 /* ramnotes/Invocation/ShortcutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Invocation/ShortcutService.swift; sourceTree = SOURCE_ROOT; };
 		AB0300000000000000000002 /* ramnotes/Application/Notes/NoteStore+LocationMove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+LocationMove.swift"; sourceTree = SOURCE_ROOT; };
 		AB0300000000000000000004 /* ramnotesTests/Storage/LocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Storage/LocationTests.swift; sourceTree = SOURCE_ROOT; };
 		AB0400000000000000000002 /* ramnotes/Application/Notes/NoteStore+DefaultFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+DefaultFolder.swift"; sourceTree = SOURCE_ROOT; };
 		AB0600000000000000000002 /* ramnotes/Windows/NoteLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Windows/NoteLocationController.swift; sourceTree = SOURCE_ROOT; };
+		AC0700000000000000000001 /* ramnotes/Application/Notes/NoteStore+Opening.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+Opening.swift"; sourceTree = SOURCE_ROOT; };
+		AC0700000000000000000004 /* ramnotes/Application/Notes/NoteStore+Access.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+Access.swift"; sourceTree = SOURCE_ROOT; };
+		AC0700000000000000000007 /* ramnotes/Application/Notes/NoteStore+Forgetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+Forgetting.swift"; sourceTree = SOURCE_ROOT; };
+		AC070000000000000000000A /* ramnotes/Application/Notes/NoteStore+LocationAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+LocationAccess.swift"; sourceTree = SOURCE_ROOT; };
+		AC070000000000000000000D /* ramnotes/Application/Notes/NoteStore+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+Registration.swift"; sourceTree = SOURCE_ROOT; };
+		AC0700000000000000000010 /* ramnotes/Application/Notes/NoteStore+Trash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+Trash.swift"; sourceTree = SOURCE_ROOT; };
+		AC0700000000000000000013 /* ramnotes/Infrastructure/Access/FolderGrants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Access/FolderGrants.swift; sourceTree = SOURCE_ROOT; };
+		AC0700000000000000000016 /* ramnotes/Application/Discovery/DiscoveryValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Discovery/DiscoveryValues.swift; sourceTree = SOURCE_ROOT; };
+		AC0700000000000000000019 /* ramnotes/Application/Discovery/IdentityResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Discovery/IdentityResolution.swift; sourceTree = SOURCE_ROOT; };
+		AC070000000000000000001C /* ramnotes/Infrastructure/Persistence/IdentityMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Persistence/IdentityMap.swift; sourceTree = SOURCE_ROOT; };
 		AC0800000000000000000002 /* ramnotes/Application/Lifecycle/LifecycleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Lifecycle/LifecycleController.swift; sourceTree = SOURCE_ROOT; };
 		AC0900000000000000000002 /* ramnotes/Editing/RecoveryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Editing/RecoveryController.swift; sourceTree = SOURCE_ROOT; };
+		AC40CE151ACA29A43F09A177 /* ramnotes/Settings/AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Settings/AppSettings.swift; sourceTree = SOURCE_ROOT; };
+		AC41F4AB45F9053C28383935 /* ramnotes/Presentation/Recovery/RecoveryActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Recovery/RecoveryActionsView.swift; sourceTree = SOURCE_ROOT; };
+		AC4242805C50328E354423D9 /* ramnotes/Presentation/NoteList/NoteListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteListHeader.swift; sourceTree = SOURCE_ROOT; };
+		AC4333C50CFF134074B39FE6 /* ramnotes/Presentation/Appearance/NoteTonePalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Appearance/NoteTonePalette.swift; sourceTree = SOURCE_ROOT; };
+		AC4351600BD818EF4CBEF1C6 /* ramnotes/Application/MetadataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/MetadataPersistence.swift; sourceTree = SOURCE_ROOT; };
+		AC438467AC12DBFFE0B5F3CF /* ramnotes/Presentation/Windows/GroupWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Windows/GroupWindow.swift; sourceTree = SOURCE_ROOT; };
+		AC438E4F85D3640FC4BC69CF /* ramnotes/Presentation/NoteList/NoteListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteListTableView.swift; sourceTree = SOURCE_ROOT; };
+		AC44BC881396A8954FA94EF9 /* ramnotes/Presentation/Windows/WindowMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Windows/WindowMetadata.swift; sourceTree = SOURCE_ROOT; };
+		AC455874381AE6E4EB244651 /* ramnotes/Presentation/NoteList/NoteDragPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteDragPromise.swift; sourceTree = SOURCE_ROOT; };
+		AC46F93FAF20699504E33A74 /* ramnotes/Presentation/Appearance/InterfaceTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Appearance/InterfaceTypography.swift; sourceTree = SOURCE_ROOT; };
+		AC4724A7B2EB2467C5706231 /* ramnotes/Invocation/ShortcutChord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Invocation/ShortcutChord.swift; sourceTree = SOURCE_ROOT; };
+		AC47347266B2828994B58677 /* ramnotes/Presentation/Editing/PlainTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Editing/PlainTextView.swift; sourceTree = SOURCE_ROOT; };
+		AC47544581BB26D0F9B8B522 /* ramnotes/Presentation/Formatting/PathIsolation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Formatting/PathIsolation.swift; sourceTree = SOURCE_ROOT; };
+		AC47AA366B479C23C658A6B2 /* ramnotes/Presentation/Controls/SharedControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Controls/SharedControls.swift; sourceTree = SOURCE_ROOT; };
+		AC47AD20D93C9AC70242FACA /* ramnotes/Presentation/NoteList/NoteListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteListRow.swift; sourceTree = SOURCE_ROOT; };
+		AC4B3FCDE34494D84DD78602 /* ramnotes/Presentation/Controls/ShortcutRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Controls/ShortcutRecorder.swift; sourceTree = SOURCE_ROOT; };
+		AC4CAB264EBAFFDB234B910F /* ramnotes/Settings/AppShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Settings/AppShortcut.swift; sourceTree = SOURCE_ROOT; };
+		AC4D2A18B036A467F2AF525D /* ramnotes/Presentation/NoteList/NoteListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteListCell.swift; sourceTree = SOURCE_ROOT; };
+		AC4D2D0AD0F36357DE94E1F5 /* ramnotes/Presentation/Settings/TypographyNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/TypographyNumber.swift; sourceTree = SOURCE_ROOT; };
+		AC4E01B99635A5A96C21B36E /* ramnotes/Presentation/Appearance/NoteBackgroundTone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Appearance/NoteBackgroundTone.swift; sourceTree = SOURCE_ROOT; };
+		AC4E7027B0DB390700030488 /* ramnotes/Presentation/Controls/WindowHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Controls/WindowHeader.swift; sourceTree = SOURCE_ROOT; };
+		AC4E7BF25A706FEB81BDE20A /* ramnotes/Presentation/Appearance/EditorTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Appearance/EditorTypography.swift; sourceTree = SOURCE_ROOT; };
+		AC4F734A28C6404608AC4246 /* ramnotes/Presentation/Formatting/NoteLocationPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Formatting/NoteLocationPresentation.swift; sourceTree = SOURCE_ROOT; };
 		AD1000000000000000000002 /* ramnotes/App/FolderState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/App/FolderState.swift; sourceTree = SOURCE_ROOT; };
 		AD1100000000000000000002 /* ramnotes/App/ListWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/App/ListWindowController.swift; sourceTree = SOURCE_ROOT; };
 		AD1200000000000000000002 /* ramnotes/App/SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/App/SettingsCoordinator.swift; sourceTree = SOURCE_ROOT; };
-		AD1300000000000000000002 /* ramnotes/Application/Notes/CollectionSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/CollectionSession.swift"; sourceTree = SOURCE_ROOT; };
-		ED17A0000000000000000002 /* ramnotes/Application/Notes/EditState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/EditState.swift"; sourceTree = SOURCE_ROOT; };
-		ED2D00000000000000000002 /* ramnotes/Application/Notes/ReconcileDiff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/ReconcileDiff.swift"; sourceTree = SOURCE_ROOT; };
+		AD1300000000000000000002 /* ramnotes/Application/Notes/CollectionSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Notes/CollectionSession.swift; sourceTree = SOURCE_ROOT; };
 		AE46FBC36FF6278309FC0F40 /* ramnotesTests/Search/SearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Search/SearchTests.swift; sourceTree = SOURCE_ROOT; };
 		AF0100000000000000000002 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		AF0100000000000000000004 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -364,11 +402,8 @@
 		AFD500000000000000000003 /* ramnotesDomainTests/NoteRulesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesDomainTests/NoteRulesTests.swift; sourceTree = SOURCE_ROOT; };
 		AFD500000000000000000050 /* ramnotesTests/Storage/RecoverySaveStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Storage/RecoverySaveStateTests.swift; sourceTree = SOURCE_ROOT; };
 		AFD600000000000000000002 /* ramnotes/App/ThirdPartyNotices.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ramnotes/App/ThirdPartyNotices.txt; sourceTree = SOURCE_ROOT; };
-		EBC8DF4D769A42CC87191F95 /* ramnotes/Application/Contracts/NoteAccessFailure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Contracts/NoteAccessFailure.swift; sourceTree = SOURCE_ROOT; };
-		5403A5A0CA494D968D4B3CF1 /* ramnotes/Application/Contracts/RetainedEditSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Contracts/RetainedEditSummary.swift; sourceTree = SOURCE_ROOT; };
-		662C57670645412EACE9B083 /* ramnotes/Application/NoteText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/NoteText.swift; sourceTree = SOURCE_ROOT; };
-		EBE03C0AF6CC42A6B98C54A3 /* ramnotes/Application/Search/SearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Search/SearchQuery.swift; sourceTree = SOURCE_ROOT; };
-		DD8766F609FD47759ED588F1 /* ramnotes/Presentation/NoteList/NoteListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteListItem.swift; sourceTree = SOURCE_ROOT; };
+		AFD700000000000000000002 /* ramnotes/App/Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = ramnotes/App/Localizable.xcstrings; sourceTree = SOURCE_ROOT; };
+		AFD800000000000000000002 /* ramnotes/App/InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = ramnotes/App/InfoPlist.xcstrings; sourceTree = SOURCE_ROOT; };
 		AFDD00000000000000000201 /* ramnotes/Application/NoteContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/NoteContracts.swift; sourceTree = SOURCE_ROOT; };
 		AFDD00000000000000000202 /* ramnotes/Infrastructure/Persistence/NoteRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Persistence/NoteRecords.swift; sourceTree = SOURCE_ROOT; };
 		AFDD00000000000000000203 /* ramnotes/Infrastructure/Persistence/CatalogPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Persistence/CatalogPersistence.swift; sourceTree = SOURCE_ROOT; };
@@ -377,81 +412,46 @@
 		AFDD04000000000000000202 /* ramnotes/Infrastructure/Files/RecoveryFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Files/RecoveryFiles.swift; sourceTree = SOURCE_ROOT; };
 		AFDD04000000000000000203 /* ramnotes/Application/Recovery/RecoveryPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Recovery/RecoveryPolicy.swift; sourceTree = SOURCE_ROOT; };
 		AFDD04000000000000000204 /* ramnotes/Application/Recovery/NoteStore+Recovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Recovery/NoteStore+Recovery.swift"; sourceTree = SOURCE_ROOT; };
-		B00000000000000000000210 /* ramnotes/Infrastructure/Files/StorageFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Infrastructure/Files/StorageFiles.swift"; sourceTree = SOURCE_ROOT; };
-		ED4000000000000000000002 /* ramnotes/Infrastructure/Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Infrastructure/Log.swift"; sourceTree = SOURCE_ROOT; };
-		B00000000000000000000211 /* ramnotes/Application/Notes/NoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore.swift"; sourceTree = SOURCE_ROOT; };
-		AC0700000000000000000019 /* ramnotes/Application/Discovery/IdentityResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Discovery/IdentityResolution.swift"; sourceTree = SOURCE_ROOT; };
-		AC0700000000000000000016 /* ramnotes/Application/Discovery/DiscoveryValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Discovery/DiscoveryValues.swift"; sourceTree = SOURCE_ROOT; };
-		AC0700000000000000000010 /* ramnotes/Application/Notes/NoteStore+Trash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+Trash.swift"; sourceTree = SOURCE_ROOT; };
-		AC070000000000000000000D /* ramnotes/Application/Notes/NoteStore+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+Registration.swift"; sourceTree = SOURCE_ROOT; };
-		AC070000000000000000000A /* ramnotes/Application/Notes/NoteStore+LocationAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+LocationAccess.swift"; sourceTree = SOURCE_ROOT; };
-		AC0700000000000000000007 /* ramnotes/Application/Notes/NoteStore+Forgetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+Forgetting.swift"; sourceTree = SOURCE_ROOT; };
-		AC0700000000000000000004 /* ramnotes/Application/Notes/NoteStore+Access.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+Access.swift"; sourceTree = SOURCE_ROOT; };
-		AC0700000000000000000001 /* ramnotes/Application/Notes/NoteStore+Opening.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+Opening.swift"; sourceTree = SOURCE_ROOT; };
+		B00000000000000000000210 /* ramnotes/Infrastructure/Files/StorageFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Files/StorageFiles.swift; sourceTree = SOURCE_ROOT; };
+		B00000000000000000000211 /* ramnotes/Application/Notes/NoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Notes/NoteStore.swift; sourceTree = SOURCE_ROOT; };
 		B00000000000000000000212 /* StorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTests.swift; sourceTree = "<group>"; };
+		B35E9AB70C56AACC443725F1 /* ramnotes/App/AppMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/App/AppMenuController.swift; sourceTree = SOURCE_ROOT; };
 		BB2200000000000000000001 /* ramnotesLoginHelper/main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesLoginHelper/main.swift; sourceTree = SOURCE_ROOT; };
 		BB2200000000000000000003 /* ramnotesLoginHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = ramnotesLoginHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00000000000000000000220 /* ramnotes/Infrastructure/Persistence/RecoveryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Persistence/RecoveryStore.swift; sourceTree = SOURCE_ROOT; };
 		C00000000000000000000221 /* ramnotes/Application/Notes/NoteStore+Saving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+Saving.swift"; sourceTree = SOURCE_ROOT; };
-		C00000000000000000000222 /* ramnotes/Infrastructure/Files/ExternalEventAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Infrastructure/Files/ExternalEventAdapter.swift"; sourceTree = SOURCE_ROOT; };
+		C00000000000000000000222 /* ramnotes/Infrastructure/Files/ExternalEventAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Files/ExternalEventAdapter.swift; sourceTree = SOURCE_ROOT; };
 		C00000000000000000000223 /* ramnotes/Application/Notes/NoteStore+External.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Application/Notes/NoteStore+External.swift"; sourceTree = SOURCE_ROOT; };
-		C00000000000000000000224 /* ramnotes/Infrastructure/Files/TrashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Infrastructure/Files/TrashService.swift"; sourceTree = SOURCE_ROOT; };
-		C00000000000000000000225 /* ramnotes/Infrastructure/Access/FolderAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Infrastructure/Access/FolderAccess.swift"; sourceTree = SOURCE_ROOT; };
-		AC070000000000000000001C /* ramnotes/Infrastructure/Persistence/IdentityMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Infrastructure/Persistence/IdentityMap.swift"; sourceTree = SOURCE_ROOT; };
-		AC0700000000000000000013 /* ramnotes/Infrastructure/Access/FolderGrants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Infrastructure/Access/FolderGrants.swift"; sourceTree = SOURCE_ROOT; };
-		C00000000000000000000226 /* ramnotes/Infrastructure/Files/FolderScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ramnotes/Infrastructure/Files/FolderScanner.swift"; sourceTree = SOURCE_ROOT; };
+		C00000000000000000000224 /* ramnotes/Infrastructure/Files/TrashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Files/TrashService.swift; sourceTree = SOURCE_ROOT; };
+		C00000000000000000000225 /* ramnotes/Infrastructure/Access/FolderAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Access/FolderAccess.swift; sourceTree = SOURCE_ROOT; };
+		C00000000000000000000226 /* ramnotes/Infrastructure/Files/FolderScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Files/FolderScanner.swift; sourceTree = SOURCE_ROOT; };
+		C6E0BF911E986D8D441626AB /* ramnotes/Presentation/Recovery/RecoveryBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Recovery/RecoveryBannerView.swift; sourceTree = SOURCE_ROOT; };
+		C9955827B2239D04ECEC3B80 /* ramnotes/Presentation/Settings/EditorSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/EditorSettingsPage.swift; sourceTree = SOURCE_ROOT; };
 		CED1BE70DEC6FAA792C61579 /* ramnotes/Presentation/Windows/NoteWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Windows/NoteWindowController.swift; sourceTree = SOURCE_ROOT; };
 		D00000000000000000000230 /* SavingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingTests.swift; sourceTree = "<group>"; };
 		D0A3FECEC35386596F0D1E2C /* ramnotesUITests/WorkflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesUITests/WorkflowTests.swift; sourceTree = SOURCE_ROOT; };
 		D348D94C546ED63F10DE4121 /* ramnotesTests/Editing/PlacementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Editing/PlacementTests.swift; sourceTree = SOURCE_ROOT; };
 		D45654D0450AC75EF995B252 /* ramnotesTests/Search/DiscoveryLifecycleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Search/DiscoveryLifecycleTests.swift; sourceTree = SOURCE_ROOT; };
+		D465C8389A57B6D0ED81ADC3 /* ramnotes/App/AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/App/AppCoordinator.swift; sourceTree = SOURCE_ROOT; };
+		DD8766F609FD47759ED588F1 /* ramnotes/Presentation/NoteList/NoteListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteListItem.swift; sourceTree = SOURCE_ROOT; };
 		E00000000000000000000240 /* ExternalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalTests.swift; sourceTree = "<group>"; };
-		ED2D00000000000000000020 /* ReconcileDiffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconcileDiffTests.swift; sourceTree = "<group>"; };
 		EA55F850A70B084438F50ED9 /* ramnotesTests/Editing/RecoveryInteractionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Editing/RecoveryInteractionTests.swift; sourceTree = SOURCE_ROOT; };
+		EBC8DF4D769A42CC87191F95 /* ramnotes/Application/Contracts/NoteAccessFailure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Contracts/NoteAccessFailure.swift; sourceTree = SOURCE_ROOT; };
+		EBE03C0AF6CC42A6B98C54A3 /* ramnotes/Application/Search/SearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Search/SearchQuery.swift; sourceTree = SOURCE_ROOT; };
+		ED17A0000000000000000002 /* ramnotes/Application/Notes/EditState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Notes/EditState.swift; sourceTree = SOURCE_ROOT; };
+		ED2D00000000000000000002 /* ramnotes/Application/Notes/ReconcileDiff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Notes/ReconcileDiff.swift; sourceTree = SOURCE_ROOT; };
+		ED2D00000000000000000020 /* ReconcileDiffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconcileDiffTests.swift; sourceTree = "<group>"; };
+		ED4000000000000000000002 /* ramnotes/Infrastructure/Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Infrastructure/Log.swift; sourceTree = SOURCE_ROOT; };
 		F00000000000000000000260 /* TrashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashTests.swift; sourceTree = "<group>"; };
 		F17000000000000000000002 /* ramnotesTests/Editing/DeletionWorkflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Editing/DeletionWorkflowTests.swift; sourceTree = SOURCE_ROOT; };
 		F17000000000000000000004 /* ramnotesTests/Support/RecoveryTestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Support/RecoveryTestSupport.swift; sourceTree = SOURCE_ROOT; };
 		FAB01C7DE9BBE6B4DBDE1F4B /* ramnotesTests/Invocation/GestureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Invocation/GestureTests.swift; sourceTree = SOURCE_ROOT; };
 		FDCBFBEFD6721BAF40562F5B /* ramnotes/Presentation/NoteList/NoteListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteListController.swift; sourceTree = SOURCE_ROOT; };
-		FE2000000000000000000010 /* RAMnotesMAS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = RAMnotesMAS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		G0000000000000000000ID02 /* IdentityMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityMapTests.swift; sourceTree = "<group>"; };
+		FE2000000000000000000010 /* RAMnotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = RAMnotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		G00000000000000000000270 /* FolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTests.swift; sourceTree = "<group>"; };
+		G0000000000000000000ID02 /* IdentityMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityMapTests.swift; sourceTree = "<group>"; };
 		H00000000000000000000201 /* ramnotes/Presentation/Editing/NoteEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Editing/NoteEditorController.swift; sourceTree = SOURCE_ROOT; };
 		H00000000000000000000202 /* ramnotesTests/Editing/EditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotesTests/Editing/EditorTests.swift; sourceTree = SOURCE_ROOT; };
-		AC47347266B2828994B58677 /* ramnotes/Presentation/Editing/PlainTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Editing/PlainTextView.swift; sourceTree = SOURCE_ROOT; };
-		AC4333C50CFF134074B39FE6 /* ramnotes/Presentation/Appearance/NoteTonePalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Appearance/NoteTonePalette.swift; sourceTree = SOURCE_ROOT; };
-		AC438E4F85D3640FC4BC69CF /* ramnotes/Presentation/NoteList/NoteListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteListTableView.swift; sourceTree = SOURCE_ROOT; };
-		AC4D2A18B036A467F2AF525D /* ramnotes/Presentation/NoteList/NoteListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteListCell.swift; sourceTree = SOURCE_ROOT; };
-		AC47AD20D93C9AC70242FACA /* ramnotes/Presentation/NoteList/NoteListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteListRow.swift; sourceTree = SOURCE_ROOT; };
-		AC455874381AE6E4EB244651 /* ramnotes/Presentation/NoteList/NoteDragPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteDragPromise.swift; sourceTree = SOURCE_ROOT; };
-		AC4242805C50328E354423D9 /* ramnotes/Presentation/NoteList/NoteListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/NoteList/NoteListHeader.swift; sourceTree = SOURCE_ROOT; };
-		AC438467AC12DBFFE0B5F3CF /* ramnotes/Presentation/Windows/GroupWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Windows/GroupWindow.swift; sourceTree = SOURCE_ROOT; };
-		AC4E7027B0DB390700030488 /* ramnotes/Presentation/Controls/WindowHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Controls/WindowHeader.swift; sourceTree = SOURCE_ROOT; };
-		AC47AA366B479C23C658A6B2 /* ramnotes/Presentation/Controls/SharedControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Controls/SharedControls.swift; sourceTree = SOURCE_ROOT; };
-		AC41F4AB45F9053C28383935 /* ramnotes/Presentation/Recovery/RecoveryActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Recovery/RecoveryActionsView.swift; sourceTree = SOURCE_ROOT; };
-		AC40CE151ACA29A43F09A177 /* ramnotes/Settings/AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Settings/AppSettings.swift; sourceTree = SOURCE_ROOT; };
-		AC4CAB264EBAFFDB234B910F /* ramnotes/Settings/AppShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Settings/AppShortcut.swift; sourceTree = SOURCE_ROOT; };
-		AC44BC881396A8954FA94EF9 /* ramnotes/Presentation/Windows/WindowMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Windows/WindowMetadata.swift; sourceTree = SOURCE_ROOT; };
-		AC4E01B99635A5A96C21B36E /* ramnotes/Presentation/Appearance/NoteBackgroundTone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Appearance/NoteBackgroundTone.swift; sourceTree = SOURCE_ROOT; };
-		AC4351600BD818EF4CBEF1C6 /* ramnotes/Application/MetadataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/MetadataPersistence.swift; sourceTree = SOURCE_ROOT; };
-		AC4E7BF25A706FEB81BDE20A /* ramnotes/Presentation/Appearance/EditorTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Appearance/EditorTypography.swift; sourceTree = SOURCE_ROOT; };
-		AC46F93FAF20699504E33A74 /* ramnotes/Presentation/Appearance/InterfaceTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Appearance/InterfaceTypography.swift; sourceTree = SOURCE_ROOT; };
-		AC4D2D0AD0F36357DE94E1F5 /* ramnotes/Presentation/Settings/TypographyNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/TypographyNumber.swift; sourceTree = SOURCE_ROOT; };
-		AC4724A7B2EB2467C5706231 /* ramnotes/Invocation/ShortcutChord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Invocation/ShortcutChord.swift; sourceTree = SOURCE_ROOT; };
-		AC4B3FCDE34494D84DD78602 /* ramnotes/Presentation/Controls/ShortcutRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Controls/ShortcutRecorder.swift; sourceTree = SOURCE_ROOT; };
-		AC47544581BB26D0F9B8B522 /* ramnotes/Presentation/Formatting/PathIsolation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Formatting/PathIsolation.swift; sourceTree = SOURCE_ROOT; };
-		AC4F734A28C6404608AC4246 /* ramnotes/Presentation/Formatting/NoteLocationPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Formatting/NoteLocationPresentation.swift; sourceTree = SOURCE_ROOT; };
-		C6E0BF911E986D8D441626AB /* ramnotes/Presentation/Recovery/RecoveryBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Recovery/RecoveryBannerView.swift; sourceTree = SOURCE_ROOT; };
-		60F253BCA0C0462E9388187A /* ramnotes/Presentation/Settings/SettingsPageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/SettingsPageLayout.swift; sourceTree = SOURCE_ROOT; };
-		59E94FD1A11FF1B42EADBB43 /* ramnotes/Presentation/Settings/GeneralSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/GeneralSettingsPage.swift; sourceTree = SOURCE_ROOT; };
-		A1B2C3D4E5F60718293A4B03 /* ramnotes/Presentation/Settings/WindowsSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/WindowsSettingsPage.swift; sourceTree = SOURCE_ROOT; };
-		C9955827B2239D04ECEC3B80 /* ramnotes/Presentation/Settings/EditorSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/EditorSettingsPage.swift; sourceTree = SOURCE_ROOT; };
-		27ACC838F909CE34F7ECB405 /* ramnotes/Presentation/Settings/ShortcutSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/ShortcutSettingsPage.swift; sourceTree = SOURCE_ROOT; };
-		18495534CCC73BB51BBF52FA /* ramnotes/Presentation/Settings/AboutSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Presentation/Settings/AboutSettingsPage.swift; sourceTree = SOURCE_ROOT; };
-		D465C8389A57B6D0ED81ADC3 /* ramnotes/App/AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/App/AppCoordinator.swift; sourceTree = SOURCE_ROOT; };
-		B35E9AB70C56AACC443725F1 /* ramnotes/App/AppMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/App/AppMenuController.swift; sourceTree = SOURCE_ROOT; };
-		617BEE8720A0E9AE20D8C24E /* ramnotes/App/Debug/DebugFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/App/Debug/DebugFixtures.swift; sourceTree = SOURCE_ROOT; };
-		4BE0082376A4C3CDE2B237AE /* ramnotes/Application/Notes/CollectionReadSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ramnotes/Application/Notes/CollectionReadSnapshot.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -681,7 +681,7 @@
 				AFD500000000000000000001 /* libramnotesDomain.a */,
 				AFD500000000000000000002 /* ramnotesDomainTests.xctest */,
 				A00000000000000000000206 /* RAMnotes.app */,
-				FE2000000000000000000010 /* RAMnotesMAS.app */,
+				FE2000000000000000000010 /* RAMnotes.app */,
 				A00000000000000000000207 /* ramnotesTests.xctest */,
 				A00000000000000000000208 /* ramnotesUITests.xctest */,
 			);
@@ -867,8 +867,8 @@
 				BB220000000000000000000C /* PBXTargetDependency */,
 			);
 			name = RAMnotesMAS;
-			productName = RAMnotesMAS;
-			productReference = FE2000000000000000000010 /* RAMnotesMAS.app */;
+			productName = RAMnotes;
+			productReference = FE2000000000000000000010 /* RAMnotes.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1299,6 +1299,7 @@
 		A00000000000000000000A02 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = arm64;
 				MACOSX_DEPLOYMENT_TARGET = 27.0;
@@ -1338,6 +1339,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramnotes.RAMnotes;
 				PRODUCT_MODULE_NAME = ramnotes;
@@ -1348,7 +1350,6 @@
 				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
 				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Debug;
@@ -1356,10 +1357,6 @@
 		A00000000000000000000A04 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SPARKLE_FEED_URL = "https://ramnotes.com/updates/appcast.xml";
-				SPARKLE_PUBLIC_ED_KEY = "PTnXhFSvIhMUagqM5mA3++Aemj0iLDfLFN77xty6RL8=";
-				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_KEY_CFBundleVersion = "$(CURRENT_PROJECT_VERSION)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -1368,6 +1365,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M26LQQAJJZ;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1380,6 +1378,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(DERIVED_FILE_DIR)/RAMnotes-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = RAMnotes;
+				INFOPLIST_KEY_CFBundleVersion = "$(CURRENT_PROJECT_VERSION)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = YES;
@@ -1388,6 +1387,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramnotes.RAMnotes;
 				PRODUCT_MODULE_NAME = ramnotes;
@@ -1398,7 +1398,8 @@
 				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
 				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				SPARKLE_FEED_URL = "https://ramnotes.com/updates/appcast.xml";
+				SPARKLE_PUBLIC_ED_KEY = "PTnXhFSvIhMUagqM5mA3++Aemj0iLDfLFN77xty6RL8=";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
@@ -1464,6 +1465,8 @@
 		AE0200000000000000000001 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_KEY_CFBundleVersion = "$(CURRENT_PROJECT_VERSION)";
 				AUTOMATION_APPLE_EVENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = ramnotesLoginHelper/ramnotesLoginHelper.entitlements;
 				CODE_SIGN_IDENTITY = "-";
@@ -1496,6 +1499,7 @@
 		AE0200000000000000000002 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = arm64;
 				MACOSX_DEPLOYMENT_TARGET = 27.0;
@@ -1535,6 +1539,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramnotes.RAMnotes;
 				PRODUCT_MODULE_NAME = ramnotes;
@@ -1545,7 +1550,6 @@
 				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
 				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = AppStore;
@@ -1651,6 +1655,8 @@
 		BB2200000000000000000009 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_KEY_CFBundleVersion = "$(CURRENT_PROJECT_VERSION)";
 				AUTOMATION_APPLE_EVENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = ramnotesLoginHelper/ramnotesLoginHelper.entitlements;
 				CODE_SIGN_IDENTITY = "-";
@@ -1683,13 +1689,12 @@
 		BB220000000000000000000A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_KEY_CFBundleVersion = "$(CURRENT_PROJECT_VERSION)";
 				AUTOMATION_APPLE_EVENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = ramnotesLoginHelper/ramnotesLoginHelper.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M26LQQAJJZ;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1700,6 +1705,7 @@
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
 				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleVersion = "$(CURRENT_PROJECT_VERSION)";
 				INFOPLIST_KEY_LSUIElement = YES;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramnotes.RAMnotes.LoginHelper;
@@ -1719,8 +1725,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				AUTOMATION_APPLE_EVENTS = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_KEY_CFBundleVersion = "$(CURRENT_PROJECT_VERSION)";
 				CODE_SIGN_ENTITLEMENTS = ramnotes/App/RAMnotesMAS.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
@@ -1741,9 +1749,10 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Andrei Dementev";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramnotes.RAMnotes;
-				PRODUCT_NAME = RAMnotesMAS;
+				PRODUCT_NAME = RAMnotes;
 				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
 				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
 				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
@@ -1751,7 +1760,6 @@
 				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) APP_STORE";
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Debug;
@@ -1761,8 +1769,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				AUTOMATION_APPLE_EVENTS = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_KEY_CFBundleVersion = "$(CURRENT_PROJECT_VERSION)";
 				CODE_SIGN_ENTITLEMENTS = ramnotes/App/RAMnotesMAS.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
@@ -1783,9 +1793,10 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Andrei Dementev";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramnotes.RAMnotes;
-				PRODUCT_NAME = RAMnotesMAS;
+				PRODUCT_NAME = RAMnotes;
 				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
 				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
 				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
@@ -1793,7 +1804,6 @@
 				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) APP_STORE";
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
@@ -1803,8 +1813,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				AUTOMATION_APPLE_EVENTS = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_KEY_CFBundleVersion = "$(CURRENT_PROJECT_VERSION)";
 				CODE_SIGN_ENTITLEMENTS = ramnotes/App/RAMnotesMAS.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
@@ -1825,9 +1837,10 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Andrei Dementev";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramnotes.RAMnotes;
-				PRODUCT_NAME = RAMnotesMAS;
+				PRODUCT_NAME = RAMnotes;
 				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
 				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
 				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
@@ -1835,7 +1848,6 @@
 				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) APP_STORE";
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = AppStore;

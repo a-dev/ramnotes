@@ -13,5 +13,5 @@ xcodebuild "${common[@]}" -scheme ramnotes -configuration Release \
     SPARKLE_PUBLIC_ED_KEY=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA= build
 python3 scripts/inspect-update-bundle.py release "$derived/Build/Products/Release/RAMnotes.app"
 xcodebuild "${common[@]}" -scheme RAMnotesMAS -configuration AppStore build
-python3 scripts/inspect-update-bundle.py updater-free "$derived/Build/Products/AppStore/RAMnotesMAS.app"
+python3 scripts/inspect-update-bundle.py updater-free "$derived/Build/Products/AppStore/RAMnotes.app"
 xcodebuild "${common[@]}" -scheme ramnotesDomain -configuration Debug -parallel-testing-enabled NO test

@@ -8,7 +8,7 @@ Both products target Apple Silicon and macOS 27.0 or later.
 | Scheme | Product | Updates |
 | --- | --- | --- |
 | `ramnotes` | `RAMnotes.app` | Sparkle 2.10.0, pinned through Swift Package Manager. |
-| `RAMnotesMAS` | `RAMnotesMAS.app` | App Store. No Sparkle linkage, helpers, metadata, or entitlements. |
+| `RAMnotesMAS` | `RAMnotes.app` | App Store. No Sparkle linkage, helpers, metadata, or entitlements. |
 
 Both products display RAMnotes and use `com.ramnotes.RAMnotes`. Install one channel at a time because they share settings and note access.
 The direct app embeds `com.ramnotes.RAMnotes.LoginHelper`.
@@ -88,6 +88,8 @@ Use one archive command:
 bash scripts/archive-build.sh direct build/RAMnotes.xcarchive
 bash scripts/archive-build.sh mas build/RAMnotesMAS.xcarchive
 ```
+
+Release and AppStore configurations generate dSYM files for crash reports. Retain the archive and verify that its app and login-helper symbols match their binaries before upload.
 
 The script refuses existing output paths and checks the resulting bundle.
 It does not export, notarize, generate an appcast, or publish.

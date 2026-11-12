@@ -24,6 +24,8 @@ else
 fi
 xcodebuild "${args[@]}" archive
 mode=updater-free
-product=RAMnotesMAS
+product=RAMnotes
 if [[ "$channel" == direct ]]; then mode=release; product=RAMnotes; fi
 python3 scripts/inspect-update-bundle.py "$mode" "$archive/Products/Applications/$product.app"
+
+python3 scripts/check-archive-symbols.py "$archive"
