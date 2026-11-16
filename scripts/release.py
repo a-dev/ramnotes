@@ -150,6 +150,11 @@ def prerequisites(a, build):
     for tool in ('xcodebuild', 'xcrun', 'codesign', 'security', 'ditto', 'create-dmg', 'spctl', 'swift'):
         require(shutil.which(tool), f'missing tool: {tool}')
     require(a.identity in run(['security', 'find-identity', '-v', '-p', 'codesigning']), 'signing identity unavailable')
+    try:
+        run(['osascript', '-e', 'with timeout of 20 seconds', '-e', 'tell application "Finder" to get name of startup disk', '-e', 'end timeout'])
+    except subprocess.CalledProcessError as e:
+        raise ValueError('create-dmg needs Finder automation: allow this terminal app to control Finder in '
+                         'System Settings > Privacy & Security > Automation, and keep the Mac unlocked') from e
     run(['xcrun', 'notarytool', 'history', '--keychain-profile', a.notary_profile, '--output-format', 'json'])
     with tempfile.TemporaryDirectory(prefix='ramnotes-key-probe-') as d:
         probe = Path(d) / 'probe'

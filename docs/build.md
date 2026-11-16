@@ -137,7 +137,7 @@ Remove `--dry-run` for the real run. The script does these steps:
 2. Checks the app version, feed, key, signature, Hardened Runtime, and bundle.
 3. Notarizes the app, requires `Accepted`, keeps the notary logs, and staples the app.
 4. Makes the update ZIP from the stapled app with `ditto --keepParent --sequesterRsrc`, and checks that it extracts to identical files.
-5. Makes the DMG with `scripts/package-dmg.sh`. Signs, notarizes, and staples it. Packaging needs a logged-in desktop and can ask for Finder automation permission.
+5. Makes the DMG with `scripts/package-dmg.sh`. Signs, notarizes, and staples it. Packaging needs a logged-in, unlocked desktop. The terminal app needs permission to control Finder in System Settings > Privacy & Security > Automation. The script checks this before it archives.
 6. Signs the ZIP with the Keychain key and makes a feed with one item and embedded release notes. Sparkle and a separate CryptoKit check both verify the signature. Delta updates are off.
 7. Writes `publication.json` and `SHA256.json` with the hashes of the DMG, the ZIP, and the feed.
 
