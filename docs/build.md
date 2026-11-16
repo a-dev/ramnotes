@@ -14,7 +14,7 @@ Both products display RAMnotes and use `com.ramnotes.RAMnotes`. Install one chan
 The direct app embeds `com.ramnotes.RAMnotes.LoginHelper`.
 The `ramnotes App Store` scheme is an alias for `RAMnotesMAS`.
 
-Direct Release builds default to `https://ramnotes.com/updates/appcast.xml` and the RAMnotes public Ed25519 key in the target build settings.
+Direct Release builds default to `https://a-dev.github.io/ramnotes/appcast.xml` and the RAMnotes public Ed25519 key in the target build settings.
 Command-line build settings can override `SPARKLE_FEED_URL` and `SPARKLE_PUBLIC_ED_KEY`.
 The private key is in the login Keychain, under Sparkle account `com.ramnotes.RAMnotes`. It is separate from the Developer ID identity.
 Back up signing keys securely. Keep private keys outside build settings and source control.
@@ -77,118 +77,101 @@ On another Mac, extract the ZIP and move its app to `/Applications`.
 A trusted local build can require Open Anyway in System Settings > Privacy & Security.
 Choose the notes folder again. Folder authorization does not transfer between Macs.
 
-## Archive and export
+## App Store archive
 
-Verify the exported product and installation before publication.
-Direct distribution requires Developer ID signing. Store certificates and credentials in Keychain.
-Configure `DEVELOPMENT_TEAM` in your shell or trusted CI. Production Sparkle defaults are in the direct Release target.
-Use one archive command:
+Configure `DEVELOPMENT_TEAM` in your shell or trusted CI, then archive:
 
 ```sh
-bash scripts/archive-build.sh direct build/RAMnotes.xcarchive
 bash scripts/archive-build.sh mas build/RAMnotesMAS.xcarchive
 ```
 
-Release and AppStore configurations generate dSYM files for crash reports. Retain the archive and verify that its app and login-helper symbols match their binaries before upload.
+The script refuses existing output paths, checks the bundle with the `updater-free` mode, and checks that the app and login-helper dSYM files match their binaries.
+It does not export or upload. Export through Xcode Organizer.
 
-The script refuses existing output paths and checks the resulting bundle.
-It does not export, notarize, generate an appcast, or publish.
+## Direct release
 
-1. Match app and helper versions to the intended tag without its `v` prefix.
-2. Commit the release changes.
-3. Check `git status --short` for a clean tree.
-4. Record `git rev-parse HEAD` as the release commit.
-5. Export the archive through Xcode Organizer with the appropriate distribution signing.
+Direct releases use GitHub. Release builds and `scripts/release.py` use these values by default:
 
-For direct distribution, choose Distribute App > Custom > Developer ID > Export.
-Keep hardened runtime enabled for the app and helper.
-The remaining commands assume `build/export/RAMnotes.app`.
-Inspect the exported product:
+| Item | Value |
+| --- | --- |
+| Update feed | `https://a-dev.github.io/ramnotes/appcast.xml`, from the `gh-pages` branch through GitHub Pages |
+| ZIP and DMG | Assets of the GitHub Release with the tag `<VERSION>-<BUILD>` |
+| Public EdDSA key | `PTnXhFSvIhMUagqM5mA3++Aemj0iLDfLFN77xty6RL8=` |
+| Private EdDSA key | Login Keychain, Sparkle account `com.ramnotes.RAMnotes` |
 
-```sh
-python3 scripts/inspect-update-bundle.py release build/export/RAMnotes.app
-```
+Sparkle installs the ZIP. People download the DMG.
 
-For the App Store product, use the `updater-free` mode and its exported app path.
+1. Set `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` in the project. Every target must use the same values. The build is a positive integer greater than all published builds, including withdrawn builds. Sparkle compares the build, not the marketing version. Never use a build number again.
+2. Commit the change. The real run needs a clean working tree.
+3. [Make a release candidate](#make-a-release-candidate). Do the dry run first.
+4. [Publish](#publish) the candidate. Do the plan first.
+5. Download the DMG through a browser and check installation, file access, editing, saving, recovery, and launch at login with disposable notes.
+6. Install the previous release and check that it updates to the new one.
 
-## Package and notarize the direct app
+### Make a release candidate
 
-Install `create-dmg` before packaging:
+Prepare these local inputs:
 
-```sh
-brew install create-dmg
-bash scripts/package-dmg.sh build/export/RAMnotes.app
-```
+- A history file with all published builds, for example `{"published_builds": [1, 2]}`. Use `{"published_builds": []}` for the first release. The script checks the format, not completeness.
+- The release notes in HTML. Sparkle shows them in the update window.
+- A `notarytool` Keychain profile. Create it once with `xcrun notarytool store-credentials RAMnotes-notary`.
+- `create-dmg`, installed with `brew install create-dmg`.
 
-The script creates `build/RAMnotes.dmg` and refuses to overwrite an existing DMG.
-An optional second argument selects another output path.
-Packaging requires a logged-in desktop and can request Finder automation permission.
-
-Store notarization credentials in Keychain once:
+Do the dry run:
 
 ```sh
-xcrun notarytool store-credentials RAMnotes-notary
+scripts/release.sh --dry-run \
+  --history build/published-builds.json \
+  --notes build/release-notes.html \
+  --output build/candidate-1.0.0-1 \
+  --identity 'Developer ID Application: NAME (TEAMID)' \
+  --team TEAMID0000 --notary-profile RAMnotes-notary
 ```
 
-Submit the finished DMG:
+The dry run reads the inputs and prints the commands. It does not run them, use Keychain, connect to a server, or write output.
+It needs the Sparkle 2.10.0 tools. A previous archive puts them in `build/Archive/SourcePackages/artifacts/sparkle/Sparkle/bin`. For a different location, use `--sparkle-bin`.
+
+Remove `--dry-run` for the real run. The script does these steps:
+
+1. Archives with `scripts/archive-build.sh direct` and exports with Developer ID.
+2. Checks the app version, feed, key, signature, Hardened Runtime, and bundle.
+3. Notarizes the app, requires `Accepted`, keeps the notary logs, and staples the app.
+4. Makes the update ZIP from the stapled app with `ditto --keepParent --sequesterRsrc`, and checks that it extracts to identical files.
+5. Makes the DMG with `scripts/package-dmg.sh`. Signs, notarizes, and staples it. Packaging needs a logged-in desktop and can ask for Finder automation permission.
+6. Signs the ZIP with the Keychain key and makes a feed with one item and embedded release notes. Sparkle and a separate CryptoKit check both verify the signature. Delta updates are off.
+7. Writes `publication.json` and `SHA256.json` with the hashes of the DMG, the ZIP, and the feed.
+
+If a step fails, the script stops and keeps the partial output. Fix the cause and run again with a new output folder. Do not change files after signing.
+
+`scripts/test_release.py` and `scripts/test_publish_github.py` test the scripts offline. `scripts/check-builds.sh` runs them.
+
+### Publish
+
+Publish only when the owner requests it. Before the first release, do this setup one time:
+
+1. Create an empty `gh-pages` branch and push it.
+2. In the repository settings, set Pages to deploy from the root of `gh-pages`.
+3. Run `gh auth login` with an account that can create releases and push to `gh-pages`.
+
+Make the plan. The plan sends no network requests:
 
 ```sh
-xcrun notarytool submit build/RAMnotes.dmg --keychain-profile RAMnotes-notary --wait
+scripts/publish-github.py --candidate build/candidate-1.0.0-1 --notes build/release-notes.md
 ```
 
-Wait for Accepted status before stapling:
+To publish, add `--publish`. The script does these steps in this order:
 
-```sh
-xcrun stapler staple build/RAMnotes.dmg
-xcrun stapler validate build/RAMnotes.dmg
-shasum -a 256 build/RAMnotes.dmg > build/RAMnotes.dmg.sha256
-```
+1. Checks the candidate files against `SHA256.json`, and checks that the URLs are the GitHub hosting URLs.
+2. Reads the live feed. Stops if the build is not greater than the live build.
+3. Creates the GitHub Release `<VERSION>-<BUILD>` with the ZIP, the DMG, and `SHA256.json`.
+4. Downloads the assets without credentials and compares the bytes.
+5. Replaces `appcast.xml` on `gh-pages`. This step fails if the file changed after step 2.
 
-Download the published artifact through a browser and check installation, file access, editing, saving, recovery, and launch at login using disposable notes.
-Generate the signed Sparkle appcast before publishing an update.
+The feed changes last, so a failure keeps the old feed.
 
-## Host updates
+- If step 3 or 4 fails, delete the incomplete release and its tag, then run the script again.
+- If the candidate must change, make a new candidate with a greater build.
+- GitHub Pages can need a few minutes to serve the new feed.
+- To withdraw a release, put the previous `appcast.xml` back on `gh-pages`. Never use the withdrawn build number again.
 
-The source repository can stay private. No public Git branch is required.
-`distribution/appcast.xml` is the initial feed with no releases. Copy it to the Astro website's `public/updates/appcast.xml` and deploy the website.
-It advertises no download until a signed release archive exists.
-
-After Developer ID export, notarization, stapling, and validation, put the versioned DMG (for example `RAMnotes-1.0.0.dmg`) in a local release archive directory under `build/`.
-Generate its signed update entry with the pinned Sparkle tools:
-
-```sh
-bash scripts/generate-appcast.sh build/updates
-```
-
-`SPARKLE_TOOLS_DIR` overrides the tools directory. The command reads the private key from Keychain using account `com.ramnotes.RAMnotes`. It never exports the key.
-Retain the generated feed and prior release archives between releases. Increment the direct app and login helper's `CURRENT_PROJECT_VERSION` together for every distributed build. Sparkle compares `CFBundleVersion`, not the marketing version.
-
-Upload the DMG, generated release notes and delta files first, then replace `appcast.xml` last. All URLs use `https://ramnotes.com/updates/`.
-For an Astro static-assets deployment, copy only those public artifacts into `public/updates/`. Large downloads may need separate storage behind that URL. Check the hosting provider's asset-size limit before uploading.
-Keep private keys, source, archives containing development data, and Keychain exports out of the website.
-Do not replace an existing live feed with the empty starter feed.
-
-## Publish to GitHub
-
-Publish only when the owner requests it. Authenticate GitHub CLI with `gh auth login` once.
-Check that HEAD matches the recorded release commit.
-Replace `v1.0.0` with the actual version:
-
-```sh
-git tag -a v1.0.0 -m "RAMnotes v1.0.0"
-git push origin v1.0.0
-gh release create v1.0.0 \
-  build/RAMnotes.dmg \
-  build/RAMnotes.dmg.sha256 \
-  --verify-tag --draft --title "RAMnotes v1.0.0" --generate-notes
-gh release view v1.0.0 --web
-```
-
-Review the draft's notes, tag, DMG, and checksum before publication:
-
-```sh
-gh release edit v1.0.0 --draft=false
-```
-
-For an existing draft, upload missing assets with `gh release upload`.
-Keep DMGs and checksums out of Git commits.
+Keep the private key out of the repository, build settings, and CI logs. Back it up securely. Losing it means installed apps cannot accept new updates.

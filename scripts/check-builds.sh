@@ -5,6 +5,8 @@ cd "$(dirname "$0")/.."
 derived="${RAMNOTES_BUILD_ROOT:-build/CI}"
 common=(-onlyUsePackageVersionsFromResolvedFile -project RAMnotes.xcodeproj -destination 'platform=macOS,arch=arm64' -derivedDataPath "$derived" CODE_SIGN_IDENTITY=- DEVELOPMENT_TEAM=)
 python3 -m unittest discover -s scripts -p 'test_validate_direct_update_config.py'
+python3 -m unittest discover -s scripts -p 'test_release.py'
+python3 -m unittest discover -s scripts -p 'test_publish_github.py'
 xcodebuild "${common[@]}" -scheme ramnotes -configuration Debug build
 python3 scripts/inspect-update-bundle.py disabled "$derived/Build/Products/Debug/RAMnotes.app"
 # Compile the release-only path with public test metadata. Never launch this artifact.

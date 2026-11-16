@@ -89,7 +89,7 @@ An Apple Silicon Mac with macOS 27.0 or later. RAMnotes does not support Intel M
 
 ## Install
 
-1. Get the RAMnotes disk image from [ramnotes.com](https://ramnotes.com/).
+1. Download the latest RAMnotes disk image from [GitHub Releases](https://github.com/a-dev/ramnotes/releases/latest).
 2. Open the `.dmg` file.
 3. Drag **RAMnotes** to **Applications**.
 4. Open RAMnotes from **Applications**.

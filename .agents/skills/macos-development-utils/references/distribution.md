@@ -6,7 +6,7 @@ Read `docs/build.md`, `docs/todo/release.md`, and the distribution sections of `
 
 | Channel | Scheme / configuration | Required distinction |
 | --- | --- | --- |
-| Direct download | `ramnotes` / `Release` | Developer ID export, notarized DMG, signed Sparkle appcast |
+| Direct download | `ramnotes` / `Release` | `scripts/release.sh` candidate, then `scripts/publish-github.py` to GitHub Releases and the `gh-pages` feed (see `docs/build.md`) |
 | Mac App Store | `RAMnotesMAS` / `AppStore` | Store distribution through Xcode Organizer; updater-free bundle |
 
 Both use `com.ramnotes.RAMnotes` and share settings and note access. Install one channel at a time. The direct product embeds the login helper; inspect the selected product rather than assuming identical contents.
