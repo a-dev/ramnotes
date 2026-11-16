@@ -1,0 +1,17 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>RAMnotes</title>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Mon, 16 Nov 2026 14:43:24 +0400</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>RAMnotes 1.0.0</h2>
+<p>First direct release of RAMnotes.</p>
+]]></description>
+            <enclosure url="https://github.com/a-dev/ramnotes/releases/download/1.0.0-1/RAMnotes-1.0.0-1.zip" length="4294870" type="application/octet-stream" sparkle:edSignature="Hu8PbBwTY/G1MHV4TSNzqcyA8D28l0FetYhN7Dd/RIXsLLizkH5sOXuYDnKjyMqKL1/VryburM+/6INjsKj/AQ=="/>
+        </item>
+    </channel>
+</rss>
