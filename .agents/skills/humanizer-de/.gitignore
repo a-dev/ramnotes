@@ -1,0 +1,23 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Claude Code local settings
+.claude/
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Build output
+dist/
+
+# Temporary files
+*.tmp
+*.bak
+__pycache__/
+*.pyc
+.venv/

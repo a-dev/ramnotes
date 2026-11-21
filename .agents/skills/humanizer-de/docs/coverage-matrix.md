@@ -1,0 +1,103 @@
+# Humanizer-de Coverage Matrix
+
+Status: P0 source-of-truth matrix for v5.28.4.
+
+This matrix prevents one common documentation error: treating the 72-pattern catalog as if every pattern were deterministically detected, automatically rewritten, and fully regression-tested. The project has several coverage layers with different guarantees.
+
+## Coverage Layers
+
+| Layer | Files | What it covers | Guarantee | What it does not cover |
+|---|---|---|---|---|
+| Pattern catalog | `references/patterns.md` | 72 named German AI-writing and text-quality patterns with severity, indicators, examples, and rewrite guidance | Complete catalog of the current rule vocabulary | Deterministic detection, safe auto-fix, or empirical validation for every pattern |
+| Decision tables | `references/decision-tables.md` | Overlap logic, mode matrix, evidence cases, structure cases, phrase/template cases, profile conflicts | Binding short logic for common ambiguous cases | Exhaustive handling of every text genre or edge case |
+| Naturalness cards | `references/de-naturalness.md` | Operational cards for patterns 7, 8, 13, 45, 54, 55, 58, 60, 61, 63, 64, 65 plus DACH and QGIR stop notes | Practical guardrails for late-stage German naturalness work | Full readability model or complete German stylistics |
+| Register profiles | `references/register-profiles.md` | Address form, distance, sentence/paragraph shape, terms, particles, punctuation, profile conflicts | Guardrails against generic looseness and profile drift | Automatic inference of every target audience |
+| Evidence ledger | `references/evidence-ledger.md` | Protected factual anchors, claim-delta operations, QGIR invariants | Strong safeguard against obvious factual drift | Full semantic equivalence or source verification |
+| QGIR | `references/qgir.md`, `SKILL.md` | Bounded second revision loop, pass limits, edit budget, stop rules | Process gate for proportional revision | Default full rewrite workflow |
+| Unicode linter | `scripts/unicode_lint.py` | Hidden Unicode, German quote issues, and mixed-script/homoglyph words | Deterministic findings and conservative fixes for its scope | Style, evidence, rhythm, register |
+| Rhythm linter | `scripts/rhythm_lint.py` | Suspicion metrics for patterns 4, 54, 55, 61 | Deterministic measurements and scoped suspicions | Final KI-Tell judgment; pattern 51 is deliberately not emitted |
+| German pattern linter | `scripts/german_pattern_lint.py` | Cluster checks for patterns 2 (including advertising sections from pattern 44), 8, 13, 16, 54, 58, 64, 65; literal AI tool/citation/refusal artifacts for patterns 20, 24, 26 (single hit, raw text incl. code and URLs); plus an `info` advisory candidate for pattern 72 | Deterministic cluster findings for selected naturalness signals; partial coverage only for patterns 2 and 44; candidate-only context prompt for pattern 72 | Most of the 72-pattern catalog; tricolons from pattern 9; general substance judgment for pattern 44; no confirmed pattern-72 verdict |
+| Register linter | `scripts/register_lint.py` | Mixed address, expected address blockers, modal particles, formal emoji intrusion, formal-question warnings | Deterministic profile-drift warnings/blockers; `--precise` excludes singular anaphora and clearly paired quoted voice | Plural coreference and full register modeling |
+| Evidence linter | `scripts/evidence_lint.py` | Before/after anchor drift: numbers, dates, URLs, DOI, paragraphs, code, quotes, proper names, authority, direction | Conservative drift warnings/blockers | Full factual checking or semantic preservation |
+| Audit aggregator | `scripts/humanizer_audit.py` | Compact findings from Unicode, rhythm, naturalness, and register checks; original-text spans where a concrete location exists; mode-aware Preflight recommendation; optional conservative Unicode fix | Linter detection remains mode-independent; `--fix-safe` delegates only to the existing pattern-43/46 fixes | Artificial locations for document-wide metrics, semantic proof, or automatic fixes for number/date/apostrophe patterns |
+| Two-pass runner | `scripts/humanizer_two_pass.py` | Unicode-normalized intake, separate read-only audit, fresh candidate-bound rewrite with a frozen protection ledger, original-to-output change verification, output re-audit, optional spelling delta, structure gate (only authorized plain ATX-heading edits; link-text/target pairs and code fences unchanged), occurrence-addressed candidates, and `skipped_candidates` in report | Untouched original, normalized downstream input, host-enforced spans, structural scope, delete-only candidates, anchor checks, Evidence gate with visible warnings, unified `changes.diff`, full `verify.json`, and report-only postflight deltas | Complete fact/source verification, automatic rejection of new style findings, or proof that every model-selected candidate is correct |
+| Detection snapshot | `scripts/detection_snapshot.py` | Current golden, naturalness, register, and tolerated false-positive fixture results with a fixture hash | Reproducible report of existing deterministic contracts | Global recall/F1, judgment-only patterns, release gating, or arbitrary-text quality |
+| Scenario contracts | `tests/scenarios/`, `scripts/run_review_eval.py` | LLM-in-loop invariants for output discipline, QGIR traces, edit budget, anchors, register, detector wording, and a historical M45 before/after case | Regression checks for known failure modes, including linter-green translationese | A complete benchmark of German writing quality |
+| Trigger-routing fixture | `tests/trigger_eval.json` | Curated should-/should-not-trigger requests around the edit-pass boundary | Manual review set for description changes | Automatic platform invocation or routing accuracy |
+| Human reviewer / LLM judgment | `SKILL.md`, scenario docs | Cluster interpretation, context, register tradeoffs, rewrite choices, subtle structure | Required for judgment-only patterns and proportional edits | Deterministic reproducibility without tests |
+
+Open calibration question: `combing_auto` is currently suppressed only in `formal` mode.
+Technical documentation normally uses `sachlich`. Norm-conforming uniformity can therefore
+receive a combing recommendation. The naturalness card protects such uniformity when readability
+is intact. Whether suppression should follow the mode or the active drivers is an open calibration
+decision and is deliberately left unresolved here.
+
+## Script Pattern Coverage
+
+| Script | Primary pattern IDs | Notes |
+|---|---|---|
+| `unicode_lint.py` | 43, 46, 49-adjacent quote/apostrophe safeguards | Focused technical/typographic checks, including `mixed_script` |
+| `rhythm_lint.py` | 4, 54, 55, 61 | Returns suspicions; cluster interpretation stays outside the script |
+| `syntax_lint.py` | 39; `subjectless_fragment` has no catalog number | spaCy-only; reports `available=false` when the model is missing; called by `humanizer_audit.py` |
+| `german_pattern_lint.py` | 2, 8, 13, 16, 20, 24, 26, 44, 54, 58, 64, 65; 72 advisory | Pattern 2 includes advertising-figure clusters with pattern-44 section evidence; pattern 44 remains partial; pattern 72 stays a context-dependent `info` candidate |
+| `register_lint.py` | 63 plus register/profile drift | Pattern IDs are secondary to profile safeguards |
+| `evidence_lint.py` | 11, 26, 42, 53-adjacent claim-delta risks | Detects anchor drift; does not verify external sources |
+| `run_review_eval.py` | Cross-pattern scenario contracts | Tests output invariants, not free-form prose quality |
+
+## Late Catalog Pattern Coverage
+
+| Pattern | Coverage | Notes |
+|---:|---|---|
+| 67 | Human reviewer / LLM judgment | Ankündigungs-Spaltsätze require context and cluster interpretation; no deterministic detector |
+| 68 | Human reviewer / LLM judgment | Komparativ-Rahmung requires separating empty framing from a real, verifiable comparison |
+| 69 | Human reviewer / LLM judgment | Register profiles and writing samples inform the judgment; no deterministic sentence-architecture detector |
+| 70 | Human reviewer / LLM judgment | False agency requires semantic role and evidence checks; no deterministic detector |
+| 71 | Human reviewer / LLM judgment | Neuigkeits- und Löschtest distinguish real precision from empty nuance; marker lint rejected |
+| 72 | Advisory lint plus human reviewer / LLM judgment | Narrow `info` regex supplies a candidate only; counseling, quotation, and factual clarification require context |
+
+## Axis View: Check Axis x Check Level
+
+Second view on the same coverage: which check axis is enforced at which level. Axes are equal-ranked and individually engageable; the profile axis works without any AI forensics.
+
+| Check axis | Linter | Golden corpus | Scenario contract |
+|---|---|---|---|
+| Tells | `unicode_lint.py`, `rhythm_lint.py`, `german_pattern_lint.py` (selected patterns) | `unicode_patterns` / `rhythm_patterns` in `tests/corpus/*_expected.json` | `invariant_violations` in `run_review_eval.py`; exact zero-tell samples since strict mode |
+| Register | `register_lint.py` | — | `register_shift` / `formal_register_break` invariants; scenario 19 |
+| Rhythm | `rhythm_lint.py` (suspicions) | `style_profile_ranges` (cases 06-08) | via profile corridors (`stddev_mean_ratio`) |
+| Evidence | `evidence_lint.py` (standalone before/after CLI) | — | anchor/claim invariants, QGIR contracts |
+| Profile | `style_profile.py` + `references/style-targets.json` (measurement, no verdict) | `style_profile_ranges` (cases 06-08) | `style_profile_contract` (`profile_out_of_range`, `profile_required_metric_failed`); scenarios 16, 19, 20 |
+
+## Judgment-Only Or Partly Judgment-Only Areas
+
+These areas can be guided by rules and tests, but should not be documented as fully automated:
+
+- Legitimate Fachsprache vs. generic buzzword prose.
+- Passiv and Nominalstil in formal, legal, scientific, or technical contexts.
+- Whether a transition is mechanical or genuinely improves reader guidance.
+- Whether a paragraph adds substance or only sounds good.
+- Whether an example, scene, anecdote, or stronger thesis is needed.
+- Whether a rewrite preserves meaning beyond protected anchors.
+- Whether DACH regional style is authentic for the target context.
+
+## Allowed Coverage Claims
+
+- "The repo contains a 72-pattern catalog."
+- "The repo has deterministic linters for selected technical, rhythm, naturalness, register, and evidence risks."
+- "The repo uses scenario contracts to catch known LLM-in-loop failure modes."
+- "QGIR is a bounded process for proportional revision when clusters remain."
+
+## Disallowed Coverage Claims
+
+- "All 72 patterns are deterministically detected."
+- "The tools can prove semantic equivalence."
+- "The skill automatically rewrites every pattern safely."
+- "Passing `make verify` proves text quality for arbitrary German inputs."
+- "Detector scores are an acceptance criterion."
+
+## Audit Priorities Derived From Coverage
+
+1. Evidence and meaning preservation: highest risk because bad rewrites can change facts.
+2. Register/profile fidelity: high risk because generic humanization can damage formal, legal, technical, or author-specific text.
+3. False-positive control: high risk for Fachsprache, AI-marker vocabulary, passives, nominal style, rhythm, and DACH variants.
+4. Over-rewrite prevention: high risk where naturalness work adds voice, anecdotes, examples, or looseness without input support.
+5. Honest automation boundaries: required so docs and roadmap do not overstate script coverage.

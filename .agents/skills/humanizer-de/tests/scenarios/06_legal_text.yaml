@@ -1,0 +1,21 @@
+{
+  "id": 6,
+  "mode": "Formal",
+  "input": "Für die Sondernutzung öffentlicher Verkehrsflächen wird gemäß § 12 Abs. 3 eine Gebühr erhoben.",
+  "expected_behavior": ["Rechtssprache nicht stilistisch umschreiben"],
+  "quality_risks": ["Paragraph entfernen", "Pflichten abschwächen"],
+  "output_contract": ["keine Stilglättung"],
+  "sample_outputs": [
+    {
+      "name": "paragraph removed",
+      "text": "Für die Nutzung öffentlicher Flächen wird eine Gebühr erhoben.",
+      "expect_violations": ["new_factual_anchor"]
+    },
+    {
+      "name": "clean reorder with anchors intact",
+      "text": "Gemäß § 12 Abs. 3 wird für die Sondernutzung öffentlicher Verkehrsflächen eine Gebühr erhoben.",
+      "expect_violations": [],
+      "expect_violations_exact": true
+    }
+  ]
+}

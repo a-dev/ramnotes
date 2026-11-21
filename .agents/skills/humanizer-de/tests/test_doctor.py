@@ -1,0 +1,261 @@
+import importlib.util
+import io
+import json
+import os
+import subprocess
+import tempfile
+import unittest
+from contextlib import redirect_stdout
+from pathlib import Path
+from unittest import mock
+
+
+ROOT = Path(__file__).resolve().parents[1]
+SCRIPT = ROOT / "scripts" / "doctor.py"
+
+spec = importlib.util.spec_from_file_location("doctor", SCRIPT)
+doctor = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(doctor)
+import cli_output
+
+
+def write_bundle_fixture(root: Path, *, patterns_version: str = "1.0.0") -> None:
+    (root / "scripts").mkdir()
+    (root / "references").mkdir()
+    (root / "SKILL.md").write_text("metadata:\n  version: 1.0.0\n", encoding="utf-8")
+    (root / "scripts" / "humanizer_audit.py").touch()
+    (root / "references" / "patterns.md").write_text(
+        f"# Humanizer-de Pattern Catalog\n\nVollständiger Musterkatalog für Humanizer (Deutsch) v{patterns_version}.\n",
+        encoding="utf-8",
+    )
+    (root / "references" / "decision-tables.md").write_text(
+        "# Humanizer-de Decision Tables\n\nNutze diese Tabellen als Kurzlogik für v1.0.0.\n",
+        encoding="utf-8",
+    )
+
+
+class DoctorTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        python = [
+            doctor.check("python", "Python", "available", required=True, version="3.12.0"),
+            doctor.check("spacy", "spaCy", "available", required=False, version="3.8.7"),
+            doctor.check("german_model", "Deutsch-Modell", "available", required=False, version="3.8.0"),
+            doctor.check("precise", "--precise", "active", required=False),
+        ]
+        hunspell = [
+            doctor.check("hunspell", "Hunspell", "available", required=False, version="1.7.2"),
+            doctor.check("hunspell_de", "de_DE-Wörterbuch", "available", required=False),
+        ]
+        languagetool = [
+            doctor.check("languagetool", "LanguageTool", "available", required=False, version="6.6"),
+            doctor.check("java", "Java", "available", required=False, version="21.0.2"),
+        ]
+        with (
+            mock.patch.object(doctor, "python_checks", return_value=python),
+            mock.patch.object(doctor, "hunspell_checks", return_value=hunspell),
+            mock.patch.object(doctor, "languagetool_checks", return_value=languagetool),
+        ):
+            cls.report = doctor.build_report()
+
+    def test_report_checks_base_and_optional_toolchain_without_user_text(self):
+        report = self.report
+
+        self.assertTrue(report["ok"])
+        self.assertEqual(report["name"], "humanizer-de")
+        self.assertEqual(report["version"], "5.28.4")
+        self.assertEqual(
+            report["privacy"],
+            "No user text was read; only the listed repository and skill files were read.",
+        )
+        ids = {item["id"] for item in report["checks"]}
+        self.assertTrue(
+            {
+                "base_skill",
+                "claude_plugin",
+                "codex_plugin",
+                "version_sync",
+                "python",
+                "spacy",
+                "german_model",
+                "precise",
+                "hunspell",
+                "hunspell_de",
+                "languagetool",
+                "java",
+            }.issubset(ids)
+        )
+
+    def test_json_cli_is_machine_readable(self):
+        stdout = io.StringIO()
+        with mock.patch.object(doctor, "build_report", return_value=self.report):
+            with redirect_stdout(stdout):
+                exit_code = doctor.main(["--json"])
+
+        self.assertEqual(exit_code, 0)
+        report = json.loads(stdout.getvalue())
+        self.assertTrue(report["ok"])
+
+    def test_operational_error_returns_exit_two_without_traceback(self):
+        with mock.patch.object(doctor, "build_report", side_effect=OSError("manifest vanished")):
+            stderr = io.StringIO()
+            with mock.patch("sys.stderr", stderr):
+                exit_code = doctor.main(["--json"])
+        self.assertEqual(exit_code, 2)
+        self.assertIn("manifest vanished", stderr.getvalue())
+        self.assertNotIn("Traceback", stderr.getvalue())
+
+    def test_require_full_exits_one_for_partial_installation(self):
+        report = {
+            "name": "humanizer-de",
+            "version": "5.24.0",
+            "ok": True,
+            "full": False,
+            "summary": "base_only",
+            "privacy": "No user text was read; only the listed repository and skill files were read.",
+            "checks": [],
+        }
+        with mock.patch.object(doctor, "build_report", return_value=report):
+            with redirect_stdout(io.StringIO()):
+                self.assertEqual(doctor.main(["--json", "--require-full"]), 1)
+
+    def test_select_python_prefers_project_venv(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            python = root / ".venv" / "bin" / "python"
+            python.parent.mkdir(parents=True)
+            python.touch()
+
+            self.assertEqual(doctor.select_python(root), python)
+
+    def test_select_python_supports_windows_project_venv(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            python = root / ".venv" / "Scripts" / "python.exe"
+            python.parent.mkdir(parents=True)
+            python.touch()
+
+            self.assertEqual(doctor.select_python(root), python)
+
+    def test_java_home_supports_windows_executable(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            java = Path(tmp) / "bin" / "java.exe"
+            java.parent.mkdir(parents=True)
+            java.touch()
+
+            with mock.patch.dict(os.environ, {"JAVA_HOME": tmp}):
+                with mock.patch.object(doctor.shutil, "which", return_value=None):
+                    self.assertEqual(doctor.java_binary(), str(java))
+
+    def test_empty_hunspell_version_output_does_not_crash(self):
+        version_result = subprocess.CompletedProcess(["hunspell", "--version"], 0, "", "")
+        dictionary_result = subprocess.CompletedProcess(["hunspell"], 0, "", "")
+        with mock.patch.object(doctor.shutil, "which", return_value="hunspell"):
+            with mock.patch.object(
+                doctor,
+                "run_command",
+                side_effect=[(version_result, None), (dictionary_result, None)],
+            ):
+                checks = doctor.hunspell_checks()
+
+        self.assertEqual(checks[0]["status"], "available")
+        self.assertNotIn("version", checks[0])
+        self.assertEqual(checks[1]["status"], "available")
+
+    def test_command_decoding_preserves_unrepresentable_bytes(self):
+        completed = subprocess.CompletedProcess(["tool"], 0, "", "")
+        with mock.patch.object(doctor.subprocess, "run", return_value=completed) as run:
+            doctor.run_command(["tool"])
+
+        self.assertEqual(run.call_args.kwargs["errors"], "backslashreplace")
+
+    def test_human_output_escapes_for_legacy_stdout_encoding(self):
+        class LegacyStdout:
+            encoding = "cp1252"
+
+        with mock.patch.object(cli_output.sys, "stdout", LegacyStdout()):
+            self.assertEqual(cli_output.text_for_stdout("A\u200bB"), "A\\u200bB")
+
+    def test_human_report_pads_after_legacy_encoding_escape(self):
+        report = {
+            "version": "1.0",
+            "summary": "base_only",
+            "checks": [
+                {"label": "de_DE-Wörterbuch", "status": "available"},
+                {"label": "LanguageTool", "status": "available"},
+            ],
+        }
+
+        class AsciiStdout:
+            encoding = "ascii"
+
+        with mock.patch.object(cli_output.sys, "stdout", AsciiStdout()):
+            lines = doctor.format_report(report).splitlines()
+
+        self.assertEqual(lines[3].index("AVAILABLE"), lines[4].index("AVAILABLE"))
+
+    def test_missing_marketplace_manifest_breaks_version_sync(self):
+        def read_json(path):
+            if path.name == "marketplace.json":
+                raise FileNotFoundError(path)
+            return {"name": "humanizer-de", "version": "1.0"}
+
+        with mock.patch.object(doctor, "skill_version", return_value="1.0"):
+            with mock.patch.object(doctor, "read_json", side_effect=read_json):
+                checks, _ = doctor.package_checks(Path("/missing-package"))
+
+        version_sync = next(item for item in checks if item["id"] == "version_sync")
+        self.assertEqual(version_sync["status"], "error")
+        self.assertEqual(json.loads(version_sync["detail"])["marketplace"], None)
+
+    def test_malformed_marketplace_plugins_breaks_version_sync_without_crashing(self):
+        def read_json(path):
+            if path.name == "marketplace.json":
+                return {"plugins": {}}
+            return {"name": "humanizer-de", "version": "1.0"}
+
+        with mock.patch.object(doctor, "skill_version", return_value="1.0"):
+            with mock.patch.object(doctor, "read_json", side_effect=read_json):
+                checks, _ = doctor.package_checks(Path("/malformed-package"))
+
+        version_sync = next(item for item in checks if item["id"] == "version_sync")
+        self.assertEqual(version_sync["status"], "error")
+        self.assertEqual(json.loads(version_sync["detail"])["marketplace"], None)
+
+    def test_new_metadata_mismatch_breaks_version_sync(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_bundle_fixture(root, patterns_version="1.0.1")
+
+            checks, _ = doctor.package_checks(root)
+
+        version_sync = next(item for item in checks if item["id"] == "version_sync")
+        self.assertEqual(version_sync["status"], "error")
+        self.assertEqual(
+            json.loads(version_sync["detail"])["references/patterns.md"],
+            "1.0.1",
+        )
+
+    def test_missing_repo_only_metadata_does_not_break_bundle_version_sync(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_bundle_fixture(root)
+
+            checks, _ = doctor.package_checks(root)
+
+        version_sync = next(item for item in checks if item["id"] == "version_sync")
+        self.assertEqual(version_sync["status"], "ok")
+        self.assertEqual(version_sync["version"], "1.0.0")
+
+    def test_human_report_has_clear_summary(self):
+        output = doctor.format_report(self.report)
+
+        self.assertIn("Humanizer-DE Doctor", output)
+        self.assertIn("Basis-Skill", output)
+        self.assertIn("--precise", output)
+        self.assertIn("Gesamt:", output)
+        self.assertIn("keine Nutzertexte", output)
+
+
+if __name__ == "__main__":
+    unittest.main()

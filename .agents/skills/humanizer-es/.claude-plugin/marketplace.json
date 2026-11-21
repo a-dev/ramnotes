@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "humanizer-es",
+  "owner": {
+    "name": "jaimeberdejo",
+    "url": "https://github.com/jaimeberdejo"
+  },
+  "description": "Humanizer Español: el skill de humanización de textos en español, instalable como plugin de Claude Code.",
+  "plugins": [
+    {
+      "name": "humanizer-es",
+      "source": "./",
+      "description": "Edita textos en español para que suenen naturales y humanos, no generados por IA. Adaptación nativa al español del Humanizer, con detectores propios y manejo de variantes (España, Latinoamérica, neutro).",
+      "license": "MIT",
+      "keywords": ["escritura", "edicion", "espanol", "deteccion-ia", "humanizar", "estilo", "redaccion"]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": 28,
+  "mode": "Sachlich",
+  "input": "Das Fachverfahren überträgt neue Bescheide nachts in das kommunale Dokumentenarchiv. Vor dem Import prüft ein Dienst Dateiformat, Aktenzeichen und Zugriffsrechte. Fehlerhafte Datensätze bleiben in einer Warteschlange. Nach Angaben des Instituts für kommunale Verwaltungsinformatik sank die durchschnittliche Bearbeitungszeit 2025 um 18 Prozent. Am nächsten Arbeitstag prüft die zuständige Stelle das Protokoll und gibt gesperrte Vorgänge einzeln frei.",
+  "expected_behavior": [
+    "Stil unverändert lassen",
+    "die unbelegte Quelle im Belege-Block markieren",
+    "keine Quelle erfinden"
+  ],
+  "quality_risks": [
+    "Stilpolitur am sauberen Text",
+    "Quelle stillschweigend entfernen",
+    "Beleg erfinden oder ergänzen"
+  ],
+  "output_contract": [
+    "Modus",
+    "Belege",
+    "Kurzaudit"
+  ],
+  "null_edit_contract": {
+    "require_unchanged": true
+  },
+  "sample_outputs": [
+    {
+      "name": "source marked, style untouched",
+      "text": "Das Fachverfahren überträgt neue Bescheide nachts in das kommunale Dokumentenarchiv. Vor dem Import prüft ein Dienst Dateiformat, Aktenzeichen und Zugriffsrechte. Fehlerhafte Datensätze bleiben in einer Warteschlange. Nach Angaben des Instituts für kommunale Verwaltungsinformatik sank die durchschnittliche Bearbeitungszeit 2025 um 18 Prozent. Am nächsten Arbeitstag prüft die zuständige Stelle das Protokoll und gibt gesperrte Vorgänge einzeln frei.",
+      "expect_violations": [],
+      "expect_violations_exact": true
+    },
+    {
+      "name": "invented source detail",
+      "text": "Das Fachverfahren überträgt neue Bescheide nachts in das kommunale Dokumentenarchiv. Vor dem Import prüft ein Dienst Dateiformat, Aktenzeichen und Zugriffsrechte. Fehlerhafte Datensätze bleiben in einer Warteschlange. Nach Angaben des Instituts für kommunale Verwaltungsinformatik sank die durchschnittliche Bearbeitungszeit 2025 laut der Studie „Digitale Aktenläufe 2025“ um 18 Prozent. Am nächsten Arbeitstag prüft die zuständige Stelle das Protokoll und gibt gesperrte Vorgänge einzeln frei.",
+      "expect_violations": [
+        "new_factual_anchor",
+        "unnecessary_edit"
+      ],
+      "expect_violations_exact": true
+    }
+  ]
+}

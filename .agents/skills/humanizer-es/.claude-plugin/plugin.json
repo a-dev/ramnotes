@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "humanizer-es",
+  "description": "Edita textos en español para que suenen naturales y humanos, no generados por IA. Adaptación nativa al español del Humanizer: detecta muletillas de IA, calcos del inglés, nominalización, simetría forzada, tono corporativo, raya al estilo inglés y mayúsculas de título a la inglesa. Maneja variantes (España, Latinoamérica, neutro).",
+  "version": "1.2.0",
+  "author": {
+    "name": "jaimeberdejo",
+    "url": "https://github.com/jaimeberdejo"
+  },
+  "homepage": "https://github.com/jaimeberdejo/humanizer-es",
+  "repository": "https://github.com/jaimeberdejo/humanizer-es",
+  "license": "MIT",
+  "keywords": ["escritura", "edicion", "espanol", "deteccion-ia", "humanizar", "estilo", "redaccion"]
+}

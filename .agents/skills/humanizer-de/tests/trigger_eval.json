@@ -1,0 +1,26 @@
+{
+  "should_trigger": [
+    "Überarbeite diesen bestehenden deutschen Text und bewahre die Fakten.",
+    "Prüfe meinen Entwurf auf deutsche KI-Schreibmuster.",
+    "Humanisiere diesen Absatz, ohne neue Aussagen einzubauen.",
+    "Auditiere diese Website-Prosa auf KI-Tells.",
+    "Mach diesen vorhandenen Newslettertext natürlicher.",
+    "Nutze meine Schreibprobe als Ziel und redigiere den folgenden Entwurf.",
+    "Korrigiere die Kommas und glätte zugleich den mechanischen Rhythmus dieses Entwurfs.",
+    "Prüfe diesen Text nach der Übersetzung auf deutsches Register und KI-Muster.",
+    "Überarbeite nur die betroffenen Stellen in meinem Text.",
+    "Wirkt dieser fertige deutsche Text zu glatt oder mechanisch?"
+  ],
+  "should_not_trigger": [
+    "Schreibe einen Blogartikel von Grund auf.",
+    "Übersetze diesen englischen Text ins Deutsche und mach die Übersetzung flüssig.",
+    "Korrigiere nur Rechtschreibung und Kommas, ändere den Stil nicht.",
+    "Ersetze in diesem Text überall Kunde durch Mitglied.",
+    "Fasse diesen bestehenden Artikel in fünf Punkten zusammen.",
+    "Kürze diesen Entwurf auf 500 Zeichen.",
+    "Generiere zehn LinkedIn-Posts aus diesen Stichpunkten.",
+    "Schreibe den angefangenen Artikel inhaltlich weiter.",
+    "Schreibe ein Bewerbungsschreiben ohne vorhandenen Entwurf.",
+    "Erkläre mir diese deutsche Grammatikregel."
+  ]
+}

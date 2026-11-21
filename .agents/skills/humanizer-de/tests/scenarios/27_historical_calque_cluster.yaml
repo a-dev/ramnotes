@@ -1,0 +1,54 @@
+{
+  "id": 27,
+  "mode": "Locker",
+  "input": "Für genau diesen Anwendungsfall bin ich simpler gegangen. Ein API-Call an Grok über xAI's Agent Tools. Der Workflow macht: holen, filtern, senden. Das Modell lieferte Produkt-Updates statt Paradigmen-Shifts. Das ist der Filter bei der Arbeit. Beides Mal waren die Kriterien zu scharf. Der Fast-Tier liefert dünneren Output. Die Reibung fällt auf fast null. Iteriere schnell am Prompt gegen echte Daten. Grok's Agent Tools und OpenAI's Responses API mit Web Search übernehmen die Suche.",
+  "expected_behavior": [
+    "M45-Cluster trotz mechanisch unauffälliger Oberfläche erkennen",
+    "harte Transfers als M45 lokal korrigieren",
+    "beides Mal und Fast-Tier als normales Korrektorat behandeln",
+    "Grok, xAI, OpenAI, Agent Tools, Responses API und Web Search unverändert erhalten",
+    "keine neue Muster-ID oder Autorschaftsaussage aus dem Einzelfall ableiten"
+  ],
+  "quality_risks": [
+    "grünen Sammelcheck mit natürlichem Deutsch verwechseln",
+    "offizielle Produktnamen eindeutschen",
+    "Fachanglizismen pauschal entfernen",
+    "Rhythmusmetriken statt Kollokationen optimieren"
+  ],
+  "output_contract": [
+    "Modus",
+    "Gefundene Muster",
+    "Geänderte Stellen",
+    "Kurzaudit"
+  ],
+  "risk_phrases": [
+    "bin ich simpler gegangen",
+    "xAI's Agent Tools",
+    "Workflow macht: holen",
+    "Paradigmen-Shifts",
+    "Filter bei der Arbeit",
+    "Beides Mal",
+    "Der Fast-Tier",
+    "Reibung fällt",
+    "Iteriere schnell am Prompt gegen",
+    "Grok's Agent Tools",
+    "OpenAI's Responses API"
+  ],
+  "sample_outputs": [
+    {
+      "name": "known-good local M45 rewrite",
+      "text": "Für diesen Anwendungsfall habe ich es einfacher gehalten. Ein API-Call an Grok über die Agent Tools von xAI. Der Workflow holt, filtert, sendet. Das Modell lieferte Produkt-Updates, stellte aber nichts infrage. Hier arbeitet der Filter. Die Kriterien waren zweimal zu scharf. Im Schnellbetrieb liefert das Modell dünneren Output. Die Reibung sinkt fast auf null. Entwickle den Prompt schnell anhand echter Daten weiter. Die Agent Tools von Grok und die Responses API von OpenAI mit Web Search übernehmen die Suche.",
+      "expect_violations": [],
+      "expect_violations_exact": true
+    },
+    {
+      "name": "known-bad unchanged historical snapshot",
+      "text": "Für genau diesen Anwendungsfall bin ich simpler gegangen. Ein API-Call an Grok über xAI's Agent Tools. Der Workflow macht: holen, filtern, senden. Das Modell lieferte Produkt-Updates statt Paradigmen-Shifts. Das ist der Filter bei der Arbeit. Beides Mal waren die Kriterien zu scharf. Der Fast-Tier liefert dünneren Output. Die Reibung fällt auf fast null. Iteriere schnell am Prompt gegen echte Daten. Grok's Agent Tools und OpenAI's Responses API mit Web Search übernehmen die Suche.",
+      "expect_violations": [
+        "full_text_output",
+        "risky_phrase"
+      ],
+      "expect_violations_exact": true
+    }
+  ]
+}

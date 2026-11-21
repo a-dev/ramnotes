@@ -1,0 +1,503 @@
+import importlib.util
+import json
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+SCRIPT = ROOT / "scripts" / "evidence_lint.py"
+
+spec = importlib.util.spec_from_file_location("evidence_lint", SCRIPT)
+evidence_lint = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(evidence_lint)
+
+
+def kinds(findings):
+    return {item["kind"] for item in findings}
+
+
+SPACY_MODEL_AVAILABLE = (
+    importlib.util.find_spec("spacy") is not None
+    and importlib.util.find_spec("de_core_news_sm") is not None
+)
+
+
+class EvidenceLintTests(unittest.TestCase):
+    def test_blocks_new_number(self):
+        before = "Die Wartezeit sank laut Bericht."
+        after = "Die Wartezeit sank laut Bericht um 63 Prozent."
+        self.assertIn("added_number", kinds(evidence_lint.lint(before, after)))
+
+    def test_blocks_changed_quote(self):
+        before = "Im Bericht steht: „unter zwei Minuten Wartezeit“."
+        after = "Im Bericht steht: „unter drei Minuten Wartezeit“."
+        found = kinds(evidence_lint.lint(before, after))
+        self.assertIn("removed_quote", found)
+        self.assertIn("added_quote", found)
+
+    def test_swiss_guillemets_are_protected_quotes(self):
+        before = "Im Bericht steht: «unter zwei Minuten Wartezeit»."
+        after = "Im Bericht steht: «unter drei Minuten Wartezeit»."
+
+        found = kinds(evidence_lint.lint(before, after))
+
+        self.assertIn("removed_quote", found)
+        self.assertIn("added_quote", found)
+
+    def test_multiline_quotes_are_protected(self):
+        cases = (
+            ("„erste Zeile\nzweite Zeile“", "„erste Zeile\ngeänderte Zeile“"),
+            ("«erste Zeile\nzweite Zeile»", "«erste Zeile\ngeänderte Zeile»"),
+            ('"erste Zeile\nzweite Zeile"', '"erste Zeile\ngeänderte Zeile"'),
+            ("'erste Zeile\nzweite Zeile'", "'erste Zeile\ngeänderte Zeile'"),
+        )
+
+        for before, after in cases:
+            with self.subTest(before=before):
+                found = kinds(evidence_lint.lint(before, after))
+                self.assertIn("removed_quote", found)
+                self.assertIn("added_quote", found)
+
+    def test_apostrophes_in_contractions_are_not_quote_anchors(self):
+        text = "Wenn's heute klappt, gibt's morgen mehr."
+
+        self.assertEqual(evidence_lint.anchors(text)["quote"], set())
+
+    def test_malformed_quote_pairs_still_protect_quoted_content(self):
+        cases = (
+            ("Im Bericht steht: „Der Wagen war rot”.", "Im Bericht steht: „Der Wagen war blau”."),
+            ('Im Bericht steht: „Der Wagen war rot".', 'Im Bericht steht: „Der Wagen war blau".'),
+            ("Im Bericht steht: ‚Der Wagen war rot’.", "Im Bericht steht: ‚Der Wagen war blau’."),
+        )
+
+        for before, after in cases:
+            with self.subTest(before=before, after=after):
+                found = kinds(evidence_lint.lint(before, after))
+                self.assertIn("removed_quote", found)
+                self.assertIn("added_quote", found)
+
+    def test_repairing_only_a_malformed_quote_closer_keeps_anchor(self):
+        before = "Im Bericht steht: „Der Wagen war rot”."
+        after = "Im Bericht steht: „Der Wagen war rot“."
+
+        found = kinds(evidence_lint.lint(before, after))
+
+        self.assertNotIn("removed_quote", found)
+        self.assertNotIn("added_quote", found)
+
+    def test_number_anchor_keeps_sign_unit_and_comparator(self):
+        cases = (
+            ("Die Marge beträgt -5 Prozent.", "Die Marge beträgt 5 Prozent."),
+            ("Die Quote liegt bei 12%.", "Die Quote liegt bei 12."),
+            ("Es sind mindestens 12 Fälle.", "Es sind höchstens 12 Fälle."),
+        )
+
+        for before, after in cases:
+            with self.subTest(before=before, after=after):
+                found = kinds(evidence_lint.lint(before, after))
+                self.assertIn("removed_number", found)
+                self.assertIn("added_number", found)
+
+    def test_equivalent_number_units_do_not_create_anchor_drift(self):
+        for before, after in (
+            ("Die Quote beträgt 1,5 %.", "Die Quote beträgt 1,5 Prozent."),
+            ("Der Preis beträgt 20 €.", "Der Preis beträgt 20 Euro."),
+            ("Der Preis beträgt 20 EUR/Monat.", "Der Preis beträgt 20 Euro/Monat."),
+        ):
+            with self.subTest(before=before, after=after):
+                found = kinds(evidence_lint.lint(before, after))
+                self.assertNotIn("removed_number", found)
+                self.assertNotIn("added_number", found)
+                self.assertNotIn("removed_proper_name", found)
+
+    def test_number_anchor_protects_range_endpoints_and_version_components(self):
+        cases = (
+            ("Die Spanne reicht von 12-13 Prozent.", "Die Spanne reicht von 12-14 Prozent."),
+            ("Version 5.5.0 ist freigegeben.", "Version 5.5.1 ist freigegeben."),
+            ("Version v5.5.0 ist freigegeben.", "Version v5.5.1 ist freigegeben."),
+        )
+
+        for before, after in cases:
+            with self.subTest(before=before, after=after):
+                found = kinds(evidence_lint.lint(before, after))
+                self.assertIn("removed_number", found)
+                self.assertIn("added_number", found)
+
+    def test_allows_sentence_split_with_same_anchor(self):
+        before = "Die API liefert Status 200 und ein leeres Array."
+        after = "Die API liefert Status 200. Sie gibt ein leeres Array zurück."
+        self.assertFalse(any(item["severity"] == "blocker" for item in evidence_lint.lint(before, after)))
+
+    def test_warns_new_proper_name(self):
+        before = "Die Stadt veröffentlichte den Bericht."
+        after = "Die Stadt Köln veröffentlichte den Bericht."
+        self.assertIn("added_proper_name", kinds(evidence_lint.lint(before, after)))
+
+    def test_warns_when_accented_proper_name_is_removed(self):
+        for name in ("Škoda", "Ørsted", "Émile"):
+            with self.subTest(name=name):
+                before = f"Wir arbeiten mit {name}."
+                findings = evidence_lint.lint(before, "Wir arbeiten mit dem Anbieter.")
+                removed = next(item for item in findings if item["kind"] == "removed_proper_name")
+                self.assertIn(name, removed["values"])
+
+    def test_common_noun_after_article_is_not_proper_name(self):
+        before = "Es ist wichtig, das Problem zügig zu lösen. Danach geht es weiter."
+        after = "Die Lösung des Problems hat Priorität. Danach geht es weiter."
+        found = kinds(evidence_lint.lint(before, after))
+        self.assertNotIn("removed_proper_name", found)
+        self.assertNotIn("added_proper_name", found)
+
+    def test_case_variant_is_not_anchor_change(self):
+        before = "Wir besprechen das Problem."
+        after = "Wir besprechen die Ursache des Problems."
+        found = kinds(evidence_lint.lint(before, after))
+        self.assertNotIn("removed_proper_name", found)
+        self.assertNotIn("added_proper_name", found)
+
+    def test_name_suffix_is_not_silently_stripped(self):
+        before = "Wir arbeiten mit Mercedes."
+        after = "Wir arbeiten mit Merced."
+
+        found = kinds(evidence_lint.lint(before, after))
+
+        self.assertIn("removed_proper_name", found)
+        self.assertIn("added_proper_name", found)
+
+    def test_real_entities_still_flagged(self):
+        before = "Der Konzern veröffentlichte Zahlen."
+        after = "Die Deutsche Bahn veröffentlichte Zahlen."
+        findings = evidence_lint.lint(before, after)
+        added = [item for item in findings if item["kind"] == "added_proper_name"]
+        self.assertTrue(added)
+        self.assertIn("Deutsche Bahn", added[0]["values"])
+
+    def test_acronym_after_article_is_kept(self):
+        before = "Die Behörde prüft."
+        after = "Die BaFin prüft."
+        findings = evidence_lint.lint(before, after)
+        added = [item for item in findings if item["kind"] == "added_proper_name"]
+        self.assertTrue(added)
+        self.assertIn("BaFin", added[0]["values"])
+
+    def test_default_keeps_single_token_abstract_noun_after_verb(self):
+        before = "Der Bericht bleibt kurz."
+        after = "Der Bericht hat Relevanz."
+        self.assertIn("added_proper_name", kinds(evidence_lint.lint(before, after)))
+
+    def test_hard_anchors_unaffected(self):
+        before = "Die Wartezeit sank laut Bericht."
+        after = "Die Wartezeit sank laut Bericht um 63 Prozent."
+        number_findings = [
+            item for item in evidence_lint.lint(before, after) if item["kind"] == "added_number"
+        ]
+        self.assertTrue(number_findings)
+        self.assertEqual(number_findings[0]["severity"], "blocker")
+
+        before_url = "Details unter https://example.org/bericht stehen bereit."
+        after_url = "Details stehen bereit."
+        url_findings = [
+            item for item in evidence_lint.lint(before_url, after_url) if item["kind"] == "removed_url"
+        ]
+        self.assertTrue(url_findings)
+        self.assertEqual(url_findings[0]["severity"], "blocker")
+
+    def test_blocks_direction_reversal_with_same_anchor(self):
+        before = "Die Fehlerquote sank um 12 Prozent."
+        after = "Die Fehlerquote stieg um 12 Prozent."
+        self.assertIn("claim_direction_changed", kinds(evidence_lint.lint(before, after)))
+
+    def test_blocks_support_refutation_reversal(self):
+        for before, after in (
+            ("Die Studie belegt die These.", "Die Studie widerlegt die These."),
+            ("Die Studie widerlegt die These.", "Die Studie belegt die These."),
+            ("Die Studie belegte die These.", "Die Studie widerlegte die These."),
+        ):
+            with self.subTest(before=before, after=after):
+                self.assertIn("claim_direction_changed", kinds(evidence_lint.lint(before, after)))
+
+    def test_identical_mixed_directions_do_not_block(self):
+        text = "Der Umsatz ist gestiegen, die Kosten sind gesunken."
+        self.assertNotIn("claim_direction_changed", kinds(evidence_lint.lint(text, text)))
+
+    def test_removing_one_of_two_direction_classes_does_not_block(self):
+        before = "Studie A belegt die These. Studie B widerlegt sie."
+        after = "Studie A belegt die These."
+        self.assertNotIn("claim_direction_changed", kinds(evidence_lint.lint(before, after)))
+
+    def test_blocks_plural_preterite_direction_reversal(self):
+        before = "Die Kosten stiegen."
+        after = "Die Kosten sanken."
+        self.assertIn("claim_direction_changed", kinds(evidence_lint.lint(before, after)))
+
+    def test_blocks_new_strong_phrase_and_removed_uncertainty(self):
+        before = "Die Ursache ist unklar."
+        after = "Die Ursache ist zweifelsfrei belegt."
+
+        found = kinds(evidence_lint.lint(before, after))
+
+        self.assertIn("authority_strengthened", found)
+        self.assertIn("hedge_removed", found)
+
+    def test_existing_authority_markers_remain_protected(self):
+        before = "Das könnte die Ursache sein."
+        after = "Die Ursache ist belegt."
+
+        found = kinds(evidence_lint.lint(before, after))
+
+        self.assertIn("authority_strengthened", found)
+        self.assertIn("hedge_removed", found)
+
+    def test_strong_synonym_change_does_not_raise_authority_level(self):
+        cases = (
+            ("Die Studie zeigt den Effekt.", "Die Studie belegt den Effekt."),
+            ("Das spricht klar dafür.", "Das spricht eindeutig dafür."),
+        )
+
+        for before, after in cases:
+            with self.subTest(before=before, after=after):
+                self.assertNotIn("authority_strengthened", kinds(evidence_lint.lint(before, after)))
+
+    def test_removed_hedge_remains_visible_during_strong_synonym_change(self):
+        before = "Die Studie zeigt möglicherweise den Effekt."
+        after = "Die Studie belegt den Effekt."
+
+        found = kinds(evidence_lint.lint(before, after))
+
+        self.assertNotIn("authority_strengthened", found)
+        self.assertIn("hedge_removed", found)
+
+    def test_bare_klar_is_not_an_authority_marker(self):
+        before = "Der Absatz ist kurz."
+        after = "Der Absatz ist klar formuliert."
+
+        found = kinds(evidence_lint.lint(before, after))
+
+        self.assertNotIn("authority_strengthened", found)
+        self.assertNotIn("hedge_removed", found)
+
+    def test_retained_uncertainty_does_not_trigger_authority_findings(self):
+        before = "Die Ursache ist unklar."
+        after = "Die Ursache bleibt unklar."
+
+        found = kinds(evidence_lint.lint(before, after))
+
+        self.assertNotIn("authority_strengthened", found)
+        self.assertNotIn("hedge_removed", found)
+
+    def test_removed_hedge_without_stronger_claim_is_not_flagged(self):
+        before = "Das könnte die Ursache sein."
+        after = "Die Ursache war es."
+
+        found = kinds(evidence_lint.lint(before, after))
+
+        self.assertNotIn("authority_strengthened", found)
+        self.assertNotIn("hedge_removed", found)
+
+    def test_atomic_write_and_load_ledger_roundtrip_preserves_anchors(self):
+        before = (
+            "Die Wartezeit sank am 3. Mai 2024 um 12 Prozent. "
+            "Details stehen unter https://example.org/bericht."
+        )
+
+        with tempfile.TemporaryDirectory() as tmp:
+            ledger_path = Path(tmp) / "ledger.json"
+            expected = evidence_lint.write_ledger(before, ledger_path)
+            loaded = evidence_lint.load_ledger_document(ledger_path)[0]
+            document = json.loads(ledger_path.read_text(encoding="utf-8"))
+            remaining_files = [item.name for item in Path(tmp).iterdir()]
+
+        self.assertEqual(loaded, expected)
+        self.assertEqual(loaded, evidence_lint.anchors(before))
+        self.assertEqual(document["schema_version"], 2)
+        self.assertEqual(document["extraction_policy"], {"mode": "default"})
+        self.assertEqual(remaining_files, ["ledger.json"])
+
+    def test_ledger_catches_multi_pass_number_drift_against_original(self):
+        original = "Die Fehlerquote sank laut Bericht um 12 Prozent."
+        pass1 = "Laut Bericht sank die Fehlerquote um rund 12 Prozent."
+        pass2 = "Laut Bericht sank die Fehlerquote um etwa ein Achtel."
+        pass3 = "Der Bericht beschreibt eine spürbar geringere Fehlerquote."
+
+        ledger_anchors = evidence_lint.anchors(original)
+
+        self.assertIn("removed_number", kinds(evidence_lint.lint(pass1, pass2)))
+        self.assertNotIn("removed_number", kinds(evidence_lint.lint(pass2, pass3)))
+        self.assertIn("removed_number", kinds(evidence_lint.lint_with_anchors(ledger_anchors, pass3)))
+
+
+class EvidenceLintCliTests(unittest.TestCase):
+    def run_pair(self, before: str, after: str) -> tuple[int, dict]:
+        with tempfile.TemporaryDirectory() as tmp:
+            before_path = Path(tmp) / "before.txt"
+            after_path = Path(tmp) / "after.txt"
+            before_path.write_text(before, encoding="utf-8")
+            after_path.write_text(after, encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(SCRIPT), "--before-file", str(before_path), "--after-file", str(after_path)],
+                capture_output=True,
+                text=True,
+            )
+        return proc.returncode, json.loads(proc.stdout)
+
+    def test_file_pair_mode_blocker_exits_1(self):
+        code, report = self.run_pair(
+            "Die Wartezeit sank laut Bericht.",
+            "Die Wartezeit sank laut Bericht um 63 Prozent.",
+        )
+        self.assertEqual(code, 1)
+        self.assertFalse(report["ok"])
+        blockers = [item for item in report["findings"] if item["severity"] == "blocker"]
+        self.assertIn("added_number", {item["kind"] for item in blockers})
+
+    def test_file_pair_mode_clean_exits_0(self):
+        code, report = self.run_pair(
+            "Die API liefert Status 200 und ein leeres Array.",
+            "Die API liefert Status 200. Sie gibt ein leeres Array zurück.",
+        )
+        self.assertEqual(code, 0)
+        self.assertFalse(any(item["severity"] == "blocker" for item in report["findings"]))
+
+    def test_ledger_mode_matches_anchor_lint(self):
+        before = "Die Fehlerquote sank laut Bericht um 12 Prozent."
+        after = "Der Bericht beschreibt eine geringere Fehlerquote."
+
+        with tempfile.TemporaryDirectory() as tmp:
+            ledger_path = Path(tmp) / "ledger.json"
+            evidence_lint.write_ledger(before, ledger_path)
+            proc = subprocess.run(
+                [sys.executable, str(SCRIPT), "--ledger", str(ledger_path), "--after", after],
+                capture_output=True,
+                text=True,
+            )
+            expected = evidence_lint.lint_with_anchors(evidence_lint.load_ledger_document(ledger_path)[0], after)
+
+        self.assertEqual(proc.returncode, 1)
+        self.assertEqual(json.loads(proc.stdout)["findings"], expected)
+
+    def test_ledger_mode_rejects_before_argument(self):
+        proc = subprocess.run(
+            [sys.executable, str(SCRIPT), "--ledger", "ledger.json", "--before", "alt", "--after", "neu"],
+            capture_output=True,
+            text=True,
+        )
+
+        self.assertEqual(proc.returncode, 2)
+        self.assertIn("--ledger cannot be combined with --before or --before-file", proc.stderr)
+
+    def test_no_input_is_usage_error(self):
+        proc = subprocess.run([sys.executable, str(SCRIPT)], capture_output=True, text=True)
+
+        self.assertEqual(proc.returncode, 2)
+        self.assertIn("pair mode requires", proc.stderr)
+
+    def test_empty_fixture_directory_is_usage_error(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            proc = subprocess.run(
+                [sys.executable, str(SCRIPT), "--fixture", tmp],
+                capture_output=True,
+                text=True,
+            )
+
+        self.assertEqual(proc.returncode, 2)
+        self.assertIn("no JSON fixture files found", proc.stderr)
+
+    def test_write_ledger_to_missing_directory_is_usage_error(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            ledger_path = Path(tmp) / "missing" / "ledger.json"
+            proc = subprocess.run(
+                [
+                    sys.executable,
+                    str(SCRIPT),
+                    "--before",
+                    "Der Bericht liegt vor.",
+                    "--write-ledger",
+                    str(ledger_path),
+                ],
+                capture_output=True,
+                text=True,
+            )
+
+        self.assertEqual(proc.returncode, 2, proc.stderr)
+        self.assertIn("error:", proc.stderr)
+        self.assertNotIn("Traceback", proc.stderr)
+
+    def test_ledger_mode_rejects_extraction_policy_mismatch(self):
+        before = "Wir arbeiten mit Mercedes."
+        with tempfile.TemporaryDirectory() as tmp:
+            ledger_path = Path(tmp) / "ledger.json"
+            evidence_lint.write_ledger(before, ledger_path)
+            data = json.loads(ledger_path.read_text(encoding="utf-8"))
+            data["extraction_policy"] = {
+                "mode": "spacy_ner",
+                "model": "core_news_sm",
+                "model_version": "test",
+            }
+            ledger_path.write_text(json.dumps(data), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(SCRIPT), "--ledger", str(ledger_path), "--after", before],
+                capture_output=True,
+                text=True,
+            )
+
+        self.assertEqual(proc.returncode, 2)
+        self.assertIn("extraction policy does not match", proc.stderr)
+
+    def test_schema_one_ledger_remains_readable(self):
+        before = "Die Quote beträgt mindestens 12 Prozent. Der Bericht sagt: «Alles bleibt gleich»."
+        legacy_anchors = evidence_lint.legacy_anchors(before)
+        self.assertEqual(legacy_anchors["number"], {"12 Prozent"})
+        self.assertEqual(legacy_anchors["quote"], set())
+        self.assertNotEqual(legacy_anchors, evidence_lint.anchors(before))
+
+        with tempfile.TemporaryDirectory() as tmp:
+            ledger_path = Path(tmp) / "ledger.json"
+            data = {
+                "schema_version": 1,
+                "anchors": evidence_lint.serializable_anchors(legacy_anchors),
+            }
+            ledger_path.write_text(json.dumps(data), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(SCRIPT), "--ledger", str(ledger_path), "--after", before],
+                capture_output=True,
+                text=True,
+            )
+
+        self.assertEqual(proc.returncode, 0)
+        report = json.loads(proc.stdout)
+        self.assertEqual(report["findings"], [])
+        self.assertEqual(report["ledger_extraction_policy"], "legacy_unknown")
+
+
+@unittest.skipUnless(SPACY_MODEL_AVAILABLE, "spaCy German model is not available")
+class EvidenceLintPreciseTests(unittest.TestCase):
+    def test_precise_filters_single_token_abstract_noun_after_verb(self):
+        before = "Der Bericht bleibt kurz."
+        after = "Der Bericht hat Relevanz."
+
+        self.assertNotIn("added_proper_name", kinds(evidence_lint.lint(before, after, precise=True)))
+
+    def test_precise_keeps_new_multiword_name(self):
+        before = "Sie trifft eine Person."
+        after = "Sie trifft Angela Merkel."
+        findings = evidence_lint.lint(before, after, precise=True)
+        added = [item for item in findings if item["kind"] == "added_proper_name"]
+
+        self.assertTrue(added)
+        self.assertIn("Angela Merkel", added[0]["values"])
+
+    def test_precise_keeps_internal_uppercase_name(self):
+        before = "Die Behörde prüft."
+        after = "Die BaFin prüft."
+        findings = evidence_lint.lint(before, after, precise=True)
+        added = [item for item in findings if item["kind"] == "added_proper_name"]
+
+        self.assertTrue(added)
+        self.assertIn("BaFin", added[0]["values"])
+
+
+if __name__ == "__main__":
+    unittest.main()
