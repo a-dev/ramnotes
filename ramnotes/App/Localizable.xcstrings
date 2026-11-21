@@ -1696,7 +1696,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein Speicherortvorgang muss abgeglichen werden. Wiederholen Sie ihn, bevor Sie diese Notiz ändern."
+            "value" : "Ein Speicherortvorgang ist nicht abgeschlossen. Wiederholen Sie ihn, bevor Sie diese Notiz ändern."
           }
         },
         "es" : {
@@ -1837,7 +1837,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein einfacher Ort für reine Textnotizen. Bewahren Sie Notizen in einem Ordner Ihrer Wahl auf, öffnen Sie sie in separaten Fenstern und holen Sie sie mit einem globalen Kurzbefehl oder einer Geste in der Menüleiste zurück."
+            "value" : "Ein einfacher Ort für reine Textnotizen. Ihre Notizen liegen in einem Ordner Ihrer Wahl und öffnen sich in eigenen Fenstern. Ein globaler Kurzbefehl oder eine Geste in der Menüleiste holt sie zurück."
           }
         },
         "es" : {
@@ -2025,7 +2025,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktionen…"
+            "value" : "Aktionen …"
           }
         },
         "es" : {
@@ -2072,7 +2072,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ".txt-Dateien am aktuellen Ort hinzufügen."
+            "value" : ".txt-Dateien hinzufügen, ohne sie zu bewegen."
           }
         },
         "es" : {
@@ -2307,7 +2307,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dateien am aktuellen Ort hinzufügen"
+            "value" : "Dateien an ihrem Ort hinzufügen"
           }
         },
         "es" : {
@@ -2476,13 +2476,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg davon"
+                      "value" : "%arg davon ist"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg davon"
+                      "value" : "%arg davon sind"
                     }
                   }
                 }
@@ -2945,7 +2945,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bei der Anmeldung läuft RAMnotes im Hintergrund, ohne Fenster zu öffnen. Verwenden Sie den globalen Kurzbefehl, um aktive Notizen einzublenden."
+            "value" : "Nach der Anmeldung läuft RAMnotes im Hintergrund und öffnet keine Fenster. Mit dem globalen Kurzbefehl blenden Sie aktive Notizen ein."
           }
         },
         "es" : {
@@ -3509,7 +3509,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In den Papierkorb legen nicht möglich: %@. Ihr Text bleibt hier erhalten. Versuchen Sie es erneut oder exportieren Sie ihn."
+            "value" : "Kann nicht in den Papierkorb gelegt werden: %@. Ihr Text bleibt hier erhalten. Versuchen Sie es erneut oder exportieren Sie ihn."
           }
         },
         "es" : {
@@ -3556,7 +3556,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notizen können nicht geöffnet werden: %@. Wiederherstellungsprotokolle sind weiterhin unten verfügbar. RAMnotes verbindet sich erneut, sobald der Ordner verfügbar ist. Sie können auch in den Einstellungen einen anderen Ordner wählen."
+            "value" : "Notizen können nicht geöffnet werden: %@. Die Wiederherstellungsprotokolle finden Sie weiter unten. Sobald der Ordner wieder erreichbar ist, verbindet sich RAMnotes neu. Sie können auch in den Einstellungen einen anderen Ordner wählen."
           }
         },
         "es" : {
@@ -3650,7 +3650,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entfernen aus der Liste nicht möglich"
+            "value" : "Kann nicht aus der Liste entfernt werden"
           }
         },
         "es" : {
@@ -4167,7 +4167,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wählen Sie einen Namen und einen Speicherort für diese Notiz. Die Originaldatei wird bewegt und die Notiz bleibt geöffnet."
+            "value" : "Wählen Sie einen Namen und einen Speicherort für diese Notiz. Die Originaldatei wird bewegt, die Notiz bleibt geöffnet."
           }
         },
         "es" : {
@@ -4779,7 +4779,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Klicken Sie bei gedrückter Befehlstaste, um Notizen aus- oder abzuwählen; klicken Sie bei gedrückter Umschalttaste oder drücken Sie Umschalt-Pfeiltaste, um einen Bereich auszuwählen. Drücken Sie den Zeilenschalter, um ausgewählte Notizen zu öffnen, oder Umschalt-F10 für Stapelaktionen."
+            "value" : "Mit gedrückter Befehlstaste klicken Sie Notizen einzeln an oder ab. Einen Bereich wählen Sie mit Umschalt-Klick oder Umschalt-Pfeiltaste. Der Zeilenschalter öffnet die ausgewählten Notizen, Umschalt-F10 zeigt Aktionen für die Auswahl."
           }
         },
         "es" : {
@@ -5061,7 +5061,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Überprüfung der Kopie fehlgeschlagen"
+            "value" : "Kopie konnte nicht überprüft werden"
           }
         },
         "es" : {
@@ -5108,7 +5108,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "iCloud-Download konnte nicht angefordert werden: %@. Öffnen Sie die Notiz erneut, um es nochmals zu versuchen."
+            "value" : "iCloud-Download konnte nicht angefordert werden: %@. Öffnen Sie die Notiz erneut, um es noch einmal zu versuchen."
           }
         },
         "es" : {
@@ -5156,7 +5156,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erstellen Sie reine Textnotizen mit „Neue Notiz“ (⌘N). Notizen werden automatisch gesichert. Verwenden Sie die Notizliste, um Notizen zu suchen und erneut zu öffnen, und „Einstellungen“, um Ordner, Erscheinungsbild und Kurzbefehle zu wählen. „In den Papierkorb legen“ fragt nach einer Bestätigung; Dateien stellen Sie im Finder wieder her. Verwenden Sie „Darstellung“, um die Schriftgröße oder Hintergrundtönung der aktiven Notiz zu ändern. Öffnen Sie „Befehle“ (⇧⌘?) in einem beliebigen Fenster, um alle Menüs ohne Dock- oder Statussymbol zu durchsuchen. Wenn das Sichern fehlschlägt, lassen Sie die Notiz geöffnet und exportieren Sie den Text über ihre Wiederherstellungsaktionen."
+            "value" : "Mit „Neue Notiz“ (⌘N) erstellen Sie eine reine Textnotiz. Notizen werden automatisch gesichert. In der Notizliste suchen Sie Notizen und öffnen sie erneut. Ordner, Erscheinungsbild und Kurzbefehle legen Sie in den Einstellungen fest. Vor „In den Papierkorb legen“ kommt eine Rückfrage. Dateien aus dem Papierkorb stellen Sie im Finder wieder her. Unter „Darstellung“ ändern Sie Schriftgröße und Hintergrundtönung der aktiven Notiz. „Befehle“ (⇧⌘?) zeigt in jedem Fenster alle Menüs, auch ohne Dock- oder Statussymbol. Schlägt das Sichern fehl, lassen Sie die Notiz geöffnet und exportieren Sie den Text über ihre Wiederherstellungsaktionen."
           }
         },
         "es" : {
@@ -5721,7 +5721,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Standardordner für Notizen: Nicht verfügbar – wählen Sie einen Ordner."
+            "value" : "Standardordner für Notizen: nicht verfügbar. Wählen Sie einen Ordner."
           }
         },
         "es" : {
@@ -6144,7 +6144,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geben Sie einen nicht leeren Dateinamen ohne Trennzeichen und mit der Endung .txt ein."
+            "value" : "Geben Sie einen Dateinamen mit der Endung .txt ein. Er darf nicht leer sein und keine Trennzeichen enthalten."
           }
         },
         "es" : {
@@ -6520,7 +6520,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportieren Sie eine überprüfte UTF-8-Kopie. Der Export lässt die Originalnotiz und den Wiederherstellungseintrag unverändert."
+            "value" : "Exportieren Sie eine überprüfte UTF-8-Kopie. Die Originalnotiz und der Wiederherstellungseintrag bleiben dabei unverändert."
           }
         },
         "es" : {
@@ -6614,7 +6614,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Überprüfung des Exports fehlgeschlagen"
+            "value" : "Export konnte nicht überprüft werden"
           }
         },
         "es" : {
@@ -6661,7 +6661,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportiert und überprüft unter %@."
+            "value" : "Exportiert und überprüft: %@."
           }
         },
         "es" : {
@@ -6990,7 +6990,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Datei weiterhin nicht verfügbar. Klicken Sie auf „Datei suchen …“, um sie auszuwählen."
+            "value" : "Die Datei ist weiterhin nicht verfügbar. Klicken Sie auf „Datei suchen …“, um sie auszuwählen."
           }
         },
         "es" : {
@@ -7507,7 +7507,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schließen Sie die Texteingabe oder die Schreibtools ab, bevor Sie schließen."
+            "value" : "Schließen Sie die Texteingabe ab oder beenden Sie die Schreibtools, bevor Sie die Notiz schließen."
           }
         },
         "es" : {
@@ -7554,7 +7554,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schließen Sie das unterbrochene Bewegen nach %@ ab, bevor Sie einen anderen Speicherort wählen."
+            "value" : "Das Bewegen nach %@ wurde unterbrochen. Schließen Sie es ab, bevor Sie einen anderen Speicherort wählen."
           }
         },
         "es" : {
@@ -7601,7 +7601,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schließen Sie die Schreibtools ab, bevor Sie den Standardordner ändern."
+            "value" : "Beenden Sie die Schreibtools, bevor Sie den Standardordner ändern."
           }
         },
         "es" : {
@@ -7648,7 +7648,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schließen Sie die Schreibtools ab, bevor Sie die Notiz löschen."
+            "value" : "Beenden Sie die Schreibtools, bevor Sie die Notiz löschen."
           }
         },
         "es" : {
@@ -7695,7 +7695,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schließen Sie die Schreibtools ab, bevor Sie die Notiz bewegen."
+            "value" : "Beenden Sie die Schreibtools, bevor Sie die Notiz bewegen."
           }
         },
         "es" : {
@@ -7742,7 +7742,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schließen Sie die Schreibtools ab, bevor Sie die Verfolgung entfernen."
+            "value" : "Beenden Sie die Schreibtools, bevor Sie die Notiz aus der Liste entfernen."
           }
         },
         "es" : {
@@ -7789,7 +7789,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schließen Sie die Schreibtools ab, bevor Sie eine Kopie sichern."
+            "value" : "Beenden Sie die Schreibtools, bevor Sie eine Kopie sichern."
           }
         },
         "es" : {
@@ -7883,7 +7883,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erneutes Verbinden mit dem Ordner fehlgeschlagen: %@"
+            "value" : "Ordner konnte nicht neu verbunden werden: %@"
           }
         },
         "es" : {
@@ -8118,7 +8118,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Schriftgröße muss 8–192 Punkt betragen. Der Zeilenabstand muss mindestens der Schriftgröße entsprechen und darf höchstens 384 Punkt betragen."
+            "value" : "Die Schriftgröße muss zwischen 8 und 192 Punkt liegen. Der Zeilenabstand muss mindestens so groß wie die Schrift sein und darf höchstens 384 Punkt betragen."
           }
         },
         "es" : {
@@ -8683,7 +8683,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⌘, ⌥ oder ⌃ verwenden"
+            "value" : "Mit ⌘, ⌥ oder ⌃ kombinieren"
           }
         },
         "es" : {
@@ -8730,7 +8730,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Befehlstaste, Wahltaste oder Control-Taste verwenden."
+            "value" : "Kombinieren Sie die Taste mit der Befehls-, Wahl- oder Control-Taste."
           }
         },
         "es" : {
@@ -9201,7 +9201,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Start bei der Anmeldung ist noch nicht konfiguriert."
+            "value" : "Der Start bei der Anmeldung ist noch nicht eingerichtet."
           }
         },
         "es" : {
@@ -9908,7 +9908,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einstellung für den Anmeldestart fehlgeschlagen: %@"
+            "value" : "Start bei der Anmeldung konnte nicht geändert werden: %@"
           }
         },
         "es" : {
@@ -10096,7 +10096,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Überwachung des Scrollens in der Menüleiste ist nicht verfügbar. Prüfen Sie die Zugriffsbeschränkungen von macOS und deaktivieren und aktivieren Sie dann die Geste. Manuelles erneutes Öffnen und der Kurzbefehl bleiben verfügbar."
+            "value" : "Das Scrollen in der Menüleiste kann nicht erkannt werden. Prüfen Sie die Zugriffsbeschränkungen in macOS und schalten Sie die Geste dann aus und wieder ein. Öffnen von Hand und der Kurzbefehl funktionieren weiterhin."
           }
         },
         "es" : {
@@ -10143,7 +10143,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Metadaten bei %@ müssen vor dem Sichern geprüft werden. Die Originaldatei wurde beibehalten: %@"
+            "value" : "Die Metadaten unter %@ müssen vor dem Sichern geprüft werden. Die Originaldatei bleibt erhalten: %@"
           }
         },
         "es" : {
@@ -10190,7 +10190,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Metadaten konnten nicht gesichert werden. Beenden oder Ordnerwechsel ist möglicherweise blockiert: %@"
+            "value" : "Metadaten konnten nicht gesichert werden. Beenden und Ordnerwechsel sind möglicherweise blockiert: %@"
           }
         },
         "es" : {
@@ -12940,7 +12940,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Registrierung des Kurzbefehls für Notizen und Notizliste fehlgeschlagen (%d). Wählen Sie einen anderen Kurzbefehl."
+            "value" : "Der Kurzbefehl für Notizen und Notizliste konnte nicht registriert werden (%d). Wählen Sie einen anderen Kurzbefehl."
           }
         },
         "es" : {
@@ -12987,7 +12987,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Registrierung des Kurzbefehls für Notizen und Notizliste fehlgeschlagen (%d). %@ wird weiterhin verwendet. Wählen Sie einen anderen Kurzbefehl."
+            "value" : "Der Kurzbefehl für Notizen und Notizliste konnte nicht registriert werden (%d). %@ bleibt aktiv. Wählen Sie einen anderen Kurzbefehl."
           }
         },
         "es" : {
@@ -13081,7 +13081,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aus oder extern in macOS deaktiviert."
+            "value" : "Aus oder in macOS deaktiviert."
           }
         },
         "es" : {
@@ -13176,7 +13176,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Älteste erstellte zuerst"
+            "value" : "Erstellt, älteste zuerst"
           }
         },
         "es" : {
@@ -13223,7 +13223,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Älteste aktualisierte zuerst"
+            "value" : "Aktualisiert, älteste zuerst"
           }
         },
         "es" : {
@@ -13826,7 +13826,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffnen Sie die Sammlung, um diese Wiederherstellungsnotiz zu lesen. Aufbewahrte Protokolle sind unten verfügbar."
+            "value" : "Öffnen Sie die Sammlung, um diese Wiederherstellungsnotiz zu lesen. Aufbewahrte Protokolle finden Sie weiter unten."
           }
         },
         "es" : {
@@ -13920,7 +13920,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Original fehlt; lokaler Text aufbewahrt: %@"
+            "value" : "Original fehlt. Lokaler Text aufbewahrt: %@"
           }
         },
         "es" : {
@@ -14204,7 +14204,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ausstehend – wird automatisch fortgesetzt, sobald RAMnotes wieder aktiv ist."
+            "value" : "Ausstehend. Geht automatisch weiter, sobald RAMnotes wieder aktiv ist."
           }
         },
         "es" : {
@@ -14816,7 +14816,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "RAMnotes kann diese Datei nicht finden. Durch das Entfernen dieses Eintrags werden keine Dateien gelöscht."
+            "value" : "RAMnotes kann diese Datei nicht finden. Wenn Sie den Eintrag entfernen, werden keine Dateien gelöscht."
           }
         },
         "es" : {
@@ -14957,7 +14957,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zuletzt erstellt"
+            "value" : "Erstellt, neueste zuerst"
           }
         },
         "es" : {
@@ -15004,7 +15004,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zuletzt aktualisiert"
+            "value" : "Aktualisiert, neueste zuerst"
           }
         },
         "es" : {
@@ -15286,7 +15286,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wiederherstellungseintrag bei %@ beibehalten: %@"
+            "value" : "Wiederherstellungseintrag unter %@ aufbewahrt: %@"
           }
         },
         "es" : {
@@ -15474,7 +15474,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Für %@ ist Wiederherstellungstext verfügbar. Verwenden Sie „Aufbewahrten Text öffnen“ für die zugehörige Notiz."
+            "value" : "Für %@ ist Wiederherstellungstext verfügbar. Wählen Sie bei dieser Notiz „Aufbewahrten Text öffnen“."
           }
         },
         "es" : {
@@ -15521,7 +15521,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Überprüfung der Wiederherstellung fehlgeschlagen"
+            "value" : "Wiederherstellung konnte nicht überprüft werden"
           }
         },
         "es" : {
@@ -16029,7 +16029,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Durch das Entfernen dieses Eintrags werden keine Dateien gelöscht."
+            "value" : "Wenn Sie den Eintrag entfernen, werden keine Dateien gelöscht."
           }
         },
         "es" : {
@@ -16452,7 +16452,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sichern fehlgeschlagen: %@. Eine Wiederherstellungskopie wird aufbewahrt."
+            "value" : "Sichern fehlgeschlagen: %@. Eine Wiederherstellungskopie wurde aufbewahrt."
           }
         },
         "es" : {
@@ -16499,7 +16499,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sichern fehlgeschlagen: %@. Lassen Sie dieses Fenster geöffnet. Das Sichern wird automatisch wiederholt; exportieren Sie Ihren Text, um eine Kopie zu behalten."
+            "value" : "Sichern fehlgeschlagen: %@. Lassen Sie dieses Fenster geöffnet. Das Sichern wird automatisch wiederholt. Exportieren Sie Ihren Text, wenn Sie eine Kopie behalten möchten."
           }
         },
         "es" : {
@@ -16640,7 +16640,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Überprüfung der Sicherung fehlgeschlagen"
+            "value" : "Sicherung konnte nicht überprüft werden"
           }
         },
         "es" : {
@@ -17112,7 +17112,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wählen Sie die .txt-Datei der Notiz aus. Wenn Sie eine andere Datei auswählen, wird diese Notiz mit jener Datei verknüpft. Aufbewahrte Änderungen bleiben in der Wiederherstellung verfügbar."
+            "value" : "Wählen Sie die .txt-Datei der Notiz aus. Wählen Sie eine andere Datei, wird die Notiz mit dieser Datei verknüpft. Aufbewahrte Änderungen bleiben in der Wiederherstellung verfügbar."
           }
         },
         "es" : {
@@ -17394,7 +17394,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Registrierung des Kurzbefehls fehlgeschlagen (%d). Wählen Sie einen anderen Kurzbefehl. Manuelles erneutes Öffnen und „Notizen ein-/ausblenden“ bleiben verfügbar."
+            "value" : "Der Kurzbefehl konnte nicht registriert werden (%d). Wählen Sie einen anderen Kurzbefehl. Öffnen von Hand und „Notizen ein-/ausblenden“ funktionieren weiterhin."
           }
         },
         "es" : {
@@ -17441,7 +17441,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Registrierung des Kurzbefehls fehlgeschlagen (%d). %@ wird weiterhin verwendet. Wählen Sie einen anderen Kurzbefehl. Manuelles erneutes Öffnen und „Notizen ein-/ausblenden“ bleiben verfügbar."
+            "value" : "Der Kurzbefehl konnte nicht registriert werden (%d). %@ bleibt aktiv. Wählen Sie einen anderen Kurzbefehl. Öffnen von Hand und „Notizen ein-/ausblenden“ funktionieren weiterhin."
           }
         },
         "es" : {
@@ -17958,7 +17958,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Speicher erfordert Aufmerksamkeit: %@"
+            "value" : "Problem mit dem Speicher: %@"
           }
         },
         "es" : {
@@ -18240,7 +18240,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Katalog der Sammlung ist ungültig oder wird nicht unterstützt. Seine Originaldatei wurde aufbewahrt."
+            "value" : "Der Katalog der Sammlung ist ungültig oder wird nicht unterstützt. Die Originaldatei bleibt erhalten."
           }
         },
         "es" : {
@@ -18381,7 +18381,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Ziel konnte nicht überprüft werden. Beide Speicherorte wurden zur Prüfung beibehalten."
+            "value" : "Das Ziel konnte nicht überprüft werden. Beide Speicherorte bleiben zur Prüfung erhalten."
           }
         },
         "es" : {
@@ -18427,7 +18427,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Volume „%@“ ist nicht verbunden."
+            "value" : "Das Laufwerk „%@“ ist nicht verbunden."
           }
         },
         "es" : {
@@ -18474,7 +18474,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Datei fehlt nicht mehr, daher behält RAMnotes diese Notiz in der Liste."
+            "value" : "Die Datei ist wieder da. RAMnotes behält die Notiz deshalb in der Liste."
           }
         },
         "es" : {
@@ -18568,7 +18568,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Für den unterbrochenen Speicherortvorgang fehlen überprüfte Nachweise zu Identität oder Revision. Sein Eintrag wurde zur Prüfung aufbewahrt."
+            "value" : "Für den unterbrochenen Speicherortvorgang fehlen überprüfte Angaben zu Identität oder Revision. Sein Eintrag bleibt zur Prüfung erhalten."
           }
         },
         "es" : {
@@ -18709,7 +18709,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Verschieben muss wiederholt oder geprüft werden."
+            "value" : "Das Bewegen muss wiederholt oder geprüft werden."
           }
         },
         "es" : {
@@ -19179,7 +19179,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Original ist nicht verfügbar. Öffnen Sie den aufbewahrten Text; RAMnotes verbindet sich erneut, sobald der Ordner wieder verfügbar ist."
+            "value" : "Das Original ist nicht verfügbar. Öffnen Sie den aufbewahrten Text. Sobald der Ordner wieder da ist, verbindet sich RAMnotes neu."
           }
         },
         "es" : {
@@ -19414,7 +19414,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Text, der nicht gesichert werden konnte, geht verloren. Die Datei behält ihren zuletzt gesicherten Text. Verwende stattdessen „Exportieren“ oder „Kopie sichern“, um deinen Text zu behalten."
+            "value" : "Der nicht gesicherte Text geht verloren. Die Datei behält ihren zuletzt gesicherten Text. Wenn Sie Ihren Text behalten möchten, wählen Sie stattdessen „Exportieren“ oder „Kopie sichern“."
           }
         },
         "es" : {
@@ -19508,7 +19508,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Notiz ist nicht verfügbar: %@. Alle Änderungen wurden zuvor gesichert."
+            "value" : "Diese Notiz ist nicht verfügbar: %@. Alle Ihre Änderungen waren vorher schon gesichert."
           }
         },
         "es" : {
@@ -20119,7 +20119,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Metadaten bei %@ nicht lesbar. Die Originaldatei wurde beibehalten: %@"
+            "value" : "Die Metadaten unter %@ sind nicht lesbar. Die Originaldatei bleibt erhalten: %@"
           }
         },
         "es" : {
