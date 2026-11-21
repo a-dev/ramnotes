@@ -619,7 +619,7 @@ The translations still need native-speaker review. Update this list before chang
 - fr: opération d’emplacement
 - ar: عملية الموقع
 - ja: 場所の操作
-- zh-Hans: 位置操作
+- zh-Hans: 位置更改
 
 ### relink / Locate File…
 

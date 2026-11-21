@@ -43,7 +43,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@\n使用自定义路径的笔记不会被移动。"
+            "value" : "%@\n使用自定义路径的笔记不会移动。"
           }
         }
       }
@@ -184,7 +184,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ 恢复"
+            "value" : "%@（恢复）"
           }
         }
       }
@@ -372,7 +372,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@：已添加。"
+            "value" : "%@：已在列表中。"
           }
         }
       }
@@ -1726,7 +1726,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "有一项位置操作需要处理。请先重试该操作，再更改此笔记。"
+            "value" : "有一次位置更改没有完成。请先重试，再修改此笔记。"
           }
         }
       }
@@ -1773,7 +1773,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "有一项位置操作需要重试或检查。"
+            "value" : "有一次位置更改需要重试或检查。"
           }
         }
       }
@@ -1820,7 +1820,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已有一个笔记文件夹处于活跃状态"
+            "value" : "已有一个笔记文件夹在使用中"
           }
         }
       }
@@ -1867,7 +1867,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "简单的纯文本笔记工具。将笔记保存在你选择的文件夹中，在独立窗口中打开，并通过全局快捷键或菜单栏手势随时调出。"
+            "value" : "一款简单的纯文本笔记工具。笔记存放在你选择的文件夹里，每条笔记在单独的窗口中打开，用全局快捷键或菜单栏手势即可调出。"
           }
         }
       }
@@ -2102,7 +2102,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原位添加 .txt 文件。"
+            "value" : "添加 .txt 文件，文件保留在原位置。"
           }
         }
       }
@@ -2149,7 +2149,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请添加一个按键"
+            "value" : "请再加一个按键"
           }
         }
       }
@@ -2337,7 +2337,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原位添加文件"
+            "value" : "添加文件（保留原位置）"
           }
         }
       }
@@ -2757,7 +2757,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已添加 %#@files@，其中 %#@hidden@被当前搜索隐藏。"
+            "value" : "已添加 %#@files@。当前搜索隐藏了其中 %#@hidden@。"
           },
           "substitutions" : {
             "files" : {
@@ -2975,7 +2975,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "登录时，RAMnotes会在后台运行，不打开任何窗口。使用全局快捷键显示活跃的笔记。"
+            "value" : "登录时，RAMnotes在后台运行，不打开窗口。按全局快捷键即可显示当前的笔记。"
           }
         }
       }
@@ -3398,7 +3398,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法关闭：%@。你的文本仍保留在此处。请重试或将其导出。"
+            "value" : "无法关闭：%@。你的文本还在这里。请重试，或导出文本。"
           }
         }
       }
@@ -3492,7 +3492,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法导出：%@。你的文本仍保留在此处。请重试或将其导出。"
+            "value" : "无法导出：%@。你的文本还在这里。请重试，或导出文本。"
           }
         }
       }
@@ -3539,7 +3539,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法移到废纸篓：%@。你的文本仍保留在此处。请重试或将其导出。"
+            "value" : "无法移到废纸篓：%@。你的文本还在这里。请重试，或导出文本。"
           }
         }
       }
@@ -3586,7 +3586,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法打开笔记：%@。下方仍可使用恢复日志。文件夹可用时RAMnotes会重新连接，你也可以在“设置”中选择其他文件夹。"
+            "value" : "无法打开笔记：%@。下方的恢复日志仍可使用。文件夹恢复可用后，RAMnotes会重新连接；你也可以在“设置”中选择其他文件夹。"
           }
         }
       }
@@ -3727,7 +3727,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法恢复文件访问"
+            "value" : "无法恢复文件访问权限"
           }
         }
       }
@@ -3915,7 +3915,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已在外部更改 • %@"
+            "value" : "已在外部修改 • %@"
           }
         }
       }
@@ -3962,7 +3962,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已在RAMnotes外部更改 • %@"
+            "value" : "已在RAMnotes之外修改 • %@"
           }
         }
       }
@@ -4197,7 +4197,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "为此笔记选择名称和位置。原始文件将被移动，笔记将保持打开。"
+            "value" : "为此笔记选择名称和位置。原始文件会移到新位置，笔记保持打开。"
           }
         }
       }
@@ -4527,7 +4527,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "关闭但不存储"
+            "value" : "关闭且不存储"
           }
         }
       }
@@ -4574,7 +4574,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "要关闭但不存储吗？"
+            "value" : "要关闭且不存储吗？"
           }
         }
       }
@@ -4621,7 +4621,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "关闭但不存储…"
+            "value" : "关闭且不存储…"
           }
         }
       }
@@ -4809,7 +4809,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "按住Command键点按可选择或取消选择笔记；按住Shift键点按或按Shift-箭头键可选择范围。按Return键打开所选笔记，或按Shift-F10执行批量操作。"
+            "value" : "按住Command键点按笔记，可选中或取消选中。按住Shift键点按，或按Shift-箭头键，可选择连续的多条笔记。按Return键打开所选笔记，按Shift-F10执行批量操作。"
           }
         }
       }
@@ -4950,7 +4950,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "内容可用。"
+            "value" : "内容已可用。"
           }
         }
       }
@@ -5138,7 +5138,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法请求iCloud下载：%@。请再次打开笔记以重试。"
+            "value" : "无法从iCloud请求下载：%@。请重新打开笔记再试一次。"
           }
         }
       }
@@ -5186,7 +5186,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用“新建笔记”（⌘N）创建纯文本笔记。笔记会自动存储。使用笔记列表搜索和重新打开笔记，使用“设置”选择文件夹、外观和快捷键。“移到废纸篓”会要求确认；可从访达恢复文件。使用“显示”菜单更改当前笔记的字体大小或背景色调。在任意窗口中打开“命令”（⇧⌘?），无需程序坞或状态图标即可浏览所有菜单。如果存储失败，请保持笔记打开，并使用其恢复操作导出文本。"
+            "value" : "使用“新建笔记”（⌘N）创建纯文本笔记，笔记会自动存储。在笔记列表中可以搜索并重新打开笔记；在“设置”中可以选择文件夹、外观和快捷键。“移到废纸篓”前会请你确认，移走的文件可在访达中恢复。在“显示”菜单中可以更改当前笔记的字体大小或背景色调。RAMnotes没有程序坞图标或菜单栏图标，你可以在任意窗口中打开“命令”（⇧⌘?）浏览所有菜单。如果存储失败，请不要关闭笔记，并用其中的恢复操作导出文本。"
           }
         }
       }
@@ -5469,7 +5469,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "减小恢复文本大小"
+            "value" : "减小恢复文本的字体大小"
           }
         }
       }
@@ -5516,7 +5516,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "默认文件夹更改 %@ 需要重试：%@"
+            "value" : "默认文件夹更改（%@）需要重试：%@"
           }
         }
       }
@@ -5751,7 +5751,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "默认笔记文件夹：不可用 — 请选择文件夹。"
+            "value" : "默认笔记文件夹：不可用，请选择文件夹。"
           }
         }
       }
@@ -5986,7 +5986,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "每个原始文件都将被移到废纸篓。你可以在访达中恢复。"
+            "value" : "原始文件会移到废纸篓，你可以在访达中恢复它们。"
           }
         }
       }
@@ -6127,7 +6127,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已在macOS中启用。登录时将隐藏启动RAMnotes。"
+            "value" : "已在macOS中启用。登录时RAMnotes会在后台启动，不显示窗口。"
           }
         }
       }
@@ -6174,7 +6174,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请输入不含分隔符、扩展名为 .txt 的非空文件名。"
+            "value" : "请输入以 .txt 结尾的文件名。文件名不能为空，也不能包含路径分隔符。"
           }
         }
       }
@@ -6409,7 +6409,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "现有恢复记录的身份不匹配"
+            "value" : "现有恢复记录的标识不匹配"
           }
         }
       }
@@ -6550,7 +6550,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "导出经过验证的UTF-8副本。导出不会更改原始笔记和恢复记录。"
+            "value" : "导出一份经过验证的UTF-8副本。原始笔记和恢复记录保持不变。"
           }
         }
       }
@@ -6597,7 +6597,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "导出失败：%@。文本仍可在此窗口中使用。"
+            "value" : "导出失败：%@。文本仍在此窗口中。"
           }
         }
       }
@@ -6691,7 +6691,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已导出并验证：%@。"
+            "value" : "已导出到 %@ 并完成验证。"
           }
         }
       }
@@ -6785,7 +6785,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "外部已更改。本地文本已保留：%@"
+            "value" : "文件已被外部修改。本地文本已保留：%@"
           }
         }
       }
@@ -6973,7 +6973,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文件权限被拒绝"
+            "value" : "没有文件访问权限"
           }
         }
       }
@@ -7020,7 +7020,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文件仍不可用。请点按“定位文件…”来选择。"
+            "value" : "文件仍不可用。请点按“定位文件…”选择它。"
           }
         }
       }
@@ -7443,7 +7443,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请先完成文本输入再拖移。"
+            "value" : "请先完成输入法输入，再拖移。"
           }
         }
       }
@@ -7490,7 +7490,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请先完成文本输入再导出。"
+            "value" : "请先完成输入法输入，再导出。"
           }
         }
       }
@@ -7537,7 +7537,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请先完成文本输入或写作工具操作再关闭。"
+            "value" : "请先完成输入法输入或写作工具操作，再关闭。"
           }
         }
       }
@@ -7584,7 +7584,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请先完成到 %@ 的中断移动，再选择其他位置。"
+            "value" : "移到 %@ 的操作中断了。请先完成这次移动，再选择其他位置。"
           }
         }
       }
@@ -7772,7 +7772,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请先完成写作工具操作，再移除跟踪。"
+            "value" : "请先完成写作工具操作，再取消跟踪此笔记。"
           }
         }
       }
@@ -8619,7 +8619,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在菜单栏上水平滚动以显示笔记和笔记列表"
+            "value" : "在菜单栏上横向滚动，显示笔记和笔记列表"
           }
         }
       }
@@ -8760,7 +8760,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请包含 Command、Option 或 Control。"
+            "value" : "请包含Command、Option或Control。"
           }
         }
       }
@@ -8902,7 +8902,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "增大恢复文本大小"
+            "value" : "增大恢复文本的字体大小"
           }
         }
       }
@@ -8996,7 +8996,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正在索引… 可用结果显示在下方。"
+            "value" : "正在索引…下方是目前已找到的结果。"
           }
         }
       }
@@ -9844,7 +9844,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "位置操作 %@ 需要重试或检查：%@"
+            "value" : "位置更改（%@）需要重试或检查：%@"
           }
         }
       }
@@ -9891,7 +9891,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未找到登录辅助程序。请运行完整的RAMnotes应用程序包。"
+            "value" : "未找到登录辅助程序。请运行完整的RAMnotes应用程序。"
           }
         }
       }
@@ -9938,7 +9938,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "登录设置失败：%@"
+            "value" : "无法更改登录设置：%@"
           }
         }
       }
@@ -10126,7 +10126,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "菜单栏滚动监视不可用。请检查macOS访问限制，然后关闭再打开该手势。手动重新打开和快捷键仍可使用。"
+            "value" : "无法监测菜单栏滚动。请检查macOS的访问限制，然后将此手势关闭再打开。你仍可手动重新打开笔记，或使用快捷键。"
           }
         }
       }
@@ -10173,7 +10173,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "保存前需要检查 %@ 处的元数据。原始文件已保留：%@"
+            "value" : "存储前需要检查 %@ 处的元数据。原始文件已保留：%@"
           }
         }
       }
@@ -10220,7 +10220,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法存储元数据。退出或切换文件夹可能会被阻止：%@"
+            "value" : "无法存储元数据，可能导致无法退出或切换文件夹：%@"
           }
         }
       }
@@ -11603,7 +11603,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已将 %#@moved@移到废纸篓。%#@failed@无法移动。请在笔记列表中查看详细信息。"
+            "value" : "已将 %#@moved@移到废纸篓，%#@failed@无法移动。详情请查看笔记列表。"
           },
           "substitutions" : {
             "failed" : {
@@ -12970,7 +12970,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "笔记和笔记列表快捷键注册失败（%d）。请选择其他快捷键。"
+            "value" : "无法注册“显示/隐藏笔记和笔记列表”快捷键（%d）。请选择其他快捷键。"
           }
         }
       }
@@ -13017,7 +13017,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "笔记和笔记列表快捷键注册失败（%d）。仍在使用 %@。请选择其他快捷键。"
+            "value" : "无法注册“显示/隐藏笔记和笔记列表”快捷键（%d）。目前仍使用 %@。请选择其他快捷键。"
           }
         }
       }
@@ -13111,7 +13111,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已关闭，或已在macOS中被外部停用。"
+            "value" : "已关闭，或已在macOS中停用。"
           }
         }
       }
@@ -13206,7 +13206,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最早创建的优先"
+            "value" : "最早创建"
           }
         }
       }
@@ -13253,7 +13253,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最早更新的优先"
+            "value" : "最早更新"
           }
         }
       }
@@ -13856,7 +13856,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请打开集合以读取此恢复笔记。保留的日志可在下方使用。"
+            "value" : "请先打开集合，才能读取此恢复笔记。下方仍可查看保留的日志。"
           }
         }
       }
@@ -13950,7 +13950,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原始文件丢失；本地文本已保留：%@"
+            "value" : "原始文件缺失。本地文本已保留：%@"
           }
         }
       }
@@ -14234,7 +14234,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "待处理 — RAMnotes下次活跃时将自动继续。"
+            "value" : "待处理。RAMnotes下次激活时会自动继续。"
           }
         }
       }
@@ -14328,7 +14328,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "写入笔记文件夹的权限被拒绝。"
+            "value" : "没有写入笔记文件夹的权限。"
           }
         }
       }
@@ -15269,7 +15269,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "恢复身份不匹配"
+            "value" : "恢复记录的标识不匹配"
           }
         }
       }
@@ -15457,7 +15457,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ 有可用的恢复文本。请从笔记列表中打开其恢复笔记。"
+            "value" : "%@ 有可用的恢复文本。请在笔记列表中打开它的恢复笔记。"
           }
         }
       }
@@ -15504,7 +15504,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ 有可用的恢复文本。请对其笔记使用“打开保留的文本”。"
+            "value" : "%@ 有可用的恢复文本。请在该笔记中使用“打开保留的文本”。"
           }
         }
       }
@@ -15915,7 +15915,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "从列表中移除 %lld 条笔记"
+                  "value" : "从列表中移除 %lld 个笔记"
                 }
               }
             }
@@ -16529,7 +16529,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "存储失败：%@。请保持此窗口打开。存储会自动重试；你可以导出文本以保留副本。"
+            "value" : "存储失败：%@。请不要关闭此窗口，存储会自动重试。如需保留副本，请导出文本。"
           }
         }
       }
@@ -16717,7 +16717,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正在存储编辑并切换文件夹…"
+            "value" : "正在存储更改并切换文件夹…"
           }
         }
       }
@@ -17000,7 +17000,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "选择 %@ 以允许RAMnotes读取和存储此笔记。"
+            "value" : "请选择 %@，让RAMnotes可以读取和存储此笔记。"
           }
         }
       }
@@ -17142,7 +17142,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "选择此笔记的 .txt 文件。选择其他文件会将此笔记链接到该文件。保留的编辑仍可在恢复中使用。"
+            "value" : "请选择此笔记的 .txt 文件。如果选择其他文件，此笔记会改为链接到那个文件。已保留的编辑仍可在恢复笔记中找到。"
           }
         }
       }
@@ -17424,7 +17424,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "快捷键注册失败（%d）。请选择其他快捷键。手动重新打开和“显示/隐藏笔记”仍可使用。"
+            "value" : "无法注册快捷键（%d）。请选择其他快捷键。你仍可手动重新打开笔记，或使用“显示/隐藏笔记”。"
           }
         }
       }
@@ -17471,7 +17471,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "快捷键注册失败（%d）。仍在使用 %@。请选择其他快捷键。手动重新打开和“显示/隐藏笔记”仍可使用。"
+            "value" : "无法注册快捷键（%d）。目前仍使用 %@。请选择其他快捷键。你仍可手动重新打开笔记，或使用“显示/隐藏笔记”。"
           }
         }
       }
@@ -17706,7 +17706,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "其他应用处于活跃状态时显示笔记"
+            "value" : "使用其他应用时也显示笔记"
           }
         }
       }
@@ -17988,7 +17988,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "存储设备需要处理：%@"
+            "value" : "存储出错：%@"
           }
         }
       }
@@ -18270,7 +18270,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "集合目录无效或不受支持。其原始文件已保留。"
+            "value" : "集合目录文件无效或不受支持。原始文件已保留。"
           }
         }
       }
@@ -18317,7 +18317,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "集合会话已更改。请在当前集合中重试。"
+            "value" : "集合已切换。请在当前集合中重试。"
           }
         }
       }
@@ -18364,7 +18364,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "默认文件夹再次更改。请为剩余笔记选择目标位置。"
+            "value" : "默认文件夹又更改了。请为剩余的笔记选择目标位置。"
           }
         }
       }
@@ -18411,7 +18411,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法验证目标位置。两个位置均已保留以供检查。"
+            "value" : "无法验证目标位置。两个位置的文件都已保留，以便检查。"
           }
         }
       }
@@ -18504,7 +18504,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文件已不再缺失，因此RAMnotes会将此笔记保留在列表中。"
+            "value" : "文件已找到，RAMnotes会将此笔记保留在列表中。"
           }
         }
       }
@@ -18551,7 +18551,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "该文件不是有效的UTF-8。"
+            "value" : "此文件不是有效的UTF-8文本。"
           }
         }
       }
@@ -18598,7 +18598,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "中断的位置操作缺少经过验证的身份或修订证据。其记录已保留以供检查。"
+            "value" : "中断的位置更改缺少已验证的标识或修订信息。相关记录已保留，以便检查。"
           }
         }
       }
@@ -18645,7 +18645,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "位置更改已中断。请再次存储以重试记录的操作。"
+            "value" : "位置更改中断了。请再次存储，重试已记录的操作。"
           }
         }
       }
@@ -18692,7 +18692,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "位置更改已中断。请再次存储以重试记录的操作。%@"
+            "value" : "位置更改中断了。请再次存储，重试已记录的操作。%@"
           }
         }
       }
@@ -18739,7 +18739,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移动需要重试或检查。"
+            "value" : "移动操作需要重试或检查。"
           }
         }
       }
@@ -18786,7 +18786,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移动已中断。请再次选择“移动到…”以重试。"
+            "value" : "移动中断了。请再次选择“移动到…”重试。"
           }
         }
       }
@@ -18833,7 +18833,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移动已中断。请再次选择“移动到…”以重试。%@"
+            "value" : "移动中断了。请再次选择“移动到…”重试。%@"
           }
         }
       }
@@ -18880,7 +18880,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "笔记已在RAMnotes外部更改。"
+            "value" : "此笔记已在RAMnotes之外修改。"
           }
         }
       }
@@ -18927,7 +18927,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "笔记位置已更改。请使用其当前位置重试。"
+            "value" : "笔记位置已更改。请按当前位置重试。"
           }
         }
       }
@@ -19068,7 +19068,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原始文件已在外部更改。你的本地文本已保留在恢复笔记中。"
+            "value" : "原始文件已在外部修改。你的本地文本已保留在恢复笔记中。"
           }
         }
       }
@@ -19115,7 +19115,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原始文件将被移到废纸篓。你可以在访达中恢复。"
+            "value" : "原始文件会移到废纸篓，你可以在访达中恢复它。"
           }
         }
       }
@@ -19162,7 +19162,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原始文件丢失。你的本地文本已保留在恢复笔记中。"
+            "value" : "原始文件缺失。你的本地文本已保留在恢复笔记中。"
           }
         }
       }
@@ -19209,7 +19209,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原始文件不可用。请打开其保留的文本；文件夹恢复后RAMnotes会重新连接。"
+            "value" : "原始文件不可用。请打开保留的文本。文件夹恢复可用后，RAMnotes会重新连接。"
           }
         }
       }
@@ -19256,7 +19256,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原始笔记位于 %@。此窗口保留从本地恢复日志载入的文本。"
+            "value" : "原始笔记位于 %@。此窗口中的文本来自本地恢复日志。"
           }
         }
       }
@@ -19303,7 +19303,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原始笔记位于 %@。此窗口保留从本地恢复日志载入的文本。%@"
+            "value" : "原始笔记位于 %@。此窗口中的文本来自本地恢复日志。%@"
           }
         }
       }
@@ -19444,7 +19444,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法存储的文本将会丢失。文件会保留上次存储的文本。若要保留文本，请改用“导出”或“存储副本”。"
+            "value" : "未能存储的文本将会丢失，文件会保留上次存储的内容。若要保留文本，请改用“导出”或“存储副本”。"
           }
         }
       }
@@ -19538,7 +19538,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此笔记不可用：%@。在此之前，你的所有更改均已存储。"
+            "value" : "此笔记不可用：%@。在此之前的所有更改都已存储。"
           }
         }
       }
@@ -19585,7 +19585,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此笔记不可用。请定位文件，或等待其变为可用。"
+            "value" : "此笔记不可用。请定位文件，或等待文件恢复可用。"
           }
         }
       }
@@ -19632,7 +19632,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此快捷键已被使用。请选择其他组合。"
+            "value" : "此快捷键已被占用。请换一个组合。"
           }
         }
       }
@@ -19961,7 +19961,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "键入快捷键…"
+            "value" : "请按下快捷键…"
           }
         }
       }
@@ -20102,7 +20102,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "macOS登录项状态未知。请点按“刷新登录状态”。"
+            "value" : "无法获取macOS登录项状态。请点按“刷新登录状态”。"
           }
         }
       }
@@ -20431,7 +20431,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在菜单栏上垂直滚动以显示笔记"
+            "value" : "在菜单栏上纵向滚动，显示笔记"
           }
         }
       }
