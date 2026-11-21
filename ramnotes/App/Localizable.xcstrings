@@ -160,7 +160,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ Recuperación"
+            "value" : "Recuperación de %@"
           }
         },
         "fr" : {
@@ -254,7 +254,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ Usa Abrir recuperación."
+            "value" : "%@ Usa «Abrir recuperación»."
           }
         },
         "fr" : {
@@ -348,7 +348,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@: Ya registrado."
+            "value" : "%@: ya está registrada."
           }
         },
         "fr" : {
@@ -1702,7 +1702,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Una operación de ubicación necesita conciliarse. Reinténtala antes de modificar esta nota."
+            "value" : "Hay un cambio de ubicación sin resolver. Reinténtalo antes de modificar esta nota."
           }
         },
         "fr" : {
@@ -1749,7 +1749,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Una operación de ubicación necesita reintentarse o revisarse."
+            "value" : "Hay que reintentar o revisar un cambio de ubicación."
           }
         },
         "fr" : {
@@ -1843,7 +1843,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Un lugar sencillo para notas de texto sin formato. Guarda las notas en la carpeta que elijas, ábrelas en ventanas separadas y recupéralas con una función rápida global o un gesto en la barra de menús."
+            "value" : "Un lugar sencillo para tus notas de texto. Guárdalas en la carpeta que elijas, abre cada una en su propia ventana y vuelve a mostrarlas con una función rápida global o un gesto en la barra de menús."
           }
         },
         "fr" : {
@@ -2219,7 +2219,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Resultados de Añadir archivos existentes"
+            "value" : "Resultados de «Añadir archivos existentes»"
           }
         },
         "fr" : {
@@ -2541,7 +2541,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se han añadido %#@files@. %#@hidden@ por la búsqueda actual."
+            "value" : "Se han añadido %#@files@ (%#@hidden@ por la búsqueda actual)."
           },
           "substitutions" : {
             "files" : {
@@ -2951,7 +2951,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Al iniciar sesión, RAMnotes se ejecuta en segundo plano sin abrir ventanas. Usa la función rápida global para mostrar las notas activas."
+            "value" : "Al iniciar sesión, RAMnotes se abre en segundo plano, sin ventanas. Usa la función rápida global para ver las notas activas."
           }
         },
         "fr" : {
@@ -3374,7 +3374,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se puede cerrar: %@. Tu texto se mantiene aquí. Inténtalo de nuevo o expórtalo."
+            "value" : "No se puede cerrar: %@. Tu texto sigue aquí. Vuelve a intentarlo o expórtalo."
           }
         },
         "fr" : {
@@ -3468,7 +3468,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se puede exportar: %@. Tu texto se mantiene aquí. Inténtalo de nuevo o expórtalo."
+            "value" : "No se puede exportar: %@. Tu texto sigue aquí. Vuelve a intentarlo o expórtalo."
           }
         },
         "fr" : {
@@ -3515,7 +3515,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se puede trasladar a la papelera: %@. Tu texto se mantiene aquí. Inténtalo de nuevo o expórtalo."
+            "value" : "No se puede trasladar a la Papelera: %@. Tu texto sigue aquí. Vuelve a intentarlo o expórtalo."
           }
         },
         "fr" : {
@@ -3562,7 +3562,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pueden abrir las notas: %@. Los registros de recuperación siguen disponibles abajo. RAMnotes se volverá a conectar cuando la carpeta esté disponible, o elige otra carpeta en Ajustes."
+            "value" : "No se pueden abrir las notas: %@. Abajo tienes los registros de recuperación. RAMnotes se volverá a conectar cuando la carpeta esté disponible. También puedes elegir otra carpeta en Ajustes."
           }
         },
         "fr" : {
@@ -4173,7 +4173,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elige un nombre y una ubicación para esta nota. El archivo original se trasladará y la nota seguirá abierta."
+            "value" : "Elige un nombre y una ubicación para esta nota. El archivo original se trasladará allí y la nota seguirá abierta."
           }
         },
         "fr" : {
@@ -4785,7 +4785,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Haz clic con Comando para seleccionar o deseleccionar notas; haz clic con Mayúsculas o usa Mayúsculas y una flecha para seleccionar un intervalo. Pulsa Retorno para abrir las notas seleccionadas o Mayúsculas-F10 para acciones en lote."
+            "value" : "Pulsa Comando y haz clic para marcar o desmarcar notas. Pulsa Mayúsculas y haz clic, o usa Mayúsculas y una flecha, para seleccionar varias seguidas. Pulsa Retorno para abrir las notas seleccionadas o Mayúsculas-F10 para ver las acciones en lote."
           }
         },
         "fr" : {
@@ -5162,7 +5162,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Crea notas de texto sin formato con Nueva nota (⌘N). Las notas se guardan automáticamente. Usa la lista de notas para buscar y volver a abrir notas, y Ajustes para elegir una carpeta, la apariencia y las funciones rápidas. Trasladar a la Papelera pide confirmación; restaura los archivos desde Finder. Usa Visualización para cambiar el tamaño de letra o el tono de fondo de la nota activa. Abre Comandos (⇧⌘?) desde cualquier ventana para explorar todos los menús sin icono en el Dock ni en la barra de estado. Si falla el guardado, mantén la nota abierta y usa sus acciones de recuperación para exportar el texto."
+            "value" : "Crea notas de texto con «Nueva nota» (⌘N). Se guardan automáticamente. En la lista de notas puedes buscar y volver a abrir notas, y en Ajustes eliges la carpeta, la apariencia y las funciones rápidas. «Trasladar a la Papelera» pide confirmación, y puedes restaurar los archivos desde Finder. Usa el menú «Visualización» para cambiar el tamaño de letra o el tono de fondo de la nota activa. RAMnotes no tiene icono en el Dock ni en la barra de estado: abre «Comandos» (⇧⌘?) desde cualquier ventana para ver todos los menús. Si falla el guardado, deja la nota abierta y exporta el texto con sus acciones de recuperación."
           }
         },
         "fr" : {
@@ -5492,7 +5492,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El cambio de carpeta predeterminada %@ necesita reintentarse: %@"
+            "value" : "Hay que reintentar el cambio de carpeta predeterminada %@: %@"
           }
         },
         "fr" : {
@@ -5539,7 +5539,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falta la carpeta predeterminada. Elige una carpeta predeterminada abajo."
+            "value" : "Falta la carpeta predeterminada. Elige una abajo."
           }
         },
         "fr" : {
@@ -5727,7 +5727,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Carpeta de notas predeterminada: no disponible — elige una carpeta."
+            "value" : "Carpeta de notas predeterminada: no disponible. Elige una carpeta."
           }
         },
         "fr" : {
@@ -5962,7 +5962,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cada archivo original se trasladará a la Papelera. Puedes restaurarlo en Finder."
+            "value" : "Cada archivo original se trasladará a la Papelera. Puedes restaurarlo desde Finder."
           }
         },
         "fr" : {
@@ -6150,7 +6150,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Introduce un nombre de archivo no vacío, sin separadores y con la extensión .txt."
+            "value" : "Escribe un nombre de archivo que termine en .txt y no contenga «/» ni «:»."
           }
         },
         "fr" : {
@@ -6244,7 +6244,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ocultar notas tras un período de inactividad"
+            "value" : "Ocultar las notas tras un tiempo sin actividad"
           }
         },
         "fr" : {
@@ -6432,7 +6432,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El registro de recuperación existente necesita revisión"
+            "value" : "Hay que revisar el registro de recuperación existente"
           }
         },
         "fr" : {
@@ -6526,7 +6526,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exporta una copia UTF-8 verificada. La exportación no modifica la nota original ni el registro de recuperación."
+            "value" : "Exporta una copia verificada en UTF-8. Exportar no modifica la nota original ni el registro de recuperación."
           }
         },
         "fr" : {
@@ -6761,7 +6761,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cambio externo. Texto local conservado: %@"
+            "value" : "Cambio externo. Se ha conservado el texto local: %@"
           }
         },
         "fr" : {
@@ -6996,7 +6996,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El archivo sigue sin estar disponible. Haz clic en Localizar archivo… para seleccionarlo."
+            "value" : "El archivo sigue sin estar disponible. Haz clic en «Localizar archivo…» para seleccionarlo."
           }
         },
         "fr" : {
@@ -7090,7 +7090,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El archivo se trasladó a la Papelera"
+            "value" : "El archivo se ha trasladado a la Papelera"
           }
         },
         "fr" : {
@@ -7513,7 +7513,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Termina la composición de texto o las Herramientas de escritura antes de cerrar."
+            "value" : "Termina la composición de texto o con las Herramientas de escritura antes de cerrar."
           }
         },
         "fr" : {
@@ -7748,7 +7748,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Termina con las Herramientas de escritura antes de dejar de hacer el seguimiento."
+            "value" : "Termina con las Herramientas de escritura antes de dejar de seguir esta nota."
           }
         },
         "fr" : {
@@ -7936,7 +7936,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cambio de carpeta bloqueado: %@. Inténtalo de nuevo o exporta el texto no guardado."
+            "value" : "No se ha podido cambiar de carpeta: %@. Vuelve a intentarlo o exporta el texto sin guardar."
           }
         },
         "fr" : {
@@ -8595,7 +8595,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El desplazamiento horizontal en la barra de menús muestra las notas y la lista de notas"
+            "value" : "Desplazarse en horizontal en la barra de menús muestra las notas y la lista de notas"
           }
         },
         "fr" : {
@@ -8972,7 +8972,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indexando… Los resultados disponibles se muestran abajo."
+            "value" : "Indexando… Abajo tienes los resultados disponibles por ahora."
           }
         },
         "fr" : {
@@ -9066,7 +9066,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mantener las ventanas de notas visibles"
+            "value" : "Mantener las ventanas de notas siempre delante"
           }
         },
         "fr" : {
@@ -9207,7 +9207,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir al iniciar sesión aún no está configurado."
+            "value" : "La apertura al iniciar sesión aún no está configurada."
           }
         },
         "fr" : {
@@ -9490,7 +9490,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El texto local se conserva; el archivo original no está disponible."
+            "value" : "Se conserva el texto local, pero el archivo original no está disponible."
           }
         },
         "fr" : {
@@ -9820,7 +9820,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La operación de ubicación %@ necesita reintentarse o revisarse: %@"
+            "value" : "Hay que reintentar o revisar el cambio de ubicación %@: %@"
           }
         },
         "fr" : {
@@ -9867,7 +9867,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se ha encontrado el asistente de inicio. Ejecuta un paquete de la app RAMnotes intacto."
+            "value" : "No se encuentra el asistente de inicio de sesión. Abre una copia íntegra de la app RAMnotes."
           }
         },
         "fr" : {
@@ -9914,7 +9914,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error al cambiar el ajuste de inicio de sesión: %@"
+            "value" : "No se ha podido cambiar el ajuste de inicio de sesión: %@"
           }
         },
         "fr" : {
@@ -10102,7 +10102,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El monitor de desplazamiento en la barra de menús no está disponible. Comprueba las restricciones de acceso de macOS y, después, desactiva y vuelve a activar el gesto. La reapertura manual y la función rápida siguen disponibles."
+            "value" : "El monitor de desplazamiento de la barra de menús no está disponible. Revisa las restricciones de acceso de macOS y luego desactiva y vuelve a activar el gesto. Mientras tanto, puedes volver a abrir las notas a mano o con la función rápida."
           }
         },
         "fr" : {
@@ -10149,7 +10149,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Los metadatos en %@ necesitan revisión antes de guardar. Se conservó el archivo original: %@"
+            "value" : "Hay que revisar los metadatos de %@ antes de guardar. Se ha conservado el archivo original: %@"
           }
         },
         "fr" : {
@@ -10196,7 +10196,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se han podido guardar los metadatos. Es posible que no puedas salir ni cambiar de carpeta: %@"
+            "value" : "No se han podido guardar los metadatos. Puede que no puedas salir ni cambiar de carpeta: %@"
           }
         },
         "fr" : {
@@ -10838,7 +10838,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trasladar a la predeterminada"
+            "value" : "Trasladar a la carpeta predeterminada"
           }
         },
         "fr" : {
@@ -11387,7 +11387,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notas trasladadas a la Papelera: %#@moved@. No se han podido trasladar %#@failed@. Consulta la lista de notas para ver los detalles."
+            "value" : "Se han trasladado %#@moved@ a la Papelera. No se han podido trasladar %#@failed@; consulta los detalles en la lista de notas."
           },
           "substitutions" : {
             "failed" : {
@@ -11424,19 +11424,19 @@
                   "many" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg"
+                      "value" : "%arg notas"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg"
+                      "value" : "%arg nota"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg"
+                      "value" : "%arg notas"
                     }
                   }
                 }
@@ -12617,7 +12617,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No hay ningún nombre de archivo libre"
+            "value" : "No hay ningún nombre de archivo disponible"
           }
         },
         "fr" : {
@@ -12946,7 +12946,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error al registrar la función rápida de notas y lista de notas (%d). Elige otra función rápida."
+            "value" : "No se ha podido registrar la función rápida de notas y lista de notas (%d). Elige otra."
           }
         },
         "fr" : {
@@ -12993,7 +12993,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error al registrar la función rápida de notas y lista de notas (%d). Se sigue usando %@. Elige otra función rápida."
+            "value" : "No se ha podido registrar la función rápida de notas y lista de notas (%d). Se sigue usando %@. Elige otra."
           }
         },
         "fr" : {
@@ -13087,7 +13087,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desactivado o desactivado externamente en macOS."
+            "value" : "Desactivado aquí o desde macOS."
           }
         },
         "fr" : {
@@ -13182,7 +13182,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Creadas primero las más antiguas"
+            "value" : "Creación más antigua primero"
           }
         },
         "fr" : {
@@ -13229,7 +13229,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Actualizadas primero las más antiguas"
+            "value" : "Actualización más antigua primero"
           }
         },
         "fr" : {
@@ -13597,7 +13597,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir ajustes de inicio"
+            "value" : "Abrir ajustes de inicio de sesión"
           }
         },
         "fr" : {
@@ -13832,7 +13832,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abre la colección para leer esta nota de recuperación. Los registros conservados están disponibles abajo."
+            "value" : "Abre la colección para leer esta nota de recuperación. Abajo tienes los registros conservados."
           }
         },
         "fr" : {
@@ -13926,7 +13926,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falta el original; texto local conservado: %@"
+            "value" : "Falta el original. Texto local conservado: %@"
           }
         },
         "fr" : {
@@ -14210,7 +14210,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pendiente — continuará automáticamente la próxima vez que RAMnotes esté activo."
+            "value" : "Pendiente. Continuará automáticamente la próxima vez que RAMnotes esté activo."
           }
         },
         "fr" : {
@@ -14257,7 +14257,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aprobación pendiente. Activa RAMnotes en Ajustes del Sistema → General → Ítems de inicio y extensiones."
+            "value" : "Pendiente de aprobación. Activa RAMnotes en Ajustes del Sistema → General → Ítems de inicio y extensiones."
           }
         },
         "fr" : {
@@ -14681,7 +14681,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salida bloqueada: %@. Inténtalo de nuevo o exporta el texto no guardado."
+            "value" : "No se ha podido salir: %@. Vuelve a intentarlo o exporta el texto sin guardar."
           }
         },
         "fr" : {
@@ -14822,7 +14822,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "RAMnotes no encuentra este archivo. Eliminar esta entrada no elimina ningún archivo."
+            "value" : "RAMnotes no encuentra este archivo. Quitar esta entrada no borra ningún archivo."
           }
         },
         "fr" : {
@@ -15151,7 +15151,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recuperación — %@"
+            "value" : "Recuperación: %@"
           }
         },
         "fr" : {
@@ -15198,7 +15198,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Directorio de recuperación no disponible: %@"
+            "value" : "Carpeta de recuperación no disponible: %@"
           }
         },
         "fr" : {
@@ -15433,7 +15433,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hay texto de recuperación disponible para %@. Abre su nota de recuperación desde la lista de notas."
+            "value" : "Hay texto de recuperación para %@. Abre su nota de recuperación desde la lista de notas."
           }
         },
         "fr" : {
@@ -15480,7 +15480,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hay texto de recuperación disponible para %@. Usa Abrir texto conservado en su nota."
+            "value" : "Hay texto de recuperación para %@. Usa «Abrir texto conservado» en su nota."
           }
         },
         "fr" : {
@@ -15941,7 +15941,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eliminar de la lista"
+            "value" : "Quitar de la lista"
           }
         },
         "fr" : {
@@ -15988,7 +15988,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quita de la lista las notas seleccionadas que no están disponibles. No se elimina ningún archivo."
+            "value" : "Quita de la lista las notas seleccionadas que no están disponibles. No borra ningún archivo."
           }
         },
         "fr" : {
@@ -16035,7 +16035,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eliminar esta entrada no elimina ningún archivo."
+            "value" : "Quitar esta entrada no borra ningún archivo."
           }
         },
         "fr" : {
@@ -16505,7 +16505,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error al guardar: %@. Mantén esta ventana abierta. El guardado se reintenta automáticamente; exporta el texto para conservar una copia."
+            "value" : "Error al guardar: %@. No cierres esta ventana: RAMnotes seguirá intentando guardar. Exporta el texto si quieres tener una copia."
           }
         },
         "fr" : {
@@ -16787,7 +16787,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vuelve a desplazarte para ocultarlas. Usa un trackpad o un ratón con desplazamiento preciso."
+            "value" : "Vuelve a desplazarte para ocultarlas. Necesitas un trackpad o un ratón con desplazamiento preciso."
           }
         },
         "fr" : {
@@ -17118,7 +17118,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecciona el archivo .txt de la nota. Si seleccionas otro archivo, esta nota se vinculará a ese archivo. Los cambios conservados siguen disponibles en la recuperación."
+            "value" : "Selecciona el archivo .txt de la nota. Si eliges otro archivo, la nota quedará vinculada a él. Los cambios conservados siguen disponibles en la recuperación."
           }
         },
         "fr" : {
@@ -17400,7 +17400,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error al registrar la función rápida (%d). Elige otra función rápida. La reapertura manual y Mostrar u ocultar notas siguen disponibles."
+            "value" : "No se ha podido registrar la función rápida (%d). Elige otra. Puedes seguir abriendo las notas a mano o con «Mostrar u ocultar notas»."
           }
         },
         "fr" : {
@@ -17447,7 +17447,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error al registrar la función rápida (%d). Se sigue usando %@. Elige otra función rápida. La reapertura manual y Mostrar u ocultar notas siguen disponibles."
+            "value" : "No se ha podido registrar la función rápida (%d). Se sigue usando %@. Elige otra. Puedes seguir abriendo las notas a mano o con «Mostrar u ocultar notas»."
           }
         },
         "fr" : {
@@ -18199,7 +18199,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Texto exportado de forma segura a %@."
+            "value" : "Texto exportado correctamente a %@."
           }
         },
         "fr" : {
@@ -18246,7 +18246,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El catálogo de la colección no es válido o no es compatible. Se ha conservado su archivo original."
+            "value" : "El catálogo de la colección no es válido o no es compatible. Se ha conservado el archivo original."
           }
         },
         "fr" : {
@@ -18293,7 +18293,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La sesión de la colección ha cambiado. Reinténtalo en la colección actual."
+            "value" : "La sesión de la colección ha cambiado. Vuelve a intentarlo en la colección actual."
           }
         },
         "fr" : {
@@ -18387,7 +18387,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se ha podido verificar el destino. Se han conservado ambas ubicaciones para su revisión."
+            "value" : "No se ha podido verificar el destino. Se han conservado las dos ubicaciones para que las revises."
           }
         },
         "fr" : {
@@ -18480,7 +18480,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El archivo ya no falta, así que RAMnotes mantiene esta nota en la lista."
+            "value" : "El archivo vuelve a estar disponible, así que RAMnotes mantiene esta nota en la lista."
           }
         },
         "fr" : {
@@ -18527,7 +18527,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El archivo no es UTF-8 válido."
+            "value" : "El archivo no tiene una codificación UTF-8 válida."
           }
         },
         "fr" : {
@@ -18574,7 +18574,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La operación de ubicación interrumpida carece de pruebas verificadas de identidad o revisión. Su registro se ha conservado para su revisión."
+            "value" : "Al cambio de ubicación interrumpido le faltan datos verificados de identidad o de revisión. Se ha conservado su registro para que lo revises."
           }
         },
         "fr" : {
@@ -18621,7 +18621,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se ha interrumpido el cambio de ubicación. Vuelve a guardar para reintentar la operación registrada."
+            "value" : "Se ha interrumpido el cambio de ubicación. Vuelve a guardar para reintentar la operación pendiente."
           }
         },
         "fr" : {
@@ -18668,7 +18668,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se ha interrumpido el cambio de ubicación. Vuelve a guardar para reintentar la operación registrada. %@"
+            "value" : "Se ha interrumpido el cambio de ubicación. Vuelve a guardar para reintentar la operación pendiente. %@"
           }
         },
         "fr" : {
@@ -18715,7 +18715,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El movimiento necesita reintentarse o revisarse."
+            "value" : "Hay que reintentar o revisar el traslado."
           }
         },
         "fr" : {
@@ -18762,7 +18762,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se ha interrumpido el traslado. Vuelve a elegir Trasladar a… para reintentarlo."
+            "value" : "Se ha interrumpido el traslado. Elige otra vez «Trasladar a…» para reintentarlo."
           }
         },
         "fr" : {
@@ -18809,7 +18809,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se ha interrumpido el traslado. Vuelve a elegir Trasladar a… para reintentarlo. %@"
+            "value" : "Se ha interrumpido el traslado. Elige otra vez «Trasladar a…» para reintentarlo. %@"
           }
         },
         "fr" : {
@@ -18903,7 +18903,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La ubicación de la nota ha cambiado. Reinténtalo con su ubicación actual."
+            "value" : "La ubicación de la nota ha cambiado. Vuelve a intentarlo con la ubicación actual."
           }
         },
         "fr" : {
@@ -19044,7 +19044,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El original se ha modificado externamente. Tu texto local se conserva en una nota de recuperación."
+            "value" : "El original se ha modificado fuera de RAMnotes. Tu texto local está a salvo en una nota de recuperación."
           }
         },
         "fr" : {
@@ -19091,7 +19091,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El archivo original se trasladará a la Papelera. Puedes restaurarlo en Finder."
+            "value" : "El archivo original se trasladará a la Papelera. Puedes restaurarlo desde Finder."
           }
         },
         "fr" : {
@@ -19138,7 +19138,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falta el original. Tu texto local se conserva en una nota de recuperación."
+            "value" : "Falta el original. Tu texto local está a salvo en una nota de recuperación."
           }
         },
         "fr" : {
@@ -19185,7 +19185,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El original no está disponible. Abre su texto conservado; RAMnotes se volverá a conectar cuando vuelva la carpeta."
+            "value" : "El original no está disponible. Abre el texto conservado. RAMnotes se volverá a conectar cuando la carpeta vuelva a estar disponible."
           }
         },
         "fr" : {
@@ -19232,7 +19232,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La nota original está en %@. Esta ventana mantiene el texto cargado desde el registro de recuperación local."
+            "value" : "La nota original está en %@. Esta ventana muestra el texto cargado del registro de recuperación local."
           }
         },
         "fr" : {
@@ -19279,7 +19279,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La nota original está en %@. Esta ventana mantiene el texto cargado desde el registro de recuperación local. %@"
+            "value" : "La nota original está en %@. Esta ventana muestra el texto cargado del registro de recuperación local. %@"
           }
         },
         "fr" : {
@@ -19326,7 +19326,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La carpeta del registro de recuperación no puede ser la carpeta de notas"
+            "value" : "La carpeta de registros de recuperación no puede ser la carpeta de notas"
           }
         },
         "fr" : {
@@ -19420,7 +19420,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se perderá el texto que no se pudo guardar. El archivo conserva el último texto guardado. Para conservar tu texto, usa Exportar o Guardar una copia."
+            "value" : "Se perderá el texto que no se ha podido guardar, y el archivo mantendrá el último texto guardado. Para no perderlo, usa «Exportar» o «Guardar una copia»."
           }
         },
         "fr" : {
@@ -19514,7 +19514,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esta nota no está disponible: %@. Todos tus cambios se guardaron antes de que esto ocurriera."
+            "value" : "Esta nota no está disponible: %@. Todos tus cambios se guardaron antes."
           }
         },
         "fr" : {
@@ -19937,7 +19937,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Escribe la función rápida…"
+            "value" : "Pulsa la combinación…"
           }
         },
         "fr" : {
@@ -20078,7 +20078,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estado del ítem de inicio de macOS desconocido. Actualizar estado de inicio."
+            "value" : "No se conoce el estado del ítem de inicio de macOS. Usa «Actualizar estado de inicio»."
           }
         },
         "fr" : {
@@ -20125,7 +20125,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Metadatos ilegibles en %@. Se conservó el archivo original: %@"
+            "value" : "No se pueden leer los metadatos de %@. Se ha conservado el archivo original: %@"
           }
         },
         "fr" : {
@@ -20172,7 +20172,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Versión de metadatos %lld no compatible."
+            "value" : "Versión de metadatos no compatible: %lld."
           }
         },
         "fr" : {
@@ -20407,7 +20407,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El desplazamiento vertical en la barra de menús muestra las notas"
+            "value" : "Desplazarse en vertical en la barra de menús muestra las notas"
           }
         },
         "fr" : {
@@ -20689,7 +20689,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tu texto se conserva por separado. Abre la copia de recuperación antes de continuar."
+            "value" : "Tu texto está guardado aparte. Abre la copia de recuperación antes de continuar."
           }
         },
         "fr" : {
