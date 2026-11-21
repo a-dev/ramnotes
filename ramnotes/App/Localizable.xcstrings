@@ -166,7 +166,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ Récupération"
+            "value" : "%@ (récupération)"
           }
         },
         "ja" : {
@@ -1708,7 +1708,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Une opération d’emplacement doit être résolue. Réessayez-la avant de modifier cette note."
+            "value" : "Un changement d’emplacement est resté inachevé. Relancez-le avant de modifier cette note."
           }
         },
         "ja" : {
@@ -1755,7 +1755,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Une opération d’emplacement doit être réessayée ou vérifiée."
+            "value" : "Un changement d’emplacement est à relancer ou à vérifier."
           }
         },
         "ja" : {
@@ -1849,7 +1849,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Un endroit simple pour vos notes en texte brut. Conservez vos notes dans le dossier de votre choix, ouvrez-les dans des fenêtres distinctes et rappelez-les avec un raccourci global ou un geste dans la barre des menus."
+            "value" : "Un endroit simple pour vos notes en texte brut. Rangez-les dans le dossier de votre choix, ouvrez chacune dans sa fenêtre et faites-les réapparaître avec un raccourci global ou un geste dans la barre des menus."
           }
         },
         "ja" : {
@@ -2601,7 +2601,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@files@ ajoutés. %#@hidden@ par la recherche actuelle."
+            "value" : "%#@files@. %#@hidden@ par la recherche actuelle."
           },
           "substitutions" : {
             "files" : {
@@ -2612,19 +2612,19 @@
                   "many" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg fichiers"
+                      "value" : "%arg fichiers ajoutés"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg fichier"
+                      "value" : "%arg fichier ajouté"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg fichiers"
+                      "value" : "%arg fichiers ajoutés"
                     }
                   }
                 }
@@ -2957,7 +2957,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À l’ouverture de session, RAMnotes s’exécute en arrière-plan sans ouvrir de fenêtre. Utilisez le raccourci global pour afficher les notes actives."
+            "value" : "À l’ouverture de session, RAMnotes démarre en arrière-plan, sans fenêtre. Le raccourci global affiche les notes actives."
           }
         },
         "ja" : {
@@ -3568,7 +3568,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible d’ouvrir les notes : %@. Les journaux de récupération restent disponibles ci-dessous. RAMnotes se reconnecte lorsque le dossier redevient disponible, ou choisissez un autre dossier dans les Réglages."
+            "value" : "Impossible d’ouvrir les notes : %@. Les journaux de récupération restent accessibles ci-dessous. RAMnotes se reconnecte dès que le dossier revient. Vous pouvez aussi choisir un autre dossier dans les Réglages."
           }
         },
         "ja" : {
@@ -4556,7 +4556,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fermer sans enregistrer ?"
+            "value" : "Fermer sans enregistrer ?"
           }
         },
         "ja" : {
@@ -4791,7 +4791,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cliquez en maintenant Commande pour sélectionner ou désélectionner des notes ; cliquez en maintenant Maj ou utilisez Maj et les flèches pour sélectionner une plage. Appuyez sur Retour pour ouvrir les notes sélectionnées ou sur Maj-F10 pour les actions groupées."
+            "value" : "Cliquez avec Commande pour cocher ou décocher une note. Cliquez avec Maj, ou utilisez Maj et les flèches, pour sélectionner une plage. Retour ouvre les notes sélectionnées ; Maj-F10 affiche les actions groupées."
           }
         },
         "ja" : {
@@ -5073,7 +5073,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Échec de la vérification de la copie"
+            "value" : "Impossible de vérifier la copie"
           }
         },
         "ja" : {
@@ -5120,7 +5120,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de demander le téléchargement iCloud : %@. Ouvrez à nouveau la note pour réessayer."
+            "value" : "Impossible de demander le téléchargement iCloud : %@. Rouvrez la note pour réessayer."
           }
         },
         "ja" : {
@@ -5168,7 +5168,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Créez des notes en texte brut avec « Nouvelle note » (⌘N). Les notes sont enregistrées automatiquement. Utilisez la liste des notes pour rechercher et rouvrir des notes, et les « Réglages » pour choisir un dossier, l’apparence et les raccourcis. « Placer dans la corbeille » demande une confirmation ; restaurez les fichiers depuis le Finder. Utilisez « Présentation » pour modifier la taille de police ou la teinte d’arrière-plan de la note active. Ouvrez « Commandes » (⇧⌘?) depuis n’importe quelle fenêtre pour parcourir tous les menus sans icône dans le Dock ni dans la barre des menus. Si l’enregistrement échoue, laissez la note ouverte et utilisez ses actions de récupération pour exporter le texte."
+            "value" : "Créez une note en texte brut avec « Nouvelle note » (⌘N). L’enregistrement est automatique. La liste des notes sert à chercher et à rouvrir vos notes ; les Réglages, à choisir le dossier, l’apparence et les raccourcis. « Placer dans la corbeille » demande une confirmation, et vous pouvez restaurer les fichiers depuis le Finder. Le menu « Présentation » change la taille de police ou la teinte d’arrière-plan de la note active. « Commandes » (⇧⌘?) donne accès à tous les menus depuis n’importe quelle fenêtre, même sans icône dans le Dock ni dans la barre des menus. Si l’enregistrement échoue, gardez la note ouverte et exportez le texte avec ses actions de récupération."
           }
         },
         "ja" : {
@@ -5498,7 +5498,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le changement du dossier par défaut %@ doit être réessayé : %@"
+            "value" : "Le changement de dossier par défaut %@ est à relancer : %@"
           }
         },
         "ja" : {
@@ -5545,7 +5545,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le dossier par défaut est introuvable. Choisissez un dossier par défaut ci-dessous."
+            "value" : "Le dossier par défaut est introuvable. Choisissez-en un ci-dessous."
           }
         },
         "ja" : {
@@ -5733,7 +5733,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dossier de notes par défaut : indisponible — choisissez un dossier."
+            "value" : "Dossier de notes par défaut : indisponible. Choisissez un dossier."
           }
         },
         "ja" : {
@@ -6109,7 +6109,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Activé dans macOS. RAMnotes s’ouvre masqué à l’ouverture de session."
+            "value" : "Activé dans macOS. RAMnotes démarre masqué à l’ouverture de session."
           }
         },
         "ja" : {
@@ -6156,7 +6156,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saisissez un nom de fichier non vide, sans séparateur et avec l’extension .txt."
+            "value" : "Saisissez un nom de fichier se terminant par .txt, sans barre oblique ni deux-points."
           }
         },
         "ja" : {
@@ -6391,7 +6391,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Identité de l’enregistrement de récupération existant non concordante"
+            "value" : "L’enregistrement de récupération existant ne correspond pas à cette note"
           }
         },
         "ja" : {
@@ -6438,7 +6438,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’enregistrement de récupération existant doit être vérifié"
+            "value" : "L’enregistrement de récupération existant est à vérifier"
           }
         },
         "ja" : {
@@ -6626,7 +6626,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Échec de la vérification de l’exportation"
+            "value" : "Impossible de vérifier l’exportation"
           }
         },
         "ja" : {
@@ -6767,7 +6767,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modification externe ; texte local conservé : %@"
+            "value" : "Fichier modifié ailleurs. Texte local conservé : %@"
           }
         },
         "ja" : {
@@ -6955,7 +6955,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autorisation d’accès au fichier refusée"
+            "value" : "Accès au fichier refusé"
           }
         },
         "ja" : {
@@ -7425,7 +7425,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terminez la saisie du texte avant de faire glisser."
+            "value" : "Terminez la saisie en cours avant de faire glisser."
           }
         },
         "ja" : {
@@ -7472,7 +7472,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terminez la saisie du texte avant d’exporter."
+            "value" : "Terminez la saisie en cours avant d’exporter."
           }
         },
         "ja" : {
@@ -7519,7 +7519,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terminez la saisie du texte ou les Outils d’écriture avant de fermer."
+            "value" : "Terminez la saisie en cours ou l’utilisation des Outils d’écriture avant de fermer."
           }
         },
         "ja" : {
@@ -7613,7 +7613,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terminez les Outils d’écriture avant de modifier le dossier par défaut."
+            "value" : "Terminez d’utiliser les Outils d’écriture avant de modifier le dossier par défaut."
           }
         },
         "ja" : {
@@ -7660,7 +7660,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terminez les Outils d’écriture avant de supprimer la note."
+            "value" : "Terminez d’utiliser les Outils d’écriture avant de supprimer la note."
           }
         },
         "ja" : {
@@ -7707,7 +7707,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terminez les Outils d’écriture avant de déplacer la note."
+            "value" : "Terminez d’utiliser les Outils d’écriture avant de déplacer la note."
           }
         },
         "ja" : {
@@ -7754,7 +7754,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terminez les Outils d’écriture avant d’arrêter le suivi."
+            "value" : "Terminez d’utiliser les Outils d’écriture avant d’arrêter le suivi."
           }
         },
         "ja" : {
@@ -7801,7 +7801,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terminez les Outils d’écriture avant d’enregistrer une copie."
+            "value" : "Terminez d’utiliser les Outils d’écriture avant d’enregistrer une copie."
           }
         },
         "ja" : {
@@ -8130,7 +8130,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La taille de police doit être comprise entre 8 et 192 points. L’interligne doit être au moins égal à la taille de police et au plus de 384 points."
+            "value" : "La taille de police doit être comprise entre 8 et 192 points. L’interligne doit être compris entre la taille de police et 384 points."
           }
         },
         "ja" : {
@@ -9166,7 +9166,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir à l’ouverture de session"
+            "value" : "Lancer à l’ouverture de session"
           }
         },
         "ja" : {
@@ -9213,7 +9213,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’ouverture à l’ouverture de session n’est pas encore configurée."
+            "value" : "Le lancement à l’ouverture de session n’est pas encore configuré."
           }
         },
         "ja" : {
@@ -9543,7 +9543,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le texte local est conservé. Le fichier original n’est pas disponible."
+            "value" : "Le texte local est conservé. Le fichier d’origine est indisponible."
           }
         },
         "ja" : {
@@ -9826,7 +9826,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’opération d’emplacement %@ doit être réessayée ou vérifiée : %@"
+            "value" : "Le changement d’emplacement %@ est à relancer ou à vérifier : %@"
           }
         },
         "ja" : {
@@ -9873,7 +9873,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Assistant d’ouverture introuvable. Lancez une copie intacte de l’app RAMnotes."
+            "value" : "Assistant de lancement introuvable. Ouvrez une copie intacte de RAMnotes."
           }
         },
         "ja" : {
@@ -9920,7 +9920,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Échec du réglage de l’ouverture à la connexion : %@"
+            "value" : "Impossible de régler le lancement à l’ouverture de session : %@"
           }
         },
         "ja" : {
@@ -10108,7 +10108,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le suivi du défilement dans la barre des menus est indisponible. Vérifiez les restrictions d’accès de macOS, puis désactivez et réactivez le geste. La réouverture manuelle et le raccourci restent disponibles."
+            "value" : "Impossible de suivre le défilement dans la barre des menus. Vérifiez les restrictions d’accès de macOS, puis désactivez et réactivez le geste. Vous pouvez toujours rouvrir les notes à la main ou avec le raccourci."
           }
         },
         "ja" : {
@@ -10155,7 +10155,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les métadonnées à %@ doivent être vérifiées avant l’enregistrement. Le fichier d’origine a été conservé : %@"
+            "value" : "Les métadonnées situées dans %@ sont à vérifier avant l’enregistrement. Fichier d’origine conservé : %@"
           }
         },
         "ja" : {
@@ -10202,7 +10202,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible d’enregistrer les métadonnées. Quitter l’app ou changer de dossier peut être bloqué : %@"
+            "value" : "Impossible d’enregistrer les métadonnées. Vous ne pourrez peut-être pas quitter l’app ni changer de dossier : %@"
           }
         },
         "ja" : {
@@ -11447,7 +11447,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@moved@ placées dans la corbeille. Impossible de déplacer %#@failed@. Consultez la liste des notes pour en savoir plus."
+            "value" : "%#@moved@ dans la corbeille. Impossible de déplacer %#@failed@. Consultez la liste des notes pour en savoir plus."
           },
           "substitutions" : {
             "failed" : {
@@ -11484,19 +11484,19 @@
                   "many" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg notes"
+                      "value" : "%arg notes placées"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg note"
+                      "value" : "%arg note placée"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg notes"
+                      "value" : "%arg notes placées"
                     }
                   }
                 }
@@ -12077,7 +12077,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@moved@ sur %#@total@ déplacées."
+            "value" : "%#@moved@ sur %#@total@."
           },
           "substitutions" : {
             "moved" : {
@@ -12114,19 +12114,19 @@
                   "many" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg notes"
+                      "value" : "%arg notes déplacées"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg note"
+                      "value" : "%arg note déplacée"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg notes"
+                      "value" : "%arg notes déplacées"
                     }
                   }
                 }
@@ -12952,7 +12952,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Échec de l’enregistrement du raccourci des notes et de la liste des notes (%d). Choisissez un autre raccourci."
+            "value" : "Impossible d’activer le raccourci des notes et de la liste (%d). Choisissez-en un autre."
           }
         },
         "ja" : {
@@ -12999,7 +12999,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Échec de l’enregistrement du raccourci des notes et de la liste des notes (%d). %@ reste utilisé. Choisissez un autre raccourci."
+            "value" : "Impossible d’activer le raccourci des notes et de la liste (%d). Le raccourci %@ reste actif. Choisissez-en un autre."
           }
         },
         "ja" : {
@@ -13093,7 +13093,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Désactivé, ou désactivé en dehors de l’app dans macOS."
+            "value" : "Désactivé ici ou dans les réglages de macOS."
           }
         },
         "ja" : {
@@ -13188,7 +13188,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Création la plus ancienne en premier"
+            "value" : "Création, plus anciennes d’abord"
           }
         },
         "ja" : {
@@ -13235,7 +13235,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modification la plus ancienne en premier"
+            "value" : "Modification, plus anciennes d’abord"
           }
         },
         "ja" : {
@@ -13603,7 +13603,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir les réglages d’ouverture"
+            "value" : "Ouvrir les réglages d’ouverture de session"
           }
         },
         "ja" : {
@@ -13932,7 +13932,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Original introuvable ; texte local conservé : %@"
+            "value" : "Original introuvable. Texte local conservé : %@"
           }
         },
         "ja" : {
@@ -13980,7 +13980,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Original indisponible ; texte local conservé : %@"
+            "value" : "Original indisponible. Texte local conservé : %@"
           }
         },
         "ja" : {
@@ -14216,7 +14216,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "En attente — reprendra automatiquement à la prochaine activation de RAMnotes."
+            "value" : "En attente. Reprendra automatiquement dès que RAMnotes sera de nouveau actif."
           }
         },
         "ja" : {
@@ -14263,7 +14263,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Approbation en attente. Activez RAMnotes dans Réglages Système → Général → Ouverture et extensions."
+            "value" : "En attente d’autorisation. Activez RAMnotes dans Réglages Système → Général → Ouverture et extensions."
           }
         },
         "ja" : {
@@ -14969,7 +14969,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Création récente"
+            "value" : "Création, plus récentes d’abord"
           }
         },
         "ja" : {
@@ -15016,7 +15016,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modification récente"
+            "value" : "Modification, plus récentes d’abord"
           }
         },
         "ja" : {
@@ -15204,7 +15204,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dossier de récupération indisponible : %@"
+            "value" : "Dossier de récupération indisponible : %@"
           }
         },
         "ja" : {
@@ -15251,7 +15251,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Identité de récupération non concordante"
+            "value" : "La récupération ne correspond pas à cette note"
           }
         },
         "ja" : {
@@ -15298,7 +15298,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enregistrement de récupération conservé à %@ : %@"
+            "value" : "Enregistrement de récupération conservé dans %@ : %@"
           }
         },
         "ja" : {
@@ -15533,7 +15533,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Échec de la vérification de la récupération"
+            "value" : "Impossible de vérifier la récupération"
           }
         },
         "ja" : {
@@ -15674,7 +15674,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Actualiser l’état d’ouverture"
+            "value" : "Actualiser l’état de lancement"
           }
         },
         "ja" : {
@@ -16088,7 +16088,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ renommé → %@"
+            "value" : "%@ renommé en %@"
           }
         },
         "ja" : {
@@ -16511,7 +16511,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Échec de l’enregistrement : %@. Laissez cette fenêtre ouverte. L’enregistrement est réessayé automatiquement ; exportez votre texte pour en conserver une copie."
+            "value" : "Échec de l’enregistrement : %@. Laissez cette fenêtre ouverte, RAMnotes réessaie automatiquement. Exportez votre texte pour en garder une copie."
           }
         },
         "ja" : {
@@ -16652,7 +16652,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Échec de la vérification de l’enregistrement"
+            "value" : "Impossible de vérifier l’enregistrement"
           }
         },
         "ja" : {
@@ -16793,7 +16793,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Faites défiler à nouveau pour les masquer. Utilisez un trackpad ou une souris à défilement précis."
+            "value" : "Faites défiler de nouveau pour les masquer. Nécessite un trackpad ou une souris à défilement précis."
           }
         },
         "ja" : {
@@ -17124,7 +17124,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sélectionnez le fichier .txt de la note. Si vous sélectionnez un autre fichier, cette note sera liée à ce fichier. Les modifications conservées restent disponibles dans la récupération."
+            "value" : "Sélectionnez le fichier .txt de la note. Si vous choisissez un autre fichier, la note sera liée à ce fichier. Les modifications conservées restent dans la récupération."
           }
         },
         "ja" : {
@@ -17406,7 +17406,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Échec de l’enregistrement du raccourci (%d). Choisissez un autre raccourci. La réouverture manuelle et « Afficher/masquer les notes » restent disponibles."
+            "value" : "Impossible d’activer le raccourci (%d). Choisissez-en un autre. Vous pouvez toujours rouvrir les notes à la main ou avec « Afficher/masquer les notes »."
           }
         },
         "ja" : {
@@ -17453,7 +17453,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Échec de l’enregistrement du raccourci (%d). %@ reste utilisé. Choisissez un autre raccourci. La réouverture manuelle et « Afficher/masquer les notes » restent disponibles."
+            "value" : "Impossible d’activer le raccourci (%d). Le raccourci %@ reste actif. Choisissez-en un autre. Vous pouvez toujours rouvrir les notes à la main ou avec « Afficher/masquer les notes »."
           }
         },
         "ja" : {
@@ -17970,7 +17970,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le stockage requiert votre attention : %@"
+            "value" : "Problème de stockage : %@"
           }
         },
         "ja" : {
@@ -18393,7 +18393,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de vérifier la destination. Les deux emplacements ont été conservés pour vérification."
+            "value" : "Impossible de vérifier la destination. RAMnotes a gardé les deux emplacements pour que vous puissiez les comparer."
           }
         },
         "ja" : {
@@ -18486,7 +18486,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le fichier n’est plus manquant, donc RAMnotes conserve cette note dans la liste."
+            "value" : "Le fichier est de nouveau accessible. RAMnotes garde donc cette note dans la liste."
           }
         },
         "ja" : {
@@ -18533,7 +18533,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le fichier n’est pas un fichier UTF-8 valide."
+            "value" : "Le fichier n’est pas encodé en UTF-8 valide."
           }
         },
         "ja" : {
@@ -18580,7 +18580,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’opération d’emplacement interrompue ne dispose pas de preuve vérifiée d’identité ou de révision. Son enregistrement a été conservé pour vérification."
+            "value" : "Impossible de confirmer le fichier visé par le changement d’emplacement interrompu. RAMnotes a conservé l’opération pour que vous puissiez la vérifier."
           }
         },
         "ja" : {
@@ -18627,7 +18627,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le changement d’emplacement a été interrompu. Enregistrez à nouveau pour réessayer l’opération enregistrée."
+            "value" : "Le changement d’emplacement a été interrompu. Enregistrez de nouveau pour le relancer."
           }
         },
         "ja" : {
@@ -18674,7 +18674,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le changement d’emplacement a été interrompu. Enregistrez à nouveau pour réessayer l’opération enregistrée. %@"
+            "value" : "Le changement d’emplacement a été interrompu. Enregistrez de nouveau pour le relancer. %@"
           }
         },
         "ja" : {
@@ -18721,7 +18721,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le déplacement doit être réessayé ou vérifié."
+            "value" : "Le déplacement est à relancer ou à vérifier."
           }
         },
         "ja" : {
@@ -19191,7 +19191,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’original est indisponible. Ouvrez son texte conservé ; RAMnotes se reconnecte lorsque le dossier redevient disponible."
+            "value" : "L’original est indisponible. Ouvrez le texte conservé. RAMnotes se reconnecte dès que le dossier revient."
           }
         },
         "ja" : {
@@ -19238,7 +19238,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La note d’origine se trouve dans %@. Cette fenêtre conserve le texte chargé depuis le journal de récupération local."
+            "value" : "La note d’origine se trouve dans %@. Cette fenêtre affiche le texte chargé depuis le journal de récupération local."
           }
         },
         "ja" : {
@@ -19285,7 +19285,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La note d’origine se trouve dans %@. Cette fenêtre conserve le texte chargé depuis le journal de récupération local. %@"
+            "value" : "La note d’origine se trouve dans %@. Cette fenêtre affiche le texte chargé depuis le journal de récupération local. %@"
           }
         },
         "ja" : {
@@ -19426,7 +19426,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le texte qui n’a pas pu être enregistré sera perdu. Le fichier conserve son dernier texte enregistré. Pour garder votre texte, utilisez plutôt Exporter ou Enregistrer une copie."
+            "value" : "Le texte non enregistré sera perdu. Le fichier garde sa dernière version enregistrée. Pour conserver votre texte, utilisez plutôt « Exporter » ou « Enregistrer une copie »."
           }
         },
         "ja" : {
@@ -19520,7 +19520,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette note est indisponible : %@. Toutes vos modifications ont été enregistrées avant que cela ne se produise."
+            "value" : "Cette note est indisponible : %@. Toutes vos modifications avaient été enregistrées."
           }
         },
         "ja" : {
@@ -20084,7 +20084,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "État d’ouverture de session macOS inconnu. Utilisez « Actualiser l’état d’ouverture »."
+            "value" : "État de lancement inconnu dans macOS. Cliquez sur « Actualiser l’état de lancement »."
           }
         },
         "ja" : {
@@ -20131,7 +20131,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Métadonnées illisibles à %@. Le fichier d’origine a été conservé : %@"
+            "value" : "Métadonnées illisibles dans %@. Fichier d’origine conservé : %@"
           }
         },
         "ja" : {
