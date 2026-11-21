@@ -27,7 +27,7 @@ Example:
 
 RAMnotes has no AI functions. It reads and writes the `.txt` file. Your AI tools do the other steps.
 
-![Control shortcut shows and hides notes from any app](./docs/design/screenshots/control.jpg)
+![Control shortcut shows and hides notes from any app](./docs/store/screenshots/control.jpg)
 
 ## Notes in any folder
 
