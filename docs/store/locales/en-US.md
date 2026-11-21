@@ -1,4 +1,4 @@
-# Mac App Store listing texts: RAMnotes 1.0.0 (final)
+# Mac App Store listing texts: RAMnotes 1.0.0 (en-US)
 
 ## Name (30 characters)
 
@@ -47,7 +47,7 @@ Other apps can read and change the same files. To sync your notes, set the defau
 
 NOTE WINDOWS
 • Open several notes at once.
-• "Always on top" keeps a note above other apps.
+• "Keep note windows on top" in Settings keeps your notes above other apps.
 • Each note can have one of six color tints.
 • Each note has its own text size. Change it with Command-Plus and Command-Minus.
 • RAMnotes remembers the position of each window and your place in each note.

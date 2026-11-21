@@ -1,0 +1,265 @@
+import sys
+import unittest
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+SCRIPTS = ROOT / "scripts"
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+import register_lint
+import german_pattern_lint
+import rhythm_lint
+import style_profile
+import text_scope
+
+
+class TextScopeTests(unittest.TestCase):
+    def test_masking_preserves_offsets_and_has_explicit_quote_scope(self):
+        text = (
+            "---\ntitle: Du bist ja gemeint.\n---\n"
+            "| du | ja |\n|---|---|\n"
+            "> Sie prüfen das.\n"
+            "Eigene Prosa bleibt."
+        )
+
+        document = text_scope.mask_text(text, scope=text_scope.DOCUMENT_PROSE)
+        authored = text_scope.mask_text(text, scope=text_scope.AUTHORED_PROSE)
+
+        self.assertEqual(len(document), len(text))
+        self.assertEqual([i for i, char in enumerate(document) if char == "\n"], [i for i, char in enumerate(text) if char == "\n"])
+        self.assertNotIn("title", document)
+        self.assertNotIn("| du |", document)
+        self.assertIn("Sie prüfen", document)
+        self.assertNotIn("Sie prüfen", authored)
+        self.assertIn("Eigene Prosa bleibt", authored)
+
+    def test_frontmatter_does_not_change_prose_metrics(self):
+        base = " ".join(
+            [
+                "Das System prüft heute alle Dateien.",
+                "Das System liest danach die Berichte.",
+                "Das System sortiert später die Anfragen.",
+                "Das System sendet abends die Antworten.",
+                "Das System speichert nachts die Einträge.",
+                "Das System zählt morgens die Punkte.",
+                "Das System meldet mittags die Ergebnisse.",
+            ]
+        )
+        with_frontmatter = "---\ntitle: Das System erfindet einen achten Satz.\nauthor: Du\n---\n\n" + base
+
+        base_report = rhythm_lint.analyze(base)
+        scoped_report = rhythm_lint.analyze(with_frontmatter)
+        base_profile = style_profile.profile(base, "base")
+        scoped_profile = style_profile.profile(with_frontmatter, "scoped")
+
+        self.assertEqual(scoped_report["document"], base_report["document"])
+        self.assertEqual(scoped_profile["meta"]["word_count"], base_profile["meta"]["word_count"])
+        self.assertEqual(scoped_profile["metrics"], base_profile["metrics"])
+
+    def test_leading_thematic_break_is_not_frontmatter(self):
+        text = "---\n\nDer Text beleuchtet das vielschichtige Zusammenspiel dynamisch.\n\n---\n\nZweiter Teil.\n"
+
+        self.assertEqual(text_scope.protected_ranges(text), [])
+        self.assertIn("ai_marker_cluster", {item["kind"] for item in german_pattern_lint.lint(text)["findings"]})
+
+    def test_leading_thematic_break_with_prose_is_not_frontmatter(self):
+        prose = "Wir beleuchten Aspekte. Wir beleuchten Prozesse. Wir beleuchten Lösungen."
+        for newline in ("\n", "\r\n"):
+            with self.subTest(newline=repr(newline)):
+                text = newline.join(("---", prose, "---", "Danach folgt Text.")) + newline
+
+                self.assertEqual(text_scope.protected_ranges(text), [])
+                self.assertIn(prose, text_scope.mask_text(text))
+
+    def test_real_frontmatter_shapes_remain_protected(self):
+        cases = (
+            ("", "\n", "---"),
+            ("", "\n", "..."),
+            ("", "\r\n", "---"),
+            ("\ufeff", "\r\n", "..."),
+        )
+
+        for bom, newline, closer in cases:
+            with self.subTest(bom=bool(bom), newline=repr(newline), closer=closer):
+                frontmatter = f"{bom}---{newline}title: Beispiel{newline}{closer}"
+                text = frontmatter + newline * 2 + "Eigene Prosa bleibt."
+
+                self.assertEqual(text_scope.protected_ranges(text), [(0, len(frontmatter))])
+                self.assertNotIn("title", text_scope.mask_text(text))
+                self.assertIn("Eigene Prosa bleibt.", text_scope.mask_text(text))
+
+    def test_table_content_does_not_change_register_or_style_metrics(self):
+        base = "Ein kurzer Satz bleibt. Danach folgt eine sachliche Erklärung."
+        with_table = base + "\n\n| Ansprache | Partikel |\n|---|---|\n| du | ja |\n| Sie | doch |"
+
+        self.assertEqual(register_lint.features(with_table), register_lint.features(base))
+        self.assertEqual(style_profile.profile(with_table, "table")["metrics"], style_profile.profile(base, "base")["metrics"])
+        self.assertEqual(
+            style_profile.profile(with_table, "table")["meta"]["word_count"],
+            style_profile.profile(base, "base")["meta"]["word_count"],
+        )
+
+    def test_html_text_stays_in_scope_and_tag_syntax_is_masked(self):
+        text = '<p class="intro">Er sagte "Hallo".</p>'
+
+        document = text_scope.mask_text(text, scope=text_scope.DOCUMENT_PROSE)
+        typography = text_scope.mask_text(text, scope=text_scope.TYPOGRAPHIC_PROSE)
+
+        for masked in (document, typography):
+            self.assertEqual(len(masked), len(text))
+            self.assertEqual(masked.index("Er sagte"), text.index("Er sagte"))
+            self.assertIn('Er sagte "Hallo".', masked)
+            self.assertNotIn('class="intro"', masked)
+
+    def test_fenced_code_closes_only_with_its_opening_delimiter(self):
+        base = "Sachliche Prosa bleibt bestehen."
+        cases = (
+            base + "\n\n```text\nDu bist ja gemeint.\n~~~\nSie prüfen doch alles.\n```\n",
+            base + "\n\n~~~text\nDu bist ja gemeint.\n```\nSie prüfen doch alles.\n~~~\n",
+        )
+
+        for text in cases:
+            with self.subTest(text=text):
+                self.assertEqual(register_lint.features(text), register_lint.features(base))
+                self.assertEqual(rhythm_lint.analyze(text)["document"], rhythm_lint.analyze(base)["document"])
+                self.assertEqual(
+                    style_profile.profile(text, "fenced")["metrics"],
+                    style_profile.profile(base, "base")["metrics"],
+                )
+
+    def test_fenced_code_accepts_longer_closer_and_masks_unclosed_block(self):
+        closed = "Vorher.\n\n```text\nDu bist ja gemeint.\n````\n\nNachher."
+        unclosed = "Vorher.\n\n~~~text\nDu bist ja gemeint."
+
+        self.assertIn("Nachher.", text_scope.mask_text(closed))
+        self.assertNotIn("Du bist", text_scope.mask_text(closed))
+        self.assertNotIn("Du bist", text_scope.mask_text(unclosed))
+
+    def test_multibacktick_and_indented_code_are_protected(self):
+        inline = '``a ` „Hallo" b``'
+        indented = "    expected = '„Hallo\"'"
+        text = f"{inline}\n\n{indented}"
+        masked = text_scope.mask_text(text)
+
+        self.assertEqual(len(masked), len(text))
+        self.assertNotIn("Hallo", masked)
+        self.assertIn("\n\n", masked)
+
+    def test_escaped_backtick_does_not_open_code_span(self):
+        text = r"\` escaped delimiter"
+
+        self.assertEqual(text_scope.protected_ranges(text), [])
+
+    def test_list_continuation_with_four_spaces_remains_prose(self):
+        text = "- Punkt.\n\n    Die Fortsetzung bleibt Prosa."
+
+        self.assertIn("Die Fortsetzung bleibt Prosa.", text_scope.mask_text(text))
+
+    def test_nested_list_continuation_and_code_are_distinguished(self):
+        text = "- Parent\n\n    - „Hallo\"\n\n        Prosa bleibt erhalten.\n\n          expected = '„Hallo\"'"
+        masked = text_scope.mask_text(text)
+
+        self.assertIn('- „Hallo"', masked)
+        self.assertIn("Prosa bleibt erhalten.", masked)
+        self.assertNotIn("expected", masked)
+
+        lazy = "- Parent\nlazy continuation\n\n    Prosa bleibt erhalten."
+        self.assertIn("Prosa bleibt erhalten.", text_scope.mask_text(lazy))
+
+        tabbed = "- Parent\n\n\t- Child\n\n\t\tProsa bleibt erhalten.\n\n\t\t\tcode = '„Hallo\"'"
+        tabbed_masked = text_scope.mask_text(tabbed)
+        self.assertIn("Prosa bleibt erhalten.", tabbed_masked)
+        self.assertNotIn("code =", tabbed_masked)
+
+        exited = "- Parent\n\nProsa bleibt erhalten.\n\n    expected = '„Hallo\"'"
+        exited_masked = text_scope.mask_text(exited)
+        self.assertIn("Prosa bleibt erhalten.", exited_masked)
+        self.assertNotIn("expected", exited_masked)
+
+        heading_exit = "- Parent\n# Heading\n\n    expected = '„Hallo\"'"
+        self.assertNotIn("expected", text_scope.mask_text(heading_exit))
+
+        code_exit = "- Parent\n\n      code\noutside\n\n    expected = '„Hallo\"'\n"
+        self.assertNotIn("expected", text_scope.mask_text(code_exit))
+
+        oversized_padding = "-     code\n\n    Prosa bleibt erhalten."
+        self.assertIn("Prosa bleibt erhalten.", text_scope.mask_text(oversized_padding))
+
+        bare_marker = "-\n    Text\n\n    Prosa bleibt erhalten."
+        self.assertIn("Prosa bleibt erhalten.", text_scope.mask_text(bare_marker))
+
+        empty_padded_marker = "-    \n    Text.\n\n    Prosa bleibt erhalten."
+        self.assertIn("Prosa bleibt erhalten.", text_scope.mask_text(empty_padded_marker))
+
+    def test_nbsp_line_does_not_start_or_extend_indented_code(self):
+        before_code = "Text\n\u00a0\n    Prosa bleibt erhalten."
+        after_code = "    code\n\u00a0\n    Prosa bleibt erhalten."
+
+        self.assertIn("Prosa bleibt erhalten.", text_scope.mask_text(before_code))
+        after_code_masked = text_scope.mask_text(after_code)
+        self.assertIn("Prosa bleibt erhalten.", after_code_masked)
+        self.assertNotIn("code", after_code_masked)
+
+    def test_authored_scope_excludes_every_blockquote_feature(self):
+        quoted = "> Du prüfst ja unsere Datei. Senden Sie uns Ihre Fassung? 👩‍💻\n"
+        text = "Sachliche eigene Prosa.\n\n" + quoted
+
+        conservative = register_lint.features(text)
+        authored = register_lint.features(text, nlp=lambda _: [])
+
+        self.assertGreater(conservative["du_count"], 0)
+        for name in (
+            "du_count",
+            "sie_formal_count",
+            "wir_count",
+            "modal_particle_count",
+            "emoji_count",
+            "rhetorical_questions",
+        ):
+            self.assertEqual(authored[name], 0, name)
+        self.assertEqual(rhythm_lint.analyze(text)["document"]["sentence_count"], 1)
+        self.assertEqual(style_profile.profile(text, "quoted")["metrics"], style_profile.profile("Sachliche eigene Prosa.", "base")["metrics"])
+
+    def test_style_profile_excludes_inline_quoted_foreign_voice(self):
+        base = "Du dokumentierst den Hinweis und gehst weiter."
+        quoted = "Du dokumentierst den Hinweis „Bitte prüfen Sie Ihre Angaben“ und gehst weiter."
+
+        self.assertEqual(
+            style_profile.profile(quoted, "quoted")["metrics"]["address_counts"],
+            style_profile.profile(base, "base")["metrics"]["address_counts"],
+        )
+
+    def test_all_wir_inflections_are_counted(self):
+        text = "Wir helfen uns mit unser, unsere, unseren, unserem, unserer und unseres."
+
+        self.assertEqual(register_lint.features(text)["wir_count"], 8)
+        self.assertIn("unexpected_direct_address", {item["kind"] for item in register_lint.lint(text, expected_address="neutral")["findings"]})
+
+    def test_sentence_split_keeps_closing_quote_with_previous_sentence(self):
+        text = "Er sagte: „Hallo.“ Danach ging er weiter."
+
+        self.assertEqual(rhythm_lint.split_sentences(text), ["Er sagte: „Hallo.“", "Danach ging er weiter."])
+
+    def test_list_items_do_not_create_uniform_paragraphs(self):
+        text = "- Erster Punkt.\n- Zweiter Punkt.\n- Dritter Punkt.\n- Vierter Punkt."
+        document = rhythm_lint.analyze(text)["document"]
+
+        self.assertEqual(document["sentence_count"], 4)
+        self.assertEqual(document["paragraph_sentence_counts"], [])
+        self.assertFalse(document["paragraph_sentence_counts_uniform"])
+
+    def test_heading_words_are_not_part_of_style_profile(self):
+        base = "Ein Hund läuft schnell."
+        with_heading = "# Herausforderungen für uns, ja\n\n" + base
+
+        base_profile = style_profile.profile(base, "base")
+        heading_profile = style_profile.profile(with_heading, "heading")
+
+        self.assertEqual(heading_profile["meta"]["word_count"], base_profile["meta"]["word_count"])
+        self.assertEqual(heading_profile["metrics"], base_profile["metrics"])
+
+
+if __name__ == "__main__":
+    unittest.main()

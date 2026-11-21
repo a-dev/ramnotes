@@ -1,0 +1,41 @@
+{
+  "id": 26,
+  "mode": "Sachlich",
+  "input": "Der Suchdienst legt für Bestellungen zwei Indizes an. Der zusammengesetzte B-Tree-Index auf tenant_id und created_at deckt die Standardabfrage ab, weil die Daten immer mandantenweise und innerhalb eines Zeitfensters gelesen werden. Für die Volltextsuche nutzt der Dienst einen separaten GIN-Index. Diese Trennung verhindert zusätzliche Schreibzugriffe auf den ersten Index.",
+  "expected_behavior": [
+    "sauberen Kontrolltext unverändert lassen",
+    "keine Vorher-Nachher-Paare erzeugen",
+    "Null-Edit ausdrücklich melden"
+  ],
+  "quality_risks": [
+    "unnötige Stilpolitur",
+    "neue Wertung ohne Beleg",
+    "Fachbegriffe durch allgemeinere Wörter ersetzen"
+  ],
+  "output_contract": [
+    "Modus",
+    "Gefundene Muster",
+    "Geänderte Stellen",
+    "Kurzaudit"
+  ],
+  "null_edit_contract": {
+    "require_unchanged": true
+  },
+  "sample_outputs": [
+    {
+      "name": "known-good null edit",
+      "text": "Der Suchdienst legt für Bestellungen zwei Indizes an. Der zusammengesetzte B-Tree-Index auf tenant_id und created_at deckt die Standardabfrage ab, weil die Daten immer mandantenweise und innerhalb eines Zeitfensters gelesen werden. Für die Volltextsuche nutzt der Dienst einen separaten GIN-Index. Diese Trennung verhindert zusätzliche Schreibzugriffe auf den ersten Index.",
+      "expect_violations": [],
+      "expect_violations_exact": true
+    },
+    {
+      "name": "unnecessary polish",
+      "text": "Der Suchdienst legt für Bestellungen zwei leistungsfähige Indizes an. Der zusammengesetzte B-Tree-Index auf tenant_id und created_at deckt die zentrale Standardabfrage zuverlässig ab, weil die Daten mandantenweise und innerhalb eines Zeitfensters gelesen werden. Für die Volltextsuche nutzt der Dienst einen separaten GIN-Index. Diese durchdachte Trennung verhindert zusätzliche Schreibzugriffe auf den ersten Index.",
+      "expect_violations": [
+        "new_factual_anchor",
+        "unnecessary_edit"
+      ],
+      "expect_violations_exact": true
+    }
+  ]
+}

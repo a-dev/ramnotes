@@ -1,0 +1,21 @@
+{
+  "id": 1,
+  "mode": "Sachlich",
+  "input": "In der heutigen Zeit fungiert unsere Plattform als zentraler Begleiter. Darüber hinaus beleuchtet sie verschiedene Aspekte.",
+  "expected_behavior": ["Cluster 1/4/58/64/65 erkennen", "nur betroffene Stellen zeigen"],
+  "quality_risks": ["Volltextausgabe", "neue Produktdetails"],
+  "output_contract": ["Modus", "Gefundene Muster", "Geänderte Stellen", "Kurzaudit"],
+  "sample_outputs": [
+    {
+      "name": "full text rewrite",
+      "text": "In der heutigen Zeit fungiert unsere Plattform als zentraler Begleiter. Darüber hinaus beleuchtet sie verschiedene Aspekte.",
+      "expect_violations": ["full_text_output"]
+    },
+    {
+      "name": "clean cluster rewrite",
+      "text": "Heute ist unsere Plattform ein zentraler Begleiter. Sie behandelt außerdem verschiedene Aspekte.",
+      "expect_violations": [],
+      "expect_violations_exact": true
+    }
+  ]
+}

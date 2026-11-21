@@ -43,6 +43,27 @@ final class WindowTests: XCTestCase {
         XCTAssertTrue(state.notes.isEmpty)
     }
 
+    func testAutoHideCountdownStartsResetsAndCancels() async throws {
+        let prepared = try await makeWindowNotes(count: 1)
+        let coordinator = WindowCoordinator(store: prepared.store, folderState: FolderState())
+        var condition = AutoHideCondition(noteWindowShown: true, appHidden: false, dialogOpen: false, appHasFocus: false)
+        coordinator.autoHideCondition = { condition }
+        coordinator.updateAutoHideTimer()
+        XCTAssertTrue(coordinator.autoHideCountdownRunning, "the default 3-minute delay starts the countdown")
+        condition.appHasFocus = true
+        coordinator.updateAutoHideTimer()
+        XCTAssertFalse(coordinator.autoHideCountdownRunning, "focus on any RAMnotes window cancels it")
+        condition.appHasFocus = false
+        coordinator.updateAutoHideTimer()
+        XCTAssertTrue(coordinator.autoHideCountdownRunning)
+        coordinator.settings.autoHideDelay = .never
+        XCTAssertFalse(coordinator.autoHideCountdownRunning, "Never turns it off")
+        coordinator.settings.autoHideDelay = .oneMinute
+        XCTAssertTrue(coordinator.autoHideCountdownRunning, "a new delay restarts it")
+        coordinator.perform(.hide)
+        XCTAssertFalse(coordinator.autoHideCountdownRunning, "hiding the group cancels it")
+    }
+
     func testTrashObservationClosesWindowAndClearsOpenState() async throws {
         let prepared = try await makeWindowNotes(count: 1)
         let shared = FolderState()

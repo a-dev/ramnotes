@@ -1,0 +1,202 @@
+import json
+import re
+import subprocess
+import sys
+import tempfile
+import unittest
+import zipfile
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+SCRIPT = ROOT / "scripts" / "build_skill_bundle.py"
+BUNDLE_NAME = "humanizer-de"
+
+
+def read_utf8(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def build_into(directory: Path) -> tuple[Path, dict[str, object]]:
+    output = directory / f"{BUNDLE_NAME}.zip"
+    result = subprocess.run(
+        [sys.executable, str(SCRIPT), "--output", str(output), "--format", "json"],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return output, json.loads(result.stdout)
+
+
+class SkillBundleTests(unittest.TestCase):
+    """The uploadable bundle must carry everything SKILL.md routes into."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls._tmp = tempfile.TemporaryDirectory()
+        cls.bundle, _ = build_into(Path(cls._tmp.name))
+        with zipfile.ZipFile(cls.bundle) as archive:
+            cls.names = archive.namelist()
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls._tmp.cleanup()
+
+    def test_bundle_root_matches_skill_name(self):
+        # Skill hosts derive the skill name from the top-level folder.
+        self.assertIn(f"{BUNDLE_NAME}/SKILL.md", self.names)
+        roots = {name.split("/", 1)[0] for name in self.names}
+        self.assertEqual(roots, {BUNDLE_NAME})
+
+    def test_referenced_reference_files_are_bundled(self):
+        skill = read_utf8(ROOT / "SKILL.md")
+        referenced = set(re.findall(r"references/[\w.-]+\.(?:md|json)", skill))
+        self.assertTrue(referenced, "SKILL.md verweist auf keine references/-Datei")
+        for name in sorted(referenced):
+            self.assertIn(f"{BUNDLE_NAME}/{name}", self.names, name)
+
+    def test_referenced_scripts_are_bundled(self):
+        skill = read_utf8(ROOT / "SKILL.md")
+        referenced = set(re.findall(r"\b([\w.-]+\.py)\b", skill))
+        self.assertTrue(referenced, "SKILL.md nennt kein Script")
+        # The host-controlled runner needs local CLIs and is deliberately not uploadable.
+        repo_only = {"humanizer_two_pass.py"}
+        runner_lines = [line for line in skill.splitlines() if "scripts/humanizer_two_pass.py" in line]
+        self.assertTrue(runner_lines, "SKILL.md muss die repo-only Runner-Ausnahme nennen")
+        self.assertTrue(any("nicht im Claude.ai-Bundle" in line for line in runner_lines), runner_lines)
+        for name in sorted(referenced):
+            if name in repo_only:
+                continue
+            self.assertIn(f"{BUNDLE_NAME}/scripts/{name}", self.names, name)
+
+    def test_license_and_notice_travel_with_the_bundle(self):
+        # The archive is a redistribution: MIT asks for the notice, the pattern
+        # catalogue is CC BY-SA 4.0 and needs the attribution in NOTICE.
+        self.assertIn(f"{BUNDLE_NAME}/LICENSE", self.names)
+        self.assertIn(f"{BUNDLE_NAME}/NOTICE", self.names)
+
+    def test_repo_tooling_stays_out(self):
+        # These need tests/ fixtures or an external CLI; inside the bundle they only fail.
+        for name in (
+            "bench.py",
+            "detection_snapshot.py",
+            "fp_corpus_report.py",
+            "run_review_eval.py",
+            "humanizer_two_pass.py",
+        ):
+            self.assertNotIn(f"{BUNDLE_NAME}/scripts/{name}", self.names, name)
+
+    def test_bundled_scripts_resolve_their_imports(self):
+        # A bundled script importing a script left behind would break on first use.
+        with tempfile.TemporaryDirectory() as workdir:
+            work = Path(workdir)
+            with zipfile.ZipFile(self.bundle) as archive:
+                archive.extractall(work)
+            scripts = sorted((work / BUNDLE_NAME / "scripts").glob("*.py"))
+            self.assertTrue(scripts)
+            for script in scripts:
+                result = subprocess.run(
+                    [sys.executable, "-c", f"import importlib.util,sys; "
+                     f"spec=importlib.util.spec_from_file_location('m', r'{script}'); "
+                     f"mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)"],
+                    cwd=work / BUNDLE_NAME / "scripts",
+                    capture_output=True,
+                    text=True,
+                )
+                self.assertEqual(result.returncode, 0, f"{script.name}: {result.stderr}")
+
+    def test_doctor_reports_a_healthy_bundle(self):
+        # SKILL.md sends users to doctor.py first; inside the bundle it must not report
+        # missing plugin manifests as an error.
+        with tempfile.TemporaryDirectory() as workdir:
+            work = Path(workdir)
+            with zipfile.ZipFile(self.bundle) as archive:
+                archive.extractall(work)
+            result = subprocess.run(
+                [sys.executable, "scripts/doctor.py", "--json"],
+                cwd=work / BUNDLE_NAME,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            report = json.loads(result.stdout)
+            self.assertTrue(report["ok"], report)
+            self.assertEqual(report["name"], BUNDLE_NAME)
+            self.assertIsInstance(report["version"], str)
+            self.assertIsInstance(report["full"], bool)
+            self.assertIn(report["summary"], {"full", "base_only"})
+            self.assertIsInstance(report["privacy"], str)
+
+            required = {"base_skill", "layout", "version_sync", "python"}
+            optional = {
+                "spacy",
+                "german_model",
+                "precise",
+                "hunspell",
+                "hunspell_de",
+                "languagetool",
+                "java",
+            }
+            checks = report["checks"]
+            self.assertIsInstance(checks, list)
+            checks_by_id = {entry["id"]: entry for entry in checks}
+            self.assertEqual(len(checks_by_id), len(checks), "duplicate check IDs")
+            self.assertEqual(set(checks_by_id), required | optional)
+
+            valid_statuses = {"ok", "available", "active", "missing", "inactive", "error"}
+            for check_id, entry in checks_by_id.items():
+                self.assertIsInstance(entry, dict)
+                self.assertIsInstance(entry["label"], str)
+                self.assertIsInstance(entry["status"], str)
+                self.assertIn(entry["status"], valid_statuses, check_id)
+                self.assertIsInstance(entry["required"], bool)
+                self.assertEqual(entry["required"], check_id in required, check_id)
+                if check_id in required:
+                    self.assertIn(entry["status"], {"ok", "available", "active"}, check_id)
+
+    def test_bundle_excludes_build_artifacts(self):
+        for name in self.names:
+            self.assertNotIn("__pycache__", name)
+            self.assertFalse(name.endswith(".pyc"), name)
+            self.assertFalse(name.endswith("build_skill_bundle.py"), name)
+
+    def test_build_is_reproducible(self):
+        with tempfile.TemporaryDirectory() as other:
+            second, _ = build_into(Path(other))
+            self.assertEqual(self.bundle.read_bytes(), second.read_bytes())
+
+    def test_bundle_runs_standalone(self):
+        # The upload path has no repo around it: the extracted folder must be enough.
+        with tempfile.TemporaryDirectory() as workdir:
+            work = Path(workdir)
+            with zipfile.ZipFile(self.bundle) as archive:
+                archive.extractall(work)
+            sample = work / "probe.md"
+            sample.write_text(
+                "Die Lage ist ernst. Die Lage ist klar. Die Lage ist bekannt.\n\n"
+                "Es ist wichtig zu beachten, dass niemand widerspricht. "
+                "Zusammenfassend bleibt wenig zu sagen.\n",
+                encoding="utf-8",
+            )
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "scripts/humanizer_audit.py",
+                    "--file",
+                    str(sample),
+                    "--mode",
+                    "sachlich",
+                    "--format",
+                    "json",
+                    "--no-profile",
+                ],
+                cwd=work / BUNDLE_NAME,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn('"preflight"', result.stdout)
+
+
+if __name__ == "__main__":
+    unittest.main()

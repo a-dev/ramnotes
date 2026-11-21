@@ -1,0 +1,58 @@
+import unittest
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class DecisionTableTests(unittest.TestCase):
+    def test_overlap_tables_cover_required_patterns(self):
+        text = (ROOT / "references" / "decision-tables.md").read_text(encoding="utf-8")
+        for pattern_id in ("11", "25", "26", "42", "53", "5", "6", "34", "44", "58", "59", "60", "61", "62", "64", "65"):
+            self.assertIn(f"| {pattern_id} |", text)
+        self.assertIn("## Evidenz: 11 / 25 / 26 / 42 / 53", text)
+        self.assertIn("## Floskeln und Schablonen: 1 / 2 / 32 / 56 / 58 / 60 / 64 / 65 / 66", text)
+        self.assertIn("## Struktur: 5 / 6 / 34 / 44 / 61 / 62", text)
+        self.assertIn("## Evidenz zweiter Ordnung: 59", text)
+
+    def test_v40_rows_are_present(self):
+        text = (ROOT / "references" / "decision-tables.md").read_text(encoding="utf-8")
+        self.assertIn("Hypernym/Nominalstil ersetzt eine im Text belegte Konkretion", text)
+        self.assertIn("Rotierende Bezeichnungen für denselben Referenten", text)
+        self.assertIn("Anekdote/Ich-Erfahrung ohne Träger im Autorenkontext", text)
+        self.assertIn("Absätze/Sektionen/Listen durchgehend gleich lang und symmetrisch", text)
+        self.assertIn("Bewertender Abschlusssatz ohne neue Information am Absatzende", text)
+        self.assertIn(
+            '| Frequenz-Marker-Vokabeln in Häufung ("beleuchten", "spannend", "nahtlos", "Landschaft" figurativ) | 64 | Durch gewöhnliches Wort ersetzen; fachgebundene Verwendung stehen lassen |',
+            text,
+        )
+        self.assertIn(
+            '| Ersatzkonstruktion statt "ist"/"hat" ("fungiert als", "verfügt über") in Häufung | 65 | Auf Kopula zurückführen, wenn keine Information verloren geht |',
+            text,
+        )
+        self.assertIn(
+            "| Symbolische Aufladung statt nüchterner Ersatzkonstruktion | 1, nicht 65 | Siehe Muster 1 |",
+            text,
+        )
+        self.assertIn("Nicht Glyph tauschen", text)
+        self.assertIn("Einzelner bewusst gesetzter Gedankenstrich", text)
+
+    def test_mode_matrix_is_present(self):
+        text = (ROOT / "references" / "decision-tables.md").read_text(encoding="utf-8")
+        self.assertIn("## Modusmatrix", text)
+        self.assertIn("Formal", text)
+        self.assertIn("Muster 45", text)
+
+    def test_contrast_and_explainer_overlaps_are_routed(self):
+        text = (ROOT / "references" / "decision-tables.md").read_text(encoding="utf-8")
+
+        self.assertIn("## Kontrastformeln: 7 / 8 / 16 / 56", text)
+        self.assertIn("Sachliche Korrektur", text)
+        self.assertIn("8, nicht 16", text)
+        self.assertIn("## Explainer-Signposts: 5 / 33 / 34 / 35 / 44 / 54 / 57", text)
+        self.assertIn("Konkrete, inhaltstragende Explainer-Sektion", text)
+        self.assertIn("5, nicht 33", text)
+
+
+if __name__ == "__main__":
+    unittest.main()

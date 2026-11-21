@@ -1,17 +1,66 @@
 {
-  "version": 1,
+  "version": 2,
   "skills": {
+    "humaniseur-fr": {
+      "source": "samber/cc-skills",
+      "commit": "50a33836b20f690c668af557bd9ef9d07a8c7ef2",
+      "sourceType": "github",
+      "skillPath": "skills/humaniseur-fr/SKILL.md",
+      "computedHash": "dfb3e52bbe43b0bcedaf87de4d37679dd8d8d5d4435868dd471201eaebf24958"
+    },
+    "humanizer-ar-msa": {
+      "source": "OthmanAdi/humanizer-semitic",
+      "commit": "2c9d4fbe3e0086d373b59bfebc9556082275cf62",
+      "sourceType": "github",
+      "skillPath": "skills/humanizer-ar-msa/SKILL.md",
+      "computedHash": "c6ea9790bfd28c0abaa6eb6e3f9cedeb104b43ce651a586014f68e312efe1fb2"
+    },
+    "humanizer-de": {
+      "source": "marmbiz/humanizer-de",
+      "commit": "09f57620b034412d912f96a2de3963e141fbeb16",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "fd32e27b6015060baab061ab3704ef544ce287695a5796858d0dbaa904b4b4d1"
+    },
+    "humanizer-es": {
+      "source": "jaimeberdejo/humanizer-es",
+      "commit": "b87ab524174b433b1abb37ba346e2b0e08e52758",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "ddba216c99ae7052a969e4900232c95f5279c472e829978aaa87b2544d0e80a4"
+    },
+    "humanizer-ja": {
+      "source": "gonta223/humanizer-ja",
+      "commit": "a1e343696e43aa50e7218891f3319ab22cde3464",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "8892610bf6ea7dff28e97be9136b35043c6b7bb687c3d2a336e0587a94c3d5ee"
+    },
+    "humanizer-pt-br": {
+      "source": "mackswendhell/humanizer-pt-br",
+      "commit": "ada3599ae2732725585f1d93770eeae98c922ff0",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "0b9503d639c1496d0007a7b472f1521a1ac11463a439bbfc0c68c92f55f8363d"
+    },
+    "humanizer-zh": {
+      "source": "op7418/Humanizer-zh",
+      "commit": "f4518a8eab97b8bfebc66a89d34320a89bef6930",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "19fe06f48c6c540268b33c3f88b26439506fa4186d1c0b27fda57acb3876dd66"
+    },
     "macos-design-guidelines": {
       "source": "ehmo/platform-design-skills",
       "sourceType": "github",
       "skillPath": "skills/macos/SKILL.md",
-      "computedHash": "fdbeb208feb60e5ed08226e4e1e714eade6cfe6530ad27c792992823de63ca0d"
+      "computedHash": ""
     },
     "macos-development": {
       "source": "rshankras/claude-code-apple-skills",
       "sourceType": "github",
       "skillPath": "skills/macos/SKILL.md",
-      "computedHash": "294b31742ef3f87e13859714c402081845eaebd52e4691c716f5ed38c4013936"
+      "computedHash": ""
     }
   }
 }

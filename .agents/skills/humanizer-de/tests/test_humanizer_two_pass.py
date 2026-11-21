@@ -1,0 +1,1948 @@
+import importlib.util
+import json
+import tempfile
+import unittest
+from pathlib import Path
+from unittest import mock
+
+
+ROOT = Path(__file__).resolve().parents[1]
+SCRIPT = ROOT / "scripts" / "humanizer_two_pass.py"
+SPEC = importlib.util.spec_from_file_location("humanizer_two_pass", SCRIPT)
+two_pass = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(two_pass)
+
+
+class HumanizerTwoPassTests(unittest.TestCase):
+    def run_structure_case(self, original, candidate, replacement, proposed=None):
+        audit = {
+            "register": "sachlich",
+            "candidates": [candidate],
+            "advisories": [],
+            "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+        }
+        edits = {"edits": [{"candidate_id": candidate["id"], "replacement": replacement}]}
+        apply = two_pass.apply_edits if proposed is None else lambda *_args: proposed
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            source = temp / "source.md"
+            out = temp / "out"
+            source.write_bytes(original.encode("utf-8"))
+            with (
+                mock.patch.object(two_pass, "run_model", side_effect=[(audit, None), (edits, None)]),
+                mock.patch.object(two_pass, "apply_edits", side_effect=apply),
+                mock.patch.object(
+                    two_pass, "deterministic_audit", return_value={"preflight": {}, "findings": []}
+                ),
+                mock.patch.object(
+                    two_pass,
+                    "evidence_gate",
+                    return_value=({"findings": []}, {"mode": "default"}),
+                ),
+                mock.patch.object(
+                    two_pass.spell_lint,
+                    "lint",
+                    return_value={"ok": True, "available": True, "findings": []},
+                ),
+                mock.patch("builtins.print"),
+            ):
+                code = two_pass.main(["--file", str(source), "--out-dir", str(out)])
+            report = json.loads((out / "report.json").read_text(encoding="utf-8"))
+            output = out / ("result.md" if report["accepted"] else "rejected.md")
+            return code, report, output.read_text(encoding="utf-8")
+
+    def test_write_json_uses_utf8_bytes_with_lf(self):
+        path = mock.Mock()
+
+        two_pass.write_json(path, {"text": "Grüße"})
+
+        payload = path.write_bytes.call_args.args[0]
+        self.assertEqual(payload, b'{\n  "text": "Gr\xc3\xbc\xc3\x9fe"\n}\n')
+        self.assertNotIn(b"\r", payload)
+
+    def test_runtime_freeze_covers_imported_helpers(self):
+        self.assertIn(ROOT / "scripts" / "rhythm_lint.py", two_pass.runtime_files())
+        self.assertIn(ROOT / "scripts" / "text_scope.py", two_pass.runtime_files())
+        self.assertIn(ROOT / "references" / "style-targets.json", two_pass.runtime_files())
+
+    def test_runtime_freeze_rejects_tampered_previously_unhashed_helper(self):
+        audit = {
+            "register": "sachlich",
+            "candidates": [],
+            "advisories": [],
+            "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+        }
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            source, out = temp / "source.md", temp / "out"
+            source.write_text("Text.\n", encoding="utf-8")
+            target = temp / "rhythm_lint.py"
+            target.write_bytes((ROOT / "scripts" / "rhythm_lint.py").read_bytes())
+            original = target.read_bytes()
+
+            def tamper(*_args, **_kwargs):
+                target.write_bytes(original + b"\n")
+                return audit, None
+
+            runtime = tuple(two_pass.runtime_files()) + (target,)
+            with mock.patch.object(two_pass, "runtime_files", return_value=runtime), mock.patch.object(
+                two_pass, "run_model", side_effect=tamper
+            ), mock.patch("builtins.print"):
+                self.assertEqual(two_pass.main(["--file", str(source), "--out-dir", str(out)]), 2)
+            failure = json.loads((out / "failure.json").read_text(encoding="utf-8"))
+            self.assertIn("runtime files changed", failure["error"])
+
+    def test_finding_delta_preserves_duplicate_counts(self):
+        findings = [
+            {
+                "source": "rhythm",
+                "pattern": 61,
+                "kind": "connector_density",
+                "reason": "Konnektor-Dichte pro Absatz",
+                "paragraph": paragraph,
+            }
+            for paragraph in range(3)
+        ]
+
+        delta = two_pass.finding_delta(findings, findings[:1])
+
+        self.assertEqual(delta["resolved_findings"], findings[1:])
+        self.assertEqual(delta["persistent_findings"], findings[:1])
+        self.assertEqual(delta["introduced_findings"], [])
+
+    def test_confirmation_only_discards_candidates_touching_quotes_or_persona(self):
+        original = "Echt. Regional. Fakt 42 bleibt. Dynamisch und nahtlos."
+        ledger = {
+            "register": "sachlich",
+            "candidates": [
+                {"id": "c1", "source": "Echt.", "patterns": ["9"], "reason": "Form", "goal": "glätten", "action": "rewrite", "scope": "sentence"},
+                {"id": "c2", "source": "Fakt 42 bleibt.", "patterns": ["64"], "reason": "Form", "goal": "glätten", "action": "rewrite", "scope": "sentence"},
+                {"id": "c3", "source": "Dynamisch und nahtlos.", "patterns": ["64"], "reason": "Floskel", "goal": "konkret", "action": "rewrite", "scope": "sentence"},
+            ],
+            "protected": {
+                "facts": ["42"],
+                "quotes": [],
+                "terms": [],
+                "persona": ["Echt."],
+            },
+        }
+
+        confirmed = two_pass.confirm_ledger(original, ledger)
+
+        self.assertEqual([item["id"] for item in confirmed["candidates"]], ["c2", "c3"])
+        self.assertEqual(
+            confirmed["discarded_candidates"],
+            [{"id": "c1", "reason": "overlaps_protected_anchor"}],
+        )
+        result = two_pass.apply_edits(
+            original,
+            confirmed,
+            {
+                "edits": [
+                    {"candidate_id": "c2", "replacement": "Fakt 42 bleibt."},
+                    {"candidate_id": "c3", "replacement": "Konkret."},
+                ]
+            },
+        )
+        self.assertEqual(result, "Echt. Regional. Fakt 42 bleibt. Konkret.")
+        self.assertEqual(two_pass.protected_violations(original, result, confirmed), [])
+        with self.assertRaisesRegex(ValueError, "changed owned facts anchor"):
+            two_pass.apply_edits(
+                original,
+                confirmed,
+                {"edits": [{"candidate_id": "c2", "replacement": "Fakt bleibt."}]},
+            )
+
+    def test_protected_anchor_order_cannot_change(self):
+        ledger = {
+            "protected": {"facts": ["Alice", "Bob"], "quotes": [], "terms": [], "persona": []}
+        }
+
+        self.assertEqual(
+            two_pass.protected_violations("Alice folgt Bob.", "Bob folgt Alice.", ledger),
+            ["protected anchor order changed"],
+        )
+        self.assertEqual(
+            two_pass.protected_violations(
+                "Alice Bob Alice Bob",
+                "Alice Alice Bob Bob",
+                ledger,
+            ),
+            ["protected anchor order changed"],
+        )
+        self.assertEqual(
+            two_pass.protected_violations(
+                "Das Enzympräparat hilft.",
+                "Die Enzympräparate helfen.",
+                {"protected": {"facts": [], "quotes": [], "terms": ["Enzympräparat"], "persona": []}},
+            ),
+            ["terms: anchor count changed: 'Enzympräparat'"],
+        )
+
+    def test_main_reports_unchanged_structure_for_accepted_rewrite(self):
+        candidate = {
+            "id": "c1",
+            "source": "smarte",
+            "patterns": ["2"],
+            "reason": "Floskel",
+            "goal": "streichen",
+            "action": "delete",
+            "scope": "phrase",
+        }
+
+        code, report, output = self.run_structure_case(
+            "Die smarte Lösung.\n", candidate, ""
+        )
+
+        self.assertEqual(code, 0)
+        self.assertTrue(report["structure"]["ok"])
+        self.assertEqual(report["structure"]["differences"], [])
+        self.assertEqual(output, "Die Lösung.\n")
+
+    def test_main_rejects_added_heading_as_structure_drift(self):
+        original = "Warum X die richtige Wahl ist\nInhalt.\n"
+        proposed = "# Warum X die richtige Wahl ist\nInhalt.\n"
+        candidate = {
+            "id": "c1",
+            "source": "Warum X die richtige Wahl ist\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "glätten",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(
+            original, candidate, "# Warum X die richtige Wahl ist\n", proposed
+        )
+
+        self.assertEqual(code, 1)
+        self.assertFalse(report["structure"]["ok"])
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "heading_added")
+        self.assertEqual(report["protected_violations"][0]["kind"], "structure_drift")
+        self.assertEqual(output, proposed)
+
+    def test_main_rejects_changed_link_target_as_structure_drift(self):
+        original = "Mehr steht in der [Dokumentation](https://example.com/alt).\n"
+        replacement = "Mehr steht in der [Dokumentation](https://example.com/neu).\n"
+        candidate = {
+            "id": "c1",
+            "source": original,
+            "patterns": ["64"],
+            "reason": "Floskel",
+            "goal": "glätten",
+            "action": "rewrite",
+            "scope": "sentence",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, replacement)
+
+        self.assertEqual(code, 1)
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "link_target_changed")
+        self.assertEqual(report["protected_violations"][0]["kind"], "structure_drift")
+        self.assertEqual(output, replacement)
+
+    def test_main_rejects_swapped_link_targets_as_structure_drift(self):
+        original = "[Alpha](https://a.example) und [Beta](https://b.example).\n"
+        replacement = "[Alpha](https://b.example) und [Beta](https://a.example).\n"
+        candidate = {
+            "id": "c1",
+            "source": original,
+            "patterns": ["64"],
+            "reason": "Floskel",
+            "goal": "glätten",
+            "action": "rewrite",
+            "scope": "sentence",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, replacement)
+
+        self.assertEqual(code, 1)
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "link_association_changed")
+        self.assertEqual(report["protected_violations"][0]["kind"], "structure_drift")
+        self.assertEqual(output, replacement)
+
+    def test_main_accepts_moved_links_with_targets_attached(self):
+        original = "[Alpha](https://a.example) und [Beta](https://b.example).\n"
+        replacement = "[Beta](https://b.example) und [Alpha](https://a.example).\n"
+        candidate = {
+            "id": "c1",
+            "source": original,
+            "patterns": ["64"],
+            "reason": "Floskel",
+            "goal": "glätten",
+            "action": "rewrite",
+            "scope": "sentence",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, replacement)
+
+        self.assertEqual(code, 0)
+        self.assertTrue(report["structure"]["ok"])
+        self.assertEqual(output, replacement)
+
+    def test_main_accepts_authorized_heading_delete(self):
+        original = "# Warum X die richtige Wahl ist\nInhalt.\n"
+        candidate = {
+            "id": "c1",
+            "source": "# Warum X die richtige Wahl ist\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "streichen",
+            "action": "delete",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, "")
+
+        self.assertEqual(code, 0)
+        self.assertTrue(report["structure"]["ok"])
+        self.assertEqual(output, "Inhalt.\n")
+
+    def test_main_accepts_authorized_heading_rewrite(self):
+        original = "# Warum X die richtige Wahl ist\nInhalt.\n"
+        candidate = {
+            "id": "c1",
+            "source": "# Warum X die richtige Wahl ist\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(
+            original, candidate, "# Warum X passt\n"
+        )
+
+        self.assertEqual(code, 0)
+        self.assertTrue(report["structure"]["ok"])
+        self.assertEqual(output, "# Warum X passt\nInhalt.\n")
+
+    def test_main_rejects_heading_rewrites_in_html_technical_regions(self):
+        candidate = {
+            "id": "c1",
+            "source": "# example comment\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+        wrappers = (
+            "<pre>\n{}\n</pre>\n",
+            "<script>\n{}\n</script>\n",
+            "<style>\n{}\n</style>\n",
+            "<textarea>\n{}\n</textarea>\n",
+            "<!--\n{}\n-->\n",
+        )
+
+        for wrapper in wrappers:
+            for action, replacement in (("rewrite", "# changed\n"), ("delete", "")):
+                with self.subTest(wrapper=wrapper, action=action):
+                    original = wrapper.format("# example comment")
+                    candidate["action"] = action
+                    code, report, output = self.run_structure_case(
+                        original, candidate, replacement
+                    )
+
+                    self.assertEqual(code, 1)
+                    self.assertFalse(report["accepted"])
+                    self.assertFalse(report["structure"]["ok"])
+                    self.assertEqual(
+                        output,
+                        original.replace(
+                            "# example comment\n", replacement or "\n"
+                        ),
+                    )
+
+    def test_main_accepts_heading_rewrites_after_html_literals_in_code(self):
+        candidate = {
+            "id": "c1",
+            "source": "# Generic\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+        originals = (
+            "`<pre>`\n\n# Generic\nText.\n",
+            "`<!--`\n\n# Generic\nText.\n",
+            "```html\n<pre>\n```\n\n# Generic\nText.\n",
+            "```html\n<!--\n```\n\n# Generic\nText.\n",
+            "---\nexample: <pre>\n---\n\n# Generic\nText.\n",
+            "---\nexample: <!--\n---\n\n# Generic\nText.\n",
+        )
+
+        for original in originals:
+            with self.subTest(original=original):
+                code, report, output = self.run_structure_case(
+                    original, candidate, "# Better\n"
+                )
+
+                self.assertEqual(code, 0)
+                self.assertTrue(report["accepted"])
+                self.assertTrue(report["structure"]["ok"])
+                self.assertEqual(output, original.replace("# Generic\n", "# Better\n"))
+
+    def test_main_rejects_heading_rewrites_inside_commonmark_type6_blocks(self):
+        candidate = {
+            "id": "c1",
+            "source": "# generic\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        for tag in ("div", "table", "iframe"):
+            originals = (
+                f"<{tag}>\n# generic\n</{tag}>\n",
+                f"<{tag}>\n`literal`\n# generic\n</{tag}>\n",
+            )
+            for original in originals:
+                with self.subTest(tag=tag, original=original):
+                    code, report, _ = self.run_structure_case(
+                        original, candidate, "# changed\n"
+                    )
+
+                    self.assertEqual(code, 1)
+                    self.assertFalse(report["accepted"])
+                    self.assertFalse(report["structure"]["ok"])
+
+    def test_main_rejects_heading_rewrite_inside_custom_tag_without_blank(self):
+        candidate = {
+            "id": "c1",
+            "source": "# generic\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        for original in (
+            "<custom-widget>\n# generic\n</custom-widget>\n",
+            '<custom-widget title="a > b">\n# generic\n</custom-widget>\n',
+        ):
+            with self.subTest(original=original):
+                code, report, _ = self.run_structure_case(
+                    original, candidate, "# changed\n"
+                )
+
+                self.assertEqual(code, 1)
+                self.assertFalse(report["accepted"])
+                self.assertFalse(report["structure"]["ok"])
+
+    def test_main_does_not_treat_spaced_raw_close_as_terminator(self):
+        original = "<pre>\n</pre >\n# generic\n</pre>\n"
+        candidate = {
+            "id": "c1",
+            "source": "# generic\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        code, report, _ = self.run_structure_case(original, candidate, "# changed\n")
+
+        self.assertEqual(code, 1)
+        self.assertFalse(report["accepted"])
+        self.assertFalse(report["structure"]["ok"])
+
+    def test_main_rejects_heading_rewrite_inside_multiline_html_openers(self):
+        candidate = {
+            "id": "c1",
+            "source": "# generic\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+        originals = (
+            '<pre\n  class="example">\n# generic\n</pre>\n',
+            '<div\n  class="example">\n# generic\n</div>\n',
+        )
+
+        for original in originals:
+            with self.subTest(original=original):
+                code, report, _ = self.run_structure_case(
+                    original, candidate, "# changed\n"
+                )
+
+                self.assertEqual(code, 1)
+                self.assertFalse(report["accepted"])
+                self.assertFalse(report["structure"]["ok"])
+
+    def test_main_rejects_heading_delete_that_changes_indented_code_scope(self):
+        original = "- item\n# generic\n\n    print('hello')\n"
+        candidate = {
+            "id": "c1",
+            "source": "# generic\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "streichen",
+            "action": "delete",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, "")
+
+        self.assertEqual(code, 1)
+        self.assertFalse(report["accepted"])
+        self.assertTrue(
+            any(
+                difference["kind"] == "indented_code_removed"
+                for difference in report["structure"]["differences"]
+            )
+        )
+        self.assertEqual(output, "- item\n\n    print('hello')\n")
+
+    def test_main_accepts_heading_after_commonmark_html_block_terminators(self):
+        candidate = {
+            "id": "c1",
+            "source": "# generic\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+        originals = (
+            "<div>\n# earlier\n</div>\n\n# generic\nText.\n",
+            "<custom-widget>\n\n# generic\nText.\n",
+        )
+
+        for original in originals:
+            with self.subTest(original=original):
+                code, report, output = self.run_structure_case(
+                    original, candidate, "# Better\n"
+                )
+
+                self.assertEqual(code, 0)
+                self.assertTrue(report["accepted"])
+                self.assertTrue(report["structure"]["ok"])
+                self.assertEqual(output, original.replace("# generic\n", "# Better\n"))
+
+    def test_main_rejects_heading_rewrites_inside_commonmark_types_three_to_five(self):
+        candidate = {
+            "id": "c1",
+            "source": "# generic\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+        originals = (
+            "<?xml\n# generic\n?>\n",
+            "<![CDATA[\n# generic\n]]>\n",
+            "<!DOCTYPE html\n# generic\n>\n",
+        )
+
+        for original in originals:
+            with self.subTest(original=original):
+                code, report, _ = self.run_structure_case(
+                    original, candidate, "# changed\n"
+                )
+
+                self.assertEqual(code, 1)
+                self.assertFalse(report["accepted"])
+                self.assertFalse(report["structure"]["ok"])
+
+    def test_plain_atx_heading_authorization_rejects_tabs_and_embedded_cr(self):
+        self.assertFalse(two_pass.is_plain_atx_heading("\t# generic\n"))
+        self.assertFalse(two_pass.is_plain_atx_heading("# generic\rnext\n"))
+        self.assertFalse(two_pass.is_plain_atx_heading("#\n"))
+
+    def test_main_rejects_level_change_for_empty_atx_heading(self):
+        original = "#\nText.\n"
+        candidate = {
+            "id": "c1",
+            "source": "#\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, "##\n")
+
+        self.assertEqual(code, 1)
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "heading_changed")
+        self.assertEqual(output, "##\nText.\n")
+
+    def test_main_rejects_tab_indented_code_heading_delete(self):
+        original = "\t# Generic\nText.\n"
+        candidate = {
+            "id": "c1",
+            "source": "\t# Generic\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "streichen",
+            "action": "delete",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, "")
+
+        self.assertEqual(code, 1)
+        self.assertFalse(report["accepted"])
+        self.assertEqual(output, "Text.\n")
+
+    def test_main_rejects_link_target_change_in_technical_heading(self):
+        original = "# [Alpha](https://a.example) und [Beta](https://b.example)\n"
+        replacement = "# [Alpha](https://b.example) und [Beta](https://a.example)\n"
+        candidate = {
+            "id": "c1",
+            "source": original,
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, replacement)
+
+        self.assertEqual(code, 1)
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "heading_changed")
+        self.assertEqual(output, replacement)
+
+    def test_main_rejects_reference_link_removal_in_technical_heading(self):
+        original = "# [Alpha][a]\n\n[a]: https://a.example\n"
+        replacement = "# Alpha\n\n[a]: https://a.example\n"
+        candidate = {
+            "id": "c1",
+            "source": "# [Alpha][a]\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, "# Alpha\n")
+
+        self.assertEqual(code, 1)
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "heading_changed")
+        self.assertEqual(output, replacement)
+
+    def test_main_preserves_setext_neighbor_when_deleting_heading(self):
+        original = "Before\n# Generic\nAfter\n---\n"
+        candidate = {
+            "id": "c1",
+            "source": "# Generic\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "streichen",
+            "action": "delete",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, "")
+
+        self.assertEqual(code, 0)
+        self.assertTrue(report["structure"]["ok"])
+        self.assertEqual(output, "Before\n\nAfter\n---\n")
+
+    def test_main_rejects_setext_heading_delete(self):
+        original = "Generic headline\n---\nText.\n"
+        candidate = {
+            "id": "c1",
+            "source": "Generic headline\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "streichen",
+            "action": "delete",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, "")
+
+        self.assertEqual(code, 1)
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "heading_removed")
+        self.assertEqual(output, "---\nText.\n")
+
+    def test_main_rejects_setext_title_rewrites(self):
+        original = "Generic headline\n---\nText.\n"
+        candidate = {
+            "id": "c1",
+            "source": "Generic headline\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        for replacement in ("\n", "<div>\n"):
+            with self.subTest(replacement=replacement):
+                code, report, output = self.run_structure_case(
+                    original, candidate, replacement
+                )
+
+                self.assertEqual(code, 1)
+                self.assertTrue(report["structure"]["differences"])
+                self.assertEqual(output, replacement + "---\nText.\n")
+
+    def test_main_rejects_setext_underline_level_rewrite(self):
+        original = "Generic headline\n===\nText.\n"
+        candidate = {
+            "id": "c1",
+            "source": "===\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, "--\n")
+
+        self.assertEqual(code, 1)
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "heading_changed")
+        self.assertEqual(output, "Generic headline\n--\nText.\n")
+
+    def test_main_rejects_nested_link_markup_removal_from_heading(self):
+        original = "# [Alpha [Beta]](https://example.com)\n"
+        replacement = "# Alpha Beta url\n"
+        candidate = {
+            "id": "c1",
+            "source": original,
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, replacement)
+
+        self.assertEqual(code, 1)
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "heading_changed")
+        self.assertEqual(output, replacement)
+
+    def test_main_rejects_multiline_reference_markup_removal_from_heading(self):
+        original = "# [Alpha][a]\n\n[a]:\n  https://a.example\n"
+        replacement = "# Alpha\n\n[a]:\n  https://a.example\n"
+        candidate = {
+            "id": "c1",
+            "source": "# [Alpha][a]\n",
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, "# Alpha\n")
+
+        self.assertEqual(code, 1)
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "heading_changed")
+        self.assertEqual(output, replacement)
+
+    def test_main_rejects_html_markup_added_to_plain_heading(self):
+        original = "# Plain heading\n"
+        replacement = "# <div>heading</div>\n"
+        candidate = {
+            "id": "c1",
+            "source": original,
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, replacement)
+
+        self.assertEqual(code, 1)
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "heading_changed")
+        self.assertEqual(output, replacement)
+
+    def test_main_rejects_inline_code_change_in_technical_heading(self):
+        original = "# Run `make test`\n"
+        replacement = "# Run `make check`\n"
+        candidate = {
+            "id": "c1",
+            "source": original,
+            "patterns": ["64"],
+            "reason": "Schablone",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, replacement)
+
+        self.assertEqual(code, 1)
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "heading_changed")
+        self.assertEqual(output, replacement)
+
+    def test_main_rejects_changed_code_block_as_structure_drift(self):
+        original = "```python\nprint('alt')\n```\n"
+        replacement = "print('neu')\n"
+        candidate = {
+            "id": "c1",
+            "source": "print('alt')\n",
+            "patterns": ["64"],
+            "reason": "Floskel",
+            "goal": "glätten",
+            "action": "rewrite",
+            "scope": "heading",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, replacement)
+
+        self.assertEqual(code, 1)
+        self.assertEqual(report["structure"]["differences"][0]["kind"], "code_changed")
+        self.assertEqual(report["protected_violations"][0]["kind"], "structure_drift")
+        self.assertEqual(output, "```python\nprint('neu')\n```\n")
+
+    def test_main_accepts_prose_rewrite_with_unchanged_inline_code(self):
+        original = "Der Befehl `make test` ist unnötig kompliziert.\n"
+        replacement = "Der Befehl `make test` ist einfach.\n"
+        candidate = {
+            "id": "c1",
+            "source": original,
+            "patterns": ["64"],
+            "reason": "Floskel",
+            "goal": "glätten",
+            "action": "rewrite",
+            "scope": "sentence",
+        }
+
+        code, report, output = self.run_structure_case(original, candidate, replacement)
+
+        self.assertEqual(code, 0)
+        self.assertEqual(report["structure"], {"ok": True, "differences": []})
+        self.assertEqual(output, replacement)
+
+    def test_candidate_contract_rejects_ambiguous_overlap_and_unknown_edits(self):
+        candidate = {"id": "c1", "source": "aa", "patterns": ["9"], "reason": "Form", "goal": "ändern", "action": "rewrite", "scope": "phrase"}
+        with self.assertRaisesRegex(ValueError, "exactly once"):
+            two_pass.candidate_spans("aaa", [candidate])
+        with self.assertRaisesRegex(ValueError, "exactly once"):
+            two_pass.candidate_spans("Smartphone", [{**candidate, "source": "Smart"}])
+
+        overlapping = [
+            {"id": "c1", "source": "(abc)", "patterns": ["9"], "reason": "Form", "goal": "ändern", "action": "rewrite", "scope": "phrase"},
+            {"id": "c2", "source": "abc", "patterns": ["9"], "reason": "Form", "goal": "ändern", "action": "rewrite", "scope": "phrase"},
+        ]
+        with self.assertRaisesRegex(ValueError, "overlapping"):
+            two_pass.candidate_spans("(abc)", overlapping)
+
+        ledger = {"candidates": [], "protected": {"facts": [], "quotes": [], "terms": [], "persona": []}}
+        with self.assertRaisesRegex(ValueError, "unknown candidate"):
+            two_pass.apply_edits("Text.", ledger, {"edits": [{"candidate_id": "c9", "replacement": "Neu."}]})
+
+    def test_confirmation_rejects_descriptive_protection_anchor(self):
+        ledger = {
+            "register": "locker",
+            "candidates": [],
+            "protected": {
+                "facts": [],
+                "quotes": [],
+                "terms": [],
+                "persona": ["Wir-Erzählstimme des Familienbetriebs"],
+            },
+        }
+
+        with self.assertRaisesRegex(ValueError, "anchor missing from original"):
+            two_pass.confirm_ledger("Wir backen seit drei Generationen.", ledger)
+
+    def test_confirmation_rejects_ambiguous_regrounding(self):
+        ledger = {
+            "register": "sachlich",
+            "candidates": [],
+            "protected": {"facts": [], "quotes": [], "terms": ["System"], "persona": []},
+        }
+
+        with self.assertRaisesRegex(ValueError, "anchor ambiguous in original"):
+            two_pass.confirm_ledger("Systeme helfen. Systeme lernen.", ledger)
+
+    def test_confirmation_leaves_exact_anchor_untouched(self):
+        ledger = {
+            "register": "sachlich",
+            "candidates": [],
+            "protected": {"facts": [], "quotes": [], "terms": ["System"], "persona": []},
+        }
+
+        confirmed = two_pass.confirm_ledger("Das System hilft.", ledger)
+
+        self.assertEqual(confirmed["protected"]["terms"], ["System"])
+        self.assertEqual(confirmed["reanchored"], [])
+
+    def test_reground_anchor_tolerates_quote_variants(self):
+        self.assertEqual(two_pass.reground_anchor("Er sagt „Wort“.", '„Wort"'), "„Wort“")
+
+    def test_reground_anchor_tolerates_four_character_suffix(self):
+        self.assertEqual(
+            two_pass.reground_anchor("Status des Backup-Dienstes: aktiv.", "Backup-Dienst"),
+            "Backup-Dienstes",
+        )
+
+    def test_confirmation_discards_invalid_multisentence_candidate_only(self):
+        invalid = {
+            "id": "c1",
+            "source": "Ganz einfach. Ganz schnell. Ganz ohne ELSTER.",
+            "action": "delete",
+            "scope": "sentence",
+        }
+        valid = {
+            "id": "c2",
+            "source": "smarte",
+            "action": "delete",
+            "scope": "phrase",
+        }
+        confirmed = two_pass.confirm_ledger(
+            "Ganz einfach. Ganz schnell. Ganz ohne ELSTER. Die smarte Lösung.",
+            {
+                "register": "sachlich",
+                "candidates": [invalid, valid],
+                "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+            },
+        )
+
+        self.assertEqual(confirmed["candidates"], [valid])
+        self.assertEqual(
+            confirmed["discarded_candidates"],
+            [{"id": "c1", "reason": "invalid_candidate_contract"}],
+        )
+
+    def test_occurrence_addresses_duplicate_sentence_fixture(self):
+        original = "Jetzt starten. Dazwischen. Jetzt starten.\n"
+        candidate = {
+            "id": "c1",
+            "source": "Jetzt starten.",
+            "patterns": ["2"],
+            "reason": "CTA-Schablone",
+            "goal": "präzisieren",
+            "action": "rewrite",
+            "scope": "sentence",
+            "occurrence": 2,
+        }
+
+        ambiguous = two_pass.confirm_ledger(
+            original,
+            {
+                "register": "sachlich",
+                "candidates": [{key: value for key, value in candidate.items() if key != "occurrence"}],
+                "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+            },
+        )
+        invalid = two_pass.confirm_ledger(
+            original,
+            {
+                "register": "sachlich",
+                "candidates": [{**candidate, "occurrence": 3}],
+                "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+            },
+        )
+        code, report, output = self.run_structure_case(
+            original, candidate, "Später prüfen."
+        )
+
+        self.assertEqual(ambiguous["discarded_candidates"], [{"id": "c1", "reason": "ambiguous_source"}])
+        self.assertEqual(invalid["discarded_candidates"], [{"id": "c1", "reason": "invalid_occurrence"}])
+        self.assertEqual(code, 0)
+        self.assertTrue(report["accepted"])
+        self.assertEqual(output, "Jetzt starten. Dazwischen. Später prüfen.\n")
+
+    def test_occurrence_addresses_duplicate_heading_fixture(self):
+        original = "## Jetzt starten\nText.\n\n## Jetzt starten\nMehr Text.\n"
+        candidate = {
+            "id": "c1",
+            "source": "## Jetzt starten\n",
+            "patterns": ["2"],
+            "reason": "generische Überschrift",
+            "goal": "präzisieren",
+            "action": "rewrite",
+            "scope": "heading",
+            "occurrence": 2,
+        }
+
+        with tempfile.TemporaryDirectory() as temp_name:
+            source = Path(temp_name) / "source.md"
+            source.write_bytes(original.encode("utf-8"))
+            fixture = source.read_bytes().decode("utf-8")
+            confirmed = two_pass.confirm_ledger(
+                fixture,
+                {
+                    "register": "sachlich",
+                    "candidates": [candidate],
+                    "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+                },
+            )
+            output = two_pass.apply_edits(
+                fixture,
+                confirmed,
+                {"edits": [{"candidate_id": "c1", "replacement": "## Voraussetzungen\n"}]},
+            )
+
+        self.assertEqual(confirmed["candidates"], [candidate])
+        self.assertEqual(
+            output,
+            "## Jetzt starten\nText.\n\n## Voraussetzungen\nMehr Text.\n",
+        )
+
+    def test_empty_replacement_does_not_leave_double_space(self):
+        ledger = {
+            "candidates": [
+                {"id": "c1", "source": "smarte", "patterns": ["2"], "reason": "Floskel", "goal": "streichen", "action": "delete", "scope": "phrase"}
+            ]
+        }
+
+        result = two_pass.apply_edits(
+            "Die smarte Lösung.", ledger, {"edits": [{"candidate_id": "c1", "replacement": ""}]}
+        )
+
+        self.assertEqual(result, "Die Lösung.")
+        self.assertEqual(
+            two_pass.apply_edits(
+                "Die App synchronisiert nahtlos.",
+                {"candidates": [{**ledger["candidates"][0], "source": "nahtlos"}]},
+                {"edits": [{"candidate_id": "c1", "replacement": ""}]},
+            ),
+            "Die App synchronisiert.",
+        )
+
+        heading = {**ledger["candidates"][0], "source": "Werbezeile\n", "scope": "heading"}
+        self.assertEqual(
+            two_pass.apply_edits(
+                "Absatz.\n\nWerbezeile\n\nWeiter.\n",
+                {"candidates": [heading]},
+                {"edits": [{"candidate_id": "c1", "replacement": ""}]},
+            ),
+            "Absatz.\n\nWeiter.\n",
+        )
+        crlf_heading = {**heading, "source": "Werbezeile\r\n"}
+        self.assertEqual(
+            two_pass.apply_edits(
+                "Absatz.\r\n\r\nWerbezeile\r\n\r\nWeiter.\r\n",
+                {"candidates": [crlf_heading]},
+                {"edits": [{"candidate_id": "c1", "replacement": ""}]},
+            ),
+            "Absatz.\r\n\r\nWeiter.\r\n",
+        )
+
+        sentence = {**heading, "source": "Werbung.", "scope": "sentence"}
+        self.assertEqual(
+            two_pass.apply_edits(
+                "Sachlich. Werbung.\n",
+                {"candidates": [sentence]},
+                {"edits": [{"candidate_id": "c1", "replacement": ""}]},
+            ),
+            "Sachlich.\n",
+        )
+        self.assertEqual(
+            two_pass.apply_edits(
+                "A.\n\nWerbung.\n\nB.\n",
+                {"candidates": [sentence]},
+                {"edits": [{"candidate_id": "c1", "replacement": ""}]},
+            ),
+            "A.\n\nB.\n",
+        )
+
+        self.assertEqual(
+            two_pass.apply_edits(
+                "Werbung.\n\nSachlich.\n",
+                {"candidates": [sentence]},
+                {"edits": [{"candidate_id": "c1", "replacement": ""}]},
+            ),
+            "Sachlich.\n",
+        )
+        self.assertEqual(
+            two_pass.apply_edits(
+                "Werbung.\n\n    code block\n",
+                {"candidates": [sentence]},
+                {"edits": [{"candidate_id": "c1", "replacement": ""}]},
+            ),
+            "    code block\n",
+        )
+        sentence_with_newline = {**sentence, "source": "Werbung.\n"}
+        self.assertEqual(
+            two_pass.apply_edits(
+                "Werbung.\n    if x:\n",
+                {"candidates": [sentence_with_newline]},
+                {"edits": [{"candidate_id": "c1", "replacement": ""}]},
+            ),
+            "    if x:\n",
+        )
+        adjective = {**ledger["candidates"][0], "id": "c2"}
+        self.assertEqual(
+            two_pass.apply_edits(
+                "Werbung.\n    if x: smarte Lösung\n",
+                {"candidates": [sentence_with_newline, adjective]},
+                {
+                    "edits": [
+                        {"candidate_id": "c1", "replacement": ""},
+                        {"candidate_id": "c2", "replacement": ""},
+                    ]
+                },
+            ),
+            "    if x: Lösung\n",
+        )
+
+    def test_rewrite_candidate_requires_nonempty_replacement(self):
+        candidate = {
+            "id": "c1",
+            "source": "Dynamisch.",
+            "patterns": ["2"],
+            "reason": "Floskel",
+            "goal": "konkretisieren",
+            "action": "rewrite",
+            "scope": "sentence",
+        }
+
+        with self.assertRaisesRegex(ValueError, "empty replacement"):
+            two_pass.apply_edits(
+                "Dynamisch.",
+                {"candidates": [candidate], "protected": {}},
+                {"edits": [{"candidate_id": "c1", "replacement": ""}]},
+            )
+        for replacement in (
+            "Konkret",
+            "Konkret.\n# Neu",
+            "# Neu.",
+            "- Konkret.",
+            "> Konkret.",
+            "1. Konkret.",
+            "    Konkret.",
+        ):
+            with self.assertRaisesRegex(ValueError, "line structure"):
+                two_pass.apply_edits(
+                    "Dynamisch.",
+                    {"candidates": [candidate], "protected": {}},
+                    {"edits": [{"candidate_id": "c1", "replacement": replacement}]},
+                )
+
+        heading = {**candidate, "source": "Dynamisch\n", "scope": "heading"}
+        with self.assertRaisesRegex(ValueError, "line structure"):
+            two_pass.apply_edits(
+                "Dynamisch\nFolgezeile.\n",
+                {"candidates": [heading], "protected": {}},
+                {"edits": [{"candidate_id": "c1", "replacement": "Konkret"}]},
+            )
+        for replacement in ("Erste Zeile\nZweite Zeile\n", "Konkret\r\n"):
+            with self.assertRaisesRegex(ValueError, "line structure"):
+                two_pass.apply_edits(
+                    "Dynamisch\nFolgezeile.\n",
+                    {"candidates": [heading], "protected": {}},
+                    {"edits": [{"candidate_id": "c1", "replacement": replacement}]},
+                )
+
+        phrase = {**candidate, "source": "die intelligente App.", "scope": "phrase"}
+        phrase_ledger = {
+            "candidates": [phrase],
+            "protected": {"facts": [], "terms": []},
+        }
+        for replacement in ("die App", "die App!"):
+            with self.assertRaisesRegex(ValueError, "line structure"):
+                two_pass.apply_edits(
+                    "Das ist: die intelligente App.",
+                    phrase_ledger,
+                    {"edits": [{"candidate_id": "c1", "replacement": replacement}]},
+                )
+        self.assertEqual(
+            two_pass.apply_edits(
+                "Das ist: die intelligente App.",
+                phrase_ledger,
+                {"edits": [{"candidate_id": "c1", "replacement": "die App."}]},
+            ),
+            "Das ist: die App.",
+        )
+        markdown_heading = {**heading, "source": "# Dynamisch\n"}
+        with self.assertRaisesRegex(ValueError, "line structure"):
+            two_pass.apply_edits(
+                "# Dynamisch\nFolgezeile.\n",
+                {"candidates": [markdown_heading], "protected": {}},
+                {"edits": [{"candidate_id": "c1", "replacement": "Konkret\n"}]},
+            )
+        plain_heading = {**heading, "source": "Dynamisch\n"}
+        for replacement in ("### Konkret\n", "- Konkret\n", "---\n"):
+            with self.assertRaisesRegex(ValueError, "line structure"):
+                two_pass.apply_edits(
+                    "Dynamisch\nFolgezeile.\n",
+                    {"candidates": [plain_heading], "protected": {}},
+                    {"edits": [{"candidate_id": "c1", "replacement": replacement}]},
+                )
+
+    def test_structural_scope_and_delete_policy_block_relabeling(self):
+        heading = {
+            "id": "c1",
+            "source": "die richtige Wahl ist",
+            "patterns": ["2"],
+            "reason": "generische Überschrift",
+            "goal": "streichen",
+            "action": "delete",
+            "scope": "heading",
+        }
+        with self.assertRaisesRegex(ValueError, "complete line"):
+            two_pass.candidate_spans("Warum X die richtige Wahl ist\nInhalt.", [heading])
+
+        sentence = {**heading, "source": "können nicht irren.", "scope": "sentence"}
+        with self.assertRaisesRegex(ValueError, "complete sentence"):
+            two_pass.candidate_spans("3.400 Betriebe können nicht irren.", [sentence])
+        abbreviation_fragment = {**heading, "source": "eine smarte Lösung.", "scope": "sentence"}
+        with self.assertRaisesRegex(ValueError, "complete sentence"):
+            two_pass.candidate_spans("Das ist z. B. eine smarte Lösung.", [abbreviation_fragment])
+        multiple_sentences = {**heading, "source": "Werbung. Noch mehr Werbung.", "scope": "sentence"}
+        with self.assertRaisesRegex(ValueError, "complete sentence"):
+            two_pass.candidate_spans("Werbung. Noch mehr Werbung.", [multiple_sentences])
+        after_quote = {**heading, "source": "Danach geht es weiter.", "scope": "sentence"}
+        self.assertEqual(
+            two_pass.candidate_spans("Er sagt: „So ist es.“ Danach geht es weiter.", [after_quote])["c1"][:2],
+            (len("Er sagt: „So ist es.“ "), len("Er sagt: „So ist es.“ Danach geht es weiter.")),
+        )
+
+        list_sentence = {**heading, "source": "Werbung.", "scope": "sentence"}
+        with self.assertRaisesRegex(ValueError, "complete sentence"):
+            two_pass.candidate_spans("1. Werbung.\n", [list_sentence])
+        markdown_heading = {**heading, "source": "# Warum X?", "scope": "sentence"}
+        with self.assertRaisesRegex(ValueError, "complete sentence"):
+            two_pass.candidate_spans("# Warum X?\nInhalt.\n", [markdown_heading])
+        full_list_item = {**heading, "source": "- Werbung.\n", "action": "rewrite", "scope": "sentence"}
+        self.assertEqual(
+            two_pass.candidate_spans("- Werbung.\n- Weiter.\n", [full_list_item])["c1"][:2],
+            (0, len("- Werbung.\n")),
+        )
+        with self.assertRaisesRegex(ValueError, "line structure"):
+            two_pass.apply_edits(
+                "- Werbung.\n- Weiter.\n",
+                {"candidates": [full_list_item], "protected": {}},
+                {"edits": [{"candidate_id": "c1", "replacement": "Sachlich."}]},
+            )
+
+        full_heading = {**heading, "source": "Warum X die richtige Wahl ist\n"}
+        ledger = {
+            "candidates": [full_heading],
+            "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+        }
+        with self.assertRaisesRegex(ValueError, "delete-only"):
+            two_pass.apply_edits(
+                "Warum X die richtige Wahl ist\nInhalt.",
+                ledger,
+                {"edits": [{"candidate_id": "c1", "replacement": "Warum X passt\n"}]},
+            )
+
+        partial = {
+            **heading,
+            "source": "Über 42 Betriebe vertrauen bereits",
+            "action": "rewrite",
+            "scope": "phrase",
+        }
+        confirmed = two_pass.confirm_ledger(
+            "Über 42 Betriebe vertrauen bereits auf X.",
+            {
+                "register": "sachlich",
+                "candidates": [partial],
+                "protected": {"facts": ["42"], "quotes": [], "terms": [], "persona": []},
+            },
+        )
+        self.assertEqual(confirmed["candidates"], [])
+        self.assertEqual(confirmed["discarded_candidates"][0]["reason"], "partial_structural_unit")
+
+        for original, source in (
+            ("Warum RechnungsHeld die Wahl ist\n", "die Wahl ist"),
+            ("## Warum RechnungsHeld?\n", "RechnungsHeld"),
+            ("Über 3.400 Betriebe können nicht irren.\n", "können nicht irren"),
+        ):
+            interior = {**partial, "source": source}
+            confirmed = two_pass.confirm_ledger(
+                original,
+                {
+                    "register": "sachlich",
+                    "candidates": [interior],
+                    "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+                },
+            )
+            self.assertEqual(confirmed["candidates"], [])
+            self.assertEqual(confirmed["discarded_candidates"][0]["reason"], "partial_structural_unit")
+
+        for original, source in (
+            ("Er sagt: „So ist es.“ Smarte Lösung.", "Smarte"),
+            ("- Smarte Lösung.\n", "Smarte"),
+            ("> Smarte Lösung.\n", "Smarte"),
+        ):
+            sentence_start = {**partial, "source": source}
+            confirmed = two_pass.confirm_ledger(
+                original,
+                {
+                    "register": "sachlich",
+                    "candidates": [sentence_start],
+                    "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+                },
+            )
+            self.assertEqual(confirmed["candidates"], [])
+
+        bounded = {**partial, "source": "die intelligente App, die viel tut."}
+        confirmed = two_pass.confirm_ledger(
+            "Konkret heißt das: die intelligente App, die viel tut.",
+            {
+                "register": "sachlich",
+                "candidates": [bounded],
+                "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+            },
+        )
+        self.assertEqual(confirmed["candidates"], [bounded])
+
+        for original, source in (
+            ("Die Lösung ist schnell, smart, sicher.", "smart"),
+            ("Die Lösung ist **smart**.", "smart"),
+        ):
+            skeleton = {**partial, "source": source, "action": "delete"}
+            confirmed = two_pass.confirm_ledger(
+                original,
+                {
+                    "register": "sachlich",
+                    "candidates": [skeleton],
+                    "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+                },
+            )
+            self.assertEqual(confirmed["candidates"], [])
+            self.assertEqual(confirmed["discarded_candidates"][0]["reason"], "partial_structural_unit")
+
+    def test_delete_cannot_remove_unique_fact_but_may_remove_duplicate(self):
+        candidate = {
+            "id": "c1",
+            "source": "Fakt 42.\n",
+            "patterns": ["2"],
+            "reason": "Schablone",
+            "goal": "streichen",
+            "action": "delete",
+            "scope": "heading",
+        }
+        ledger = {
+            "register": "sachlich",
+            "candidates": [candidate],
+            "protected": {"facts": ["42"], "quotes": [], "terms": [], "persona": []},
+        }
+        confirmed = two_pass.confirm_ledger("Fakt 42.\nInhalt.", ledger)
+        self.assertEqual(confirmed["candidates"], [])
+        self.assertEqual(confirmed["discarded_candidates"][0]["reason"], "deletes_unique_protected_anchor")
+
+        duplicate = two_pass.confirm_ledger("Fakt 42.\nNoch einmal 42.", ledger)
+        self.assertEqual(duplicate["candidates"], [candidate])
+        self.assertEqual(two_pass.protected_violations("42 und 42", "42", ledger), [])
+        self.assertTrue(two_pass.protected_violations("42", "42 und 42", ledger))
+
+    def test_rewrite_cannot_relocate_anchor_removed_by_another_edit(self):
+        original = "Floskel 42. Fakt 42. Unklar."
+        ledger = {
+            "candidates": [
+                {"id": "c1", "source": "Floskel 42.", "action": "delete", "scope": "sentence"},
+                {"id": "c2", "source": "Unklar.", "action": "rewrite", "scope": "sentence"},
+            ],
+            "protected": {"facts": ["42"], "quotes": [], "terms": [], "persona": []},
+        }
+
+        with self.assertRaisesRegex(ValueError, "changed owned facts anchor"):
+            two_pass.apply_edits(
+                original,
+                ledger,
+                {
+                    "edits": [
+                        {"candidate_id": "c1", "replacement": ""},
+                        {"candidate_id": "c2", "replacement": "42 Konkret."},
+                    ]
+                },
+            )
+
+    def test_main_regrounds_inflected_anchor_and_only_applies_confirmed_candidate(self):
+        audit = {
+            "register": "sachlich",
+            "candidates": [
+                {
+                    "id": "c1",
+                    "source": "smarten",
+                    "patterns": ["2"],
+                    "reason": "Floskel",
+                    "goal": "streichen",
+                    "action": "delete",
+                    "scope": "phrase",
+                },
+                {
+                    "id": "c2",
+                    "source": "intelligent",
+                    "patterns": ["64"],
+                    "reason": "Wertadjektiv",
+                    "goal": "streichen",
+                    "action": "delete",
+                    "scope": "phrase",
+                },
+            ],
+            "advisories": [
+                {"source": "Systeme", "reason": "Quelle nicht verifiziert"},
+                {"source": "Satzlängenvarianz 0,512", "reason": "Metrik auffällig"},
+            ],
+            "protected": {"facts": [], "quotes": [], "terms": ["System"], "persona": []},
+        }
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            source = temp / "source.md"
+            out = temp / "out"
+            source.write_bytes("Die smarten Systeme.\nDas bleibt intelligent.\n".encode("utf-8"))
+            shared_finding = {
+                "source": "rhythm",
+                "pattern": 55,
+                "severity": "warning",
+                "summary": "repeated sentence openers: 2 clusters",
+            }
+            preflight = {
+                "preflight": {},
+                "findings": [
+                    shared_finding,
+                    {
+                        "source": "german_pattern",
+                        "pattern": 64,
+                        "kind": "ai_marker_cluster",
+                        "severity": "warning",
+                        "summary": "marker cluster",
+                    },
+                ],
+            }
+            postflight = {
+                "preflight": {},
+                "findings": [
+                    shared_finding,
+                    {
+                        "source": "unicode",
+                        "pattern": 46,
+                        "kind": "straight_quote",
+                        "severity": "warning",
+                        "summary": "straight quote",
+                    },
+                ],
+            }
+            evidence_warning = {"kind": "proper_name_added", "severity": "warning"}
+            with (
+                mock.patch.object(
+                    two_pass,
+                    "run_model",
+                    side_effect=[(audit, None), ({"edits": [{"candidate_id": "c1", "replacement": ""}]}, None)],
+                ) as run,
+                mock.patch.object(
+                    two_pass, "deterministic_audit", side_effect=[preflight, postflight]
+                ),
+                mock.patch.object(
+                    two_pass,
+                    "evidence_gate",
+                    return_value=({"findings": [evidence_warning]}, {"mode": "default"}),
+                ),
+                mock.patch("builtins.print"),
+            ):
+                code = two_pass.main(
+                    ["--file", str(source), "--out-dir", str(out)]
+                )
+
+            self.assertEqual(code, 0)
+            self.assertEqual(run.call_count, 2)
+            self.assertNotEqual(run.call_args_list[0].kwargs["cwd"], run.call_args_list[1].kwargs["cwd"])
+            self.assertIn("BESTÄTIGTES LEDGER", run.call_args_list[1].args[0])
+            self.assertEqual(
+                (out / "result.md").read_text(encoding="utf-8"),
+                "Die Systeme.\nDas bleibt intelligent.\n",
+            )
+            diff = (out / "changes.diff").read_text(encoding="utf-8")
+            self.assertIn("--- original.md", diff)
+            self.assertIn("+++ result.md", diff)
+            self.assertIn("-Die smarten Systeme.", diff)
+            self.assertIn("+Die Systeme.", diff)
+            report = json.loads((out / "report.json").read_text(encoding="utf-8"))
+            confirmed = json.loads((out / "confirmed-ledger.json").read_text(encoding="utf-8"))
+            verification = json.loads((out / "verify.json").read_text(encoding="utf-8"))
+            reanchored = [{"category": "terms", "from": "System", "to": "Systeme"}]
+            self.assertEqual(confirmed["protected"]["terms"], ["Systeme"])
+            self.assertEqual(confirmed["reanchored"], reanchored)
+            self.assertEqual(report["reanchored_count"], 1)
+            self.assertEqual(report["reanchored"], reanchored)
+            self.assertEqual(report["advisory_count"], 1)
+            self.assertEqual(report["advisories"], audit["advisories"][:1])
+            self.assertEqual(report["discarded_advisory_count"], 1)
+            self.assertEqual(
+                report["discarded_advisories"],
+                [
+                    {
+                        "source": "Satzlängenvarianz 0,512",
+                        "reason": "source_missing_from_original",
+                    }
+                ],
+            )
+            self.assertEqual(confirmed["advisories"], report["advisories"])
+            self.assertEqual(confirmed["discarded_advisories"], report["discarded_advisories"])
+            self.assertEqual(report["edit_count"], 1)
+            self.assertEqual(
+                report["skipped_candidates"],
+                [{"id": "c2", "source": "intelligent", "reason": "no_replacement"}],
+            )
+            self.assertEqual(report["verification"]["identical"], verification["identical"])
+            self.assertEqual(
+                report["verification"]["changed_ratio"], verification["tokens"]["changed_ratio"]
+            )
+            self.assertEqual(report["evidence_findings"], [evidence_warning])
+            self.assertEqual(report["evidence_blockers"], [])
+            self.assertEqual(report["postflight"]["persistent_findings"], [shared_finding])
+            self.assertEqual(report["postflight"]["resolved_findings"], preflight["findings"][1:])
+            self.assertEqual(report["postflight"]["introduced_findings"], postflight["findings"][1:])
+            self.assertEqual(
+                report["spell"],
+                json.loads((out / "spell-report.json").read_text(encoding="utf-8")),
+            )
+            self.assertEqual(
+                postflight,
+                json.loads((out / "postflight.json").read_text(encoding="utf-8")),
+            )
+
+    def test_main_normalizes_before_freezing_protected_anchors(self):
+        original = 'Er sagt „Wort".\n'
+        normalized = "Er sagt „Wort“.\n"
+        audit = {
+            "register": "sachlich",
+            "candidates": [],
+            "advisories": [],
+            "protected": {"facts": [], "quotes": ["„Wort“"], "terms": [], "persona": []},
+        }
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            source = temp / "source.md"
+            out = temp / "out"
+            source.write_bytes(original.encode("utf-8"))
+
+            def deterministic_audit(path, _mode, precise=False):
+                self.assertIn(path, (out / "normalized.md", out / "candidate.md"))
+                self.assertEqual(path.read_text(encoding="utf-8"), normalized)
+                self.assertTrue(precise)
+                return {
+                    "preflight": {},
+                    "findings": [],
+                    "precise": {"requested": True, "active": False, "reason": "spacy_missing"},
+                }
+
+            def evidence_gate(before, _after, _out, precise=False):
+                self.assertEqual(before, out / "normalized.md")
+                self.assertEqual(before.read_text(encoding="utf-8"), normalized)
+                self.assertTrue(precise)
+                return {"findings": []}, {"mode": "default"}
+
+            with (
+                mock.patch.object(two_pass, "run_model", return_value=(audit, None)) as run,
+                mock.patch.object(two_pass, "deterministic_audit", side_effect=deterministic_audit),
+                mock.patch.object(two_pass, "evidence_gate", side_effect=evidence_gate),
+                mock.patch("builtins.print"),
+            ):
+                code = two_pass.main(
+                    ["--file", str(source), "--out-dir", str(out), "--precise"]
+                )
+
+            self.assertEqual(code, 0)
+            self.assertIn(normalized, run.call_args.args[0])
+            self.assertEqual((out / "original.md").read_text(encoding="utf-8"), original)
+            self.assertEqual((out / "normalized.md").read_text(encoding="utf-8"), normalized)
+            self.assertEqual((out / "result.md").read_text(encoding="utf-8"), normalized)
+            diff = (out / "changes.diff").read_text(encoding="utf-8")
+            self.assertIn('-Er sagt „Wort".', diff)
+            self.assertIn('+Er sagt „Wort“.', diff)
+            report = json.loads((out / "report.json").read_text(encoding="utf-8"))
+            self.assertEqual(
+                report["unicode_fix"],
+                {
+                    "changed": True,
+                    "sha256_before": two_pass.hashlib.sha256(original.encode()).hexdigest(),
+                    "sha256_after": two_pass.hashlib.sha256(normalized.encode()).hexdigest(),
+                },
+            )
+            self.assertEqual(report["protected_violations"], [])
+            self.assertEqual(report["verification"]["typography"], {'"': -1, "“": 1})
+            self.assertEqual(
+                report["precise"],
+                {
+                    "requested": True,
+                    "active": False,
+                    "reason": "spacy_missing",
+                    "evidence_extraction_policy": {"mode": "default"},
+                },
+            )
+
+    def test_main_rejects_candidate_when_postflight_fails(self):
+        audit = {
+            "register": "sachlich",
+            "candidates": [],
+            "advisories": [],
+            "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+        }
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            source = temp / "source.md"
+            out = temp / "out"
+            source.write_bytes(b"Text.\n")
+            with (
+                mock.patch.object(two_pass, "run_model", return_value=(audit, None)),
+                mock.patch.object(
+                    two_pass,
+                    "deterministic_audit",
+                    side_effect=[
+                        {"preflight": {}, "findings": []},
+                        RuntimeError("postflight failed"),
+                    ],
+                ),
+                mock.patch.object(
+                    two_pass,
+                    "evidence_gate",
+                    return_value=({"findings": []}, {"mode": "default"}),
+                ),
+                mock.patch("builtins.print"),
+            ):
+                code = two_pass.main(["--file", str(source), "--out-dir", str(out)])
+
+            self.assertEqual(code, 2)
+            self.assertTrue((out / "failure.json").is_file())
+            self.assertFalse((out / "result.md").exists())
+            self.assertTrue((out / "rejected.md").is_file())
+
+    def test_main_rejects_apply_stage_contract_violation(self):
+        original = 'Fakt 42 sagt „ja".\n'
+        normalized = "Fakt 42 sagt „ja“.\n"
+        audit = {
+            "register": "sachlich",
+            "candidates": [
+                {
+                    "id": "c1",
+                    "source": normalized,
+                    "patterns": ["64"],
+                    "reason": "Form",
+                    "goal": "glätten",
+                    "action": "rewrite",
+                    "scope": "sentence",
+                }
+            ],
+            "advisories": [],
+            "protected": {"facts": ["42"], "quotes": [], "terms": [], "persona": []},
+        }
+        edits = {"edits": [{"candidate_id": "c1", "replacement": "Fakt sagt „ja“.\n"}]}
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            source = temp / "source.md"
+            out = temp / "out"
+            source.write_bytes(original.encode("utf-8"))
+            with (
+                mock.patch.object(two_pass, "run_model", side_effect=[(audit, None), (edits, None)]),
+                mock.patch.object(
+                    two_pass, "deterministic_audit", return_value={"preflight": {}, "findings": []}
+                ),
+                mock.patch.object(
+                    two_pass,
+                    "evidence_gate",
+                    return_value=({"findings": []}, {"mode": "default"}),
+                ),
+                mock.patch.object(
+                    two_pass.spell_lint,
+                    "lint",
+                    return_value={"ok": True, "available": True, "findings": []},
+                ) as spell,
+                mock.patch("builtins.print"),
+            ):
+                code = two_pass.main(["--file", str(source), "--out-dir", str(out)])
+
+            self.assertEqual(code, 1)
+            self.assertEqual((out / "rejected.md").read_text(encoding="utf-8"), normalized)
+            spell.assert_called_once_with(normalized, normalized)
+            self.assertEqual(
+                json.loads((out / "spell-report.json").read_text(encoding="utf-8")),
+                {"ok": True, "available": True, "findings": []},
+            )
+            self.assertTrue((out / "verify.json").is_file())
+            report = json.loads((out / "report.json").read_text(encoding="utf-8"))
+            self.assertFalse(report["accepted"])
+            self.assertEqual(
+                report["protected_violations"],
+                [
+                    {
+                        "kind": "apply_stage_violation",
+                        "message": "rewrite candidate changed owned facts anchor: c1",
+                    }
+                ],
+            )
+
+    def test_model_calls_disable_tools(self):
+        envelope = json.dumps(
+            {"subtype": "success", "structured_output": {}, "total_cost_usd": 0.01}
+        )
+        completed = mock.Mock(stdout=envelope, stderr="", returncode=0)
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            with (
+                mock.patch.object(two_pass.shutil, "which", return_value="/bin/claude"),
+                mock.patch.object(two_pass.subprocess, "run", return_value=completed) as run,
+            ):
+                two_pass.run_model(
+                    "prompt",
+                    {"type": "object"},
+                    model=None,
+                    timeout=1,
+                    cwd=temp,
+                    raw_path=temp / "raw.json",
+                    max_budget_usd=None,
+                )
+
+        command = run.call_args.args[0]
+        self.assertEqual(command[command.index("--tools") + 1], "")
+        self.assertNotIn("--add-dir", command)
+
+    def test_codex_model_is_ephemeral_read_only_and_rejects_tool_use(self):
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            codex_home = temp / "source-codex-home"
+            legacy_skill = codex_home / "skills" / "humanizer-de" / "SKILL.md"
+            nested_skill = codex_home / "skills" / "humanizer-de" / "skills" / "humanizer-de" / "SKILL.md"
+            legacy_skill.parent.mkdir(parents=True)
+            nested_skill.parent.mkdir(parents=True)
+            legacy_skill.touch()
+            nested_skill.touch()
+            (codex_home / "auth.json").write_text("secret", encoding="utf-8")
+            user_home = temp / "user"
+            recommended_skill = user_home / ".agents" / "skills" / "humanizer-de" / "SKILL.md"
+            recommended_skill.parent.mkdir(parents=True)
+            recommended_skill.touch()
+
+            def completed(command, **_kwargs):
+                response = Path(command[command.index("--output-last-message") + 1])
+                response.write_text('{"edits": []}\n', encoding="utf-8")
+                events = [
+                    {"type": "item.completed", "item": {"type": "agent_message", "text": "{}"}},
+                    {"type": "turn.completed", "usage": {"input_tokens": 10, "output_tokens": 2}},
+                ]
+                return mock.Mock(
+                    stdout="\n".join(json.dumps(event) for event in events),
+                    stderr="",
+                    returncode=0,
+                )
+
+            with (
+                mock.patch.object(two_pass.shutil, "which", return_value="/bin/codex"),
+                mock.patch.object(two_pass.subprocess, "run", side_effect=completed) as run,
+                mock.patch.object(two_pass.Path, "home", return_value=user_home),
+                mock.patch.dict(two_pass.os.environ, {"CODEX_HOME": str(codex_home)}),
+            ):
+                result, cost = two_pass.run_model(
+                    "prompt",
+                    two_pass.EDIT_SCHEMA,
+                    model=None,
+                    timeout=1,
+                    cwd=temp,
+                    raw_path=temp / "raw.json",
+                    max_budget_usd=None,
+                    provider="codex",
+                )
+
+            command = run.call_args.args[0]
+            self.assertEqual(result, {"edits": []})
+            self.assertIsNone(cost)
+            self.assertIn("--ephemeral", command)
+            self.assertEqual(command[command.index("--sandbox") + 1], "read-only")
+            self.assertIn("--ignore-user-config", command)
+            self.assertIn("--ignore-rules", command)
+            self.assertIn("project_doc_max_bytes=0", command)
+            self.assertIn('cli_auth_credentials_store="file"', command)
+            disabled = [command[index + 1] for index, value in enumerate(command) if value == "--disable"]
+            self.assertEqual(
+                disabled,
+                [
+                    "plugins",
+                    "shell_tool",
+                    "unified_exec",
+                    "skill_search",
+                    "tool_suggest",
+                    "apps",
+                    "browser_use",
+                    "computer_use",
+                    "image_generation",
+                    "multi_agent",
+                    "multi_agent_v2",
+                    "hooks",
+                ],
+            )
+            self.assertIn('web_search="disabled"', command)
+            self.assertIn("tools.view_image=false", command)
+            skill_config = next(value for value in command if value.startswith("skills.config="))
+            for skill in (legacy_skill, nested_skill, recommended_skill):
+                self.assertIn(json.dumps(str(skill)), skill_config)
+            self.assertNotIn("--dangerously-bypass-approvals-and-sandbox", command)
+
+            tool_event = mock.Mock(
+                stdout=json.dumps(
+                    {"type": "item.completed", "item": {"type": "command_execution", "command": "ls"}}
+                ),
+                stderr="",
+                returncode=0,
+            )
+            with (
+                mock.patch.object(two_pass.shutil, "which", return_value="/bin/codex"),
+                mock.patch.object(two_pass.subprocess, "run", return_value=tool_event),
+                mock.patch.object(two_pass.Path, "home", return_value=user_home),
+                mock.patch.dict(two_pass.os.environ, {"CODEX_HOME": str(codex_home)}),
+                self.assertRaisesRegex(RuntimeError, "forbidden tools"),
+            ):
+                two_pass.run_model(
+                    "prompt",
+                    two_pass.EDIT_SCHEMA,
+                    model=None,
+                    timeout=1,
+                    cwd=temp,
+                    raw_path=temp / "tool-raw.json",
+                    max_budget_usd=None,
+                    provider="codex",
+                )
+
+    def test_codex_rejects_global_agent_instructions(self):
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            codex_home = temp / "codex-home"
+            codex_home.mkdir()
+            (codex_home / "AGENTS.md").write_text("Change every answer.\n", encoding="utf-8")
+            with (
+                mock.patch.object(two_pass.shutil, "which", return_value="/bin/codex"),
+                mock.patch.dict(two_pass.os.environ, {"CODEX_HOME": str(codex_home)}),
+                self.assertRaisesRegex(RuntimeError, "empty global AGENTS.md"),
+            ):
+                two_pass.run_model(
+                    "prompt",
+                    two_pass.EDIT_SCHEMA,
+                    model=None,
+                    timeout=1,
+                    cwd=temp,
+                    raw_path=temp / "raw.json",
+                    max_budget_usd=None,
+                    provider="codex",
+                )
+
+    def test_codex_provider_rejects_claude_budget_flag(self):
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            source = temp / "source.md"
+            source.write_text("Text.\n", encoding="utf-8")
+            with mock.patch("sys.stderr"), self.assertRaises(SystemExit):
+                two_pass.parse_args(
+                    [
+                        "--file",
+                        str(source),
+                        "--out-dir",
+                        str(temp / "out"),
+                        "--provider",
+                        "codex",
+                        "--max-budget-usd",
+                        "1",
+                    ]
+                )
+
+    def test_no_candidate_run_preserves_crlf_bytes(self):
+        audit = {
+            "register": "sachlich",
+            "candidates": [],
+            "advisories": [],
+            "protected": {"facts": [], "quotes": [], "terms": [], "persona": []},
+        }
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            source = temp / "source.md"
+            out = temp / "out"
+            original = b"Erste Zeile.\r\nZweite Zeile.\r\n"
+            source.write_bytes(original)
+            with (
+                mock.patch.object(two_pass, "run_model", return_value=(audit, None)),
+                mock.patch.object(
+                    two_pass, "deterministic_audit", return_value={"preflight": {}, "findings": []}
+                ),
+                mock.patch.object(
+                    two_pass,
+                    "evidence_gate",
+                    return_value=({"findings": []}, {"mode": "default"}),
+                ),
+                mock.patch("builtins.print"),
+            ):
+                code = two_pass.main(["--file", str(source), "--out-dir", str(out)])
+
+            self.assertEqual(code, 0)
+            self.assertEqual((out / "result.md").read_bytes(), original)
+            self.assertEqual((out / "normalized.md").read_bytes(), original)
+            self.assertEqual((out / "changes.diff").read_bytes(), b"")
+            report = json.loads((out / "report.json").read_text(encoding="utf-8"))
+            self.assertFalse(report["unicode_fix"]["changed"])
+            self.assertEqual(
+                report["unicode_fix"]["sha256_before"],
+                report["unicode_fix"]["sha256_after"],
+            )
+            self.assertTrue(report["verification"]["identical"])
+            self.assertEqual(report["verification"]["typography"], {})
+
+    def test_regular_file_is_rejected_as_output_directory(self):
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            source = temp / "source.md"
+            out = temp / "out"
+            source.write_text("Text.\n", encoding="utf-8")
+            out.write_text("kein Verzeichnis", encoding="utf-8")
+
+            with mock.patch("sys.stderr"), self.assertRaises(SystemExit):
+                two_pass.parse_args(["--file", str(source), "--out-dir", str(out)])
+
+    def test_deterministic_audit_forwards_precise(self):
+        completed = mock.Mock(
+            returncode=0,
+            stderr="",
+            stdout=json.dumps(
+                {
+                    "summary": {
+                        "preflight": {},
+                        "precise": {"requested": True, "active": False, "reason": "spacy_missing"},
+                    },
+                    "findings": [],
+                }
+            ),
+        )
+
+        with mock.patch.object(two_pass.subprocess, "run", return_value=completed) as run:
+            report = two_pass.deterministic_audit(Path("text.md"), "sachlich", precise=True)
+
+        self.assertIn("--precise", run.call_args.args[0])
+        self.assertEqual(report["precise"]["reason"], "spacy_missing")
+
+    def test_evidence_gate_checks_semantic_strengthening(self):
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            before = temp / "before.md"
+            after = temp / "after.md"
+            out = temp / "out"
+            out.mkdir()
+            before.write_text("Die Methode kann helfen.\n", encoding="utf-8")
+            after.write_text("Die Methode beweist den Erfolg.\n", encoding="utf-8")
+
+            report, policy = two_pass.evidence_gate(before, after, out, precise=True)
+
+            self.assertIn("authority_strengthened", {item["kind"] for item in report["findings"]})
+            self.assertIn(policy["mode"], {"default", "spacy_ner"})
+            self.assertTrue(report["precise"]["requested"])
+
+    def test_invalid_utf8_writes_failure_report(self):
+        with tempfile.TemporaryDirectory() as temp_name:
+            temp = Path(temp_name)
+            source = temp / "source.md"
+            out = temp / "out"
+            source.write_bytes(b"Text \xff")
+            with mock.patch("builtins.print"):
+                code = two_pass.main(["--file", str(source), "--out-dir", str(out)])
+
+            self.assertEqual(code, 2)
+            failure = json.loads((out / "failure.json").read_text(encoding="utf-8"))
+            self.assertEqual(failure["error_type"], "UnicodeDecodeError")
+
+
+if __name__ == "__main__":
+    unittest.main()

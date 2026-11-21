@@ -7,6 +7,7 @@ The translations still need native-speaker review. Update this list before chang
 ## Fixed rules
 
 - Keep `RAMnotes`, `iCloud`, `UTF-8`, `.txt`, `esc`, and the modifier symbols ⌃ ⌥ ⇧ ⌘ unchanged.
+- Keep `RAMnotes` in every translation whose English text has it. A translation may name `RAMnotes` more often than English does, for example as a sentence subject where the English uses the passive. `scripts/check-localizations.sh` rejects a missing or misspelled name.
 - Keep `Finder` unchanged, except in Simplified Chinese, where Apple uses 访达.
 - Keep `Dock` unchanged, except in Simplified Chinese, where Apple uses 程序坞.
 - Keep the ellipsis `…` on menu items and buttons that open a panel. German puts a space before it, as Apple does (`Einstellungen …`).
@@ -614,12 +615,12 @@ The translations still need native-speaker review. Update this list before chang
 
 - en: location operation
 - es: operación de ubicación
-- pt: operação de local
+- pt: mudança de local
 - de: Speicherortvorgang
 - fr: opération d’emplacement
 - ar: عملية الموقع
 - ja: 場所の操作
-- zh-Hans: 位置操作
+- zh-Hans: 位置更改
 
 ### relink / Locate File…
 

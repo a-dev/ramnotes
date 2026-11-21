@@ -49,7 +49,7 @@ Move To opens a Save panel with the current filename and folder. Choose an unuse
 | Page | Controls |
 | --- | --- |
 | General | Default notes folder, launch at login, and the Debug language selector. |
-| Windows | Keep windows on top, reveal from another active app, global shortcuts, and menu-bar scroll gestures. |
+| Windows | Keep windows on top, hide notes after inactivity, reveal from another active app, global shortcuts, and menu-bar scroll gestures. |
 | Appearance | Note typography. The defaults are 18 pt type and 27 pt line height. |
 | Shortcuts | In-app command shortcuts. A conflict with another command or global shortcut prevents registration. |
 | About | Version and copyright. The direct build also has update controls. |

@@ -1,0 +1,76 @@
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import tempfile
+import unittest
+
+
+ROOT = Path(__file__).resolve().parents[1]
+MAKE = shutil.which("make")
+
+
+class MakefileContractTests(unittest.TestCase):
+    def test_lint_and_bench_targets_have_their_declared_policies(self):
+        makefile = (ROOT / "Makefile").read_text(encoding="utf-8")
+        self.assertIn("scripts/rhythm_lint.py --text", makefile)
+        self.assertIn("--fail-on any", makefile)
+        self.assertIn("bench               CPU-Benchmarks ausführen (nur Hinweis, kein Gate)", makefile)
+        self.assertIn("$(PYTHON) scripts/bench.py\n", makefile)
+        self.assertNotIn("scripts/bench.py --check", makefile)
+
+
+@unittest.skipUnless(os.name != "nt" and MAKE, "POSIX make is not available")
+class LanguageToolTargetTests(unittest.TestCase):
+    def run_lt(
+        self,
+        path: str,
+        filename: str = "README.md",
+        languagetool: str = "languagetool",
+    ) -> subprocess.CompletedProcess:
+        env = os.environ.copy()
+        env["PATH"] = os.pathsep.join(part for part in (path, env.get("PATH")) if part)
+        return subprocess.run(
+            [MAKE, "-s", "lt", f"FILE={filename}", f"LANGUAGETOOL={languagetool}"],
+            cwd=ROOT,
+            env=env,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+
+    def install_fake(self, directory: str, body: str) -> Path:
+        executable = Path(directory) / "languagetool"
+        executable.write_text("#!/bin/sh\n" + body, encoding="utf-8")
+        executable.chmod(0o755)
+        return executable
+
+    def test_lt_skips_cleanly_only_when_languagetool_is_missing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            result = self.run_lt(directory, languagetool="humanizer-languagetool-missing")
+
+        self.assertEqual(result.returncode, 0)
+        self.assertIn("nicht installiert", result.stdout)
+
+    def test_lt_propagates_languagetool_failure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            self.install_fake(directory, "exit 23\n")
+            result = self.run_lt(directory)
+
+        self.assertNotEqual(result.returncode, 0)
+        self.assertNotIn("nicht installiert", result.stdout)
+
+    def test_lt_passes_a_spaced_filename_as_one_argument(self):
+        with tempfile.TemporaryDirectory() as directory:
+            self.install_fake(directory, "printf '<%s>\\n' \"$@\"\n")
+            result = self.run_lt(directory, "drafts/my text.md")
+
+        self.assertEqual(result.returncode, 0)
+        self.assertEqual(
+            result.stdout.splitlines(),
+            ["<-l>", "<de-DE>", "<--json>", "<drafts/my text.md>"],
+        )
+
+
+if __name__ == "__main__":
+    unittest.main()

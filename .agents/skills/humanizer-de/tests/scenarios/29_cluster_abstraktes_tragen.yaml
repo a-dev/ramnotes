@@ -1,0 +1,54 @@
+{
+  "id": 29,
+  "mode": "Locker",
+  "name": "cluster_abstraktes_tragen",
+  "input": "Was die Forschung trägt, zeigt sich erst im Detail. Danach prüfen wir, ob die Hypothese trägt. Die Rechnung trägt das nicht. Was trägt, ist ein engerer Test. Im nächsten Schritt zeigt sich, ob die Änderung im Betrieb trägt. Auch die Statistikseite trägt diese konkrete Zahl nicht mehr als direkten Beleg. Die Projektleiterin trägt dafür die Verantwortung. Beim Umzug trägt sie außerdem den schweren Karton.",
+  "expected_behavior": [
+    "die gehäufte abstrakte Verwendung von tragen als KI-artiges Lexik- und Kollokationscluster erkennen",
+    "nicht das Wort tragen pauschal beanstanden",
+    "abstrakte Konstruktionen lokal und kontextabhängig variieren",
+    "Verantwortung tragen als etablierte Kollokation unverändert lassen",
+    "das konkrete Tragen eines Gegenstands unverändert lassen",
+    "keine einheitliche Ersetzung für alle Fundstellen verwenden",
+    "keine Autorschaftsaussage aus dem Muster ableiten"
+  ],
+  "quality_risks": [
+    "tragen als verbotenes Wort behandeln",
+    "jede Form von tragen automatisch ersetzen",
+    "alle Fundstellen mechanisch durch funktioniert ersetzen",
+    "etablierte, konkrete oder fachlich notwendige Verwendungen verschlechtern",
+    "durch die Überarbeitung ein neues Wiederholungsmuster erzeugen"
+  ],
+  "output_contract": [
+    "Modus",
+    "Gefundene Muster",
+    "Geänderte Stellen",
+    "Kurzaudit"
+  ],
+  "risk_phrases": [
+    "ob die Hypothese funktioniert",
+    "Die Rechnung funktioniert nicht",
+    "Was funktioniert, ist",
+    "ob die Änderung im Betrieb funktioniert"
+  ],
+  "protected_phrases": [
+    "trägt dafür die Verantwortung",
+    "trägt sie außerdem den schweren Karton"
+  ],
+  "sample_outputs": [
+    {
+      "name": "known-good contextual rewrite",
+      "text": "Was sich aus der Forschung ableiten lässt, zeigt sich erst im Detail. Danach prüfen wir die Hypothese. Die Rechnung geht nicht auf. Sinnvoller ist ein engerer Test. Im nächsten Schritt zeigt sich, ob sich die Änderung im Betrieb bewährt. Auch die Statistikseite führt diese konkrete Zahl nicht mehr als direkten Beleg an. Die Projektleiterin trägt dafür die Verantwortung. Beim Umzug trägt sie außerdem den schweren Karton.",
+      "expect_violations": [],
+      "expect_violations_exact": true
+    },
+    {
+      "name": "known-bad word-ban rewrite",
+      "text": "Was die Forschung belegt, zeigt sich erst im Detail. Danach prüfen wir, ob die Hypothese funktioniert. Die Rechnung funktioniert nicht. Was funktioniert, ist ein engerer Test. Im nächsten Schritt zeigt sich, ob die Änderung im Betrieb funktioniert. Auch die Statistikseite belegt diese konkrete Zahl nicht mehr direkt. Die Projektleiterin übernimmt dafür die Verantwortung. Beim Umzug transportiert sie außerdem den schweren Karton.",
+      "expect_violations": [
+        "risky_phrase"
+      ],
+      "expect_violations_exact": true
+    }
+  ]
+}

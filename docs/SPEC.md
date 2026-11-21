@@ -12,7 +12,9 @@ The product name, generated filenames, default folder name, and stored keys stay
 
 Manual launch and reopen show the open notes. If none are open, the note list appears. Login launch stays hidden. Closing a note removes it from the open group. Hiding the group preserves its windows and focus order.
 
-Control-Backslash toggles the group. Control-Command-Backslash includes the list and focuses search. Either toggle hides a visible group. By default, a global shortcut or gesture from another active app always reveals its target. Change this behavior in Settings > Windows. Switching apps alone leaves the group as it is.
+Control-Backslash toggles the group. Control-Command-Backslash includes the list and focuses search. Either toggle hides a visible group. By default, a global shortcut or gesture from another active app always reveals its target. Change this behavior in Settings > Windows.
+
+In Settings > Windows, **Hide notes after inactivity** offers 1, 3, 5, or 10 minutes, or Never. The default is 3 minutes. The countdown starts when no RAMnotes window has focus: not a note window, the note list, or Settings. It needs a note window on screen, because otherwise there is nothing to hide. Minimized note windows do not count. Hiding RAMnotes, opening a sheet or modal dialog, or focusing any RAMnotes window stops the countdown. It starts again from the full delay when none of these apply. When it expires, RAMnotes hides the group just as the toggle shortcut does.
 
 If a new global shortcut fails to register, the previous shortcut stays active. Menu-bar gestures require precise scrolling and ignore momentum. They work without Accessibility or Input Monitoring permission.
 

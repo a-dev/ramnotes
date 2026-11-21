@@ -13,7 +13,9 @@ Checks per key and locale:
 - each value has the same format specifiers as English (count and type;
   positional reordering such as %2$@ ... %1$@ is allowed);
 - multi-count formats keep each %#@token@ once and each substitution keeps %arg;
-- the product name RAMnotes appears as often as in English;
+- the product name RAMnotes appears at least once when English has it
+  (a translation may add it, for example as a sentence subject) and is
+  never misspelled (such as "RAMNotes" or "RAM notes");
 - no value is identical to English unless the key is on the allowlist.
 """
 
@@ -51,6 +53,8 @@ SAME_AS_ENGLISH = {
 }
 
 PRODUCT = "RAMnotes"
+# Any spelling of the product name, so misspellings such as "RAMNotes" or "RAM notes" can be rejected.
+PRODUCT_VARIANT = re.compile(r"(?<![A-Za-z])ram[\s-]*notes(?![A-Za-z])", re.IGNORECASE)
 SPECIFIER = re.compile(r"%(?:(\d+)\$)?(#@[A-Za-z0-9_]+@|lld|ld|lu|llu|d|i|u|f|@|s|arg|%)")
 
 
@@ -99,8 +103,11 @@ class Checker:
         label = f"{where}: " if where else ""
         if specifiers(text) != specifiers(english_text):
             self.fail(path, key, locale, f"{label}specifiers {dict(specifiers(text))} differ from English {dict(specifiers(english_text))}: {text!r}")
-        if text.count(PRODUCT) != english_text.count(PRODUCT):
-            self.fail(path, key, locale, f"{label}{PRODUCT} count differs: {text!r}")
+        if PRODUCT in english_text and PRODUCT not in text:
+            self.fail(path, key, locale, f"{label}{PRODUCT} is missing: {text!r}")
+        misspelled = sorted({m for m in PRODUCT_VARIANT.findall(text) if m != PRODUCT})
+        if misspelled:
+            self.fail(path, key, locale, f"{label}{PRODUCT} is misspelled as {misspelled}: {text!r}")
         if not text.strip():
             self.fail(path, key, locale, f"{label}empty value")
 

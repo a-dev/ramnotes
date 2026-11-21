@@ -3,9 +3,26 @@ import Foundation
 
 enum AppearancePreference: String, Codable, Sendable { case system, light, dark }
 
+/// How long no RAMnotes window can have focus before note windows hide. The raw value is the stored form.
+enum AutoHideDelay: Int, CaseIterable, Codable, Sendable {
+    case oneMinute = 1, threeMinutes = 3, fiveMinutes = 5, tenMinutes = 10, never = 0
+
+    /// The countdown length, or nil when automatic hiding is off.
+    var duration: Duration? {
+        switch self {
+        case .oneMinute: .seconds(60)
+        case .threeMinutes: .seconds(3 * 60)
+        case .fiveMinutes: .seconds(5 * 60)
+        case .tenMinutes: .seconds(10 * 60)
+        case .never: nil
+        }
+    }
+}
+
 struct AppSettings: Codable, Equatable, Sendable {
     var appearance: AppearancePreference = .system
     var alwaysOnTop = false
+    var autoHideDelay: AutoHideDelay = .threeMinutes
     var launchAtLogin = false
     var fontFamily = "System"
     var fontWeight = "Regular"
@@ -27,7 +44,7 @@ struct AppSettings: Codable, Equatable, Sendable {
     init() {}
 
     private enum CodingKeys: String, CodingKey {
-        case appearance, alwaysOnTop, launchAtLogin, fontFamily, fontWeight, fontSize, lineHeight
+        case appearance, alwaysOnTop, autoHideDelay, launchAtLogin, fontFamily, fontWeight, fontSize, lineHeight
         case menuBarGestureEnabled, menuBarHorizontalGestureEnabled, nextNoteShortcut, previousNoteShortcut, shortcut
         case noteListShortcut, moveToTrashShortcut, listGlobalShortcut, bringNotesForwardWhenInactive
         case increaseFontShortcut, decreaseFontShortcut, resetFontShortcut
@@ -40,6 +57,7 @@ struct AppSettings: Codable, Equatable, Sendable {
         let fields = try decoder.container(keyedBy: CodingKeys.self)
         if fields.contains(.appearance) { appearance = try fields.decode(AppearancePreference.self, forKey: .appearance) }
         if fields.contains(.alwaysOnTop) { alwaysOnTop = try fields.decode(Bool.self, forKey: .alwaysOnTop) }
+        if fields.contains(.autoHideDelay) { autoHideDelay = try fields.decode(AutoHideDelay.self, forKey: .autoHideDelay) }
         if fields.contains(.launchAtLogin) { launchAtLogin = try fields.decode(Bool.self, forKey: .launchAtLogin) }
         if fields.contains(.fontFamily) { fontFamily = try fields.decode(String.self, forKey: .fontFamily) }
         if fields.contains(.fontWeight) { fontWeight = try fields.decode(String.self, forKey: .fontWeight) }
@@ -63,6 +81,7 @@ struct AppSettings: Codable, Equatable, Sendable {
         var fields = encoder.container(keyedBy: CodingKeys.self)
         try fields.encode(appearance, forKey: .appearance)
         try fields.encode(alwaysOnTop, forKey: .alwaysOnTop)
+        try fields.encode(autoHideDelay, forKey: .autoHideDelay)
         try fields.encode(launchAtLogin, forKey: .launchAtLogin)
         try fields.encode(fontFamily, forKey: .fontFamily)
         try fields.encode(fontWeight, forKey: .fontWeight)
