@@ -88,6 +88,29 @@ bash scripts/archive-build.sh mas build/RAMnotesMAS.xcarchive
 The script refuses existing output paths, checks the bundle with the `updater-free` mode, and checks that the app and login-helper dSYM files match their binaries.
 It does not export or upload. Export through Xcode Organizer.
 
+### Store listing texts
+
+`docs/store/locales/<locale>.md` holds the listing for each App Store Connect locale: name, subtitle, promotional text, keywords, and description.
+Keep the `##` headings in English, because the upload script finds the fields by heading.
+
+Check the files without network access:
+
+```sh
+node scripts/upload-store-metadata.mjs --check-only
+```
+
+Upload them to the editable macOS version (`--dry-run` shows the changes first):
+
+```sh
+node scripts/upload-store-metadata.mjs --dry-run --key-path ~/keys/AuthKey_XXXX.p8 --key-id XXXX --issuer-id YYYY
+```
+
+The script finds the app by bundle ID `com.ramnotes.RAMnotes` unless you pass `--app-id`.
+It accepts the same values in `ASC_KEY_PATH`, `ASC_KEY_ID`, `ASC_ISSUER_ID`, and `ASC_APP_ID`.
+`--locale de-DE` limits the upload to one language.
+Before it writes, it saves the previous remote texts to `tmp/`, then it reads back each record to verify it.
+It does not change URLs, screenshots, or release notes, and it does not submit the app for review.
+
 ## Direct release
 
 Direct releases use GitHub. Release builds and `scripts/release.py` use these values by default:

@@ -44,7 +44,7 @@ Editing an added note, or moving it to the Trash, affects the original file.
 ## Note windows
 
 - Open several notes at once.
-- **Always on top** keeps a note above other apps.
+- **Keep note windows on top** (in Settings) keeps your notes above other apps.
 - Each note can have one of six color tints.
 - Each note has its own text size. Change it with Command-Plus and Command-Minus.
 - RAMnotes remembers the position of each window and your place in each note.
