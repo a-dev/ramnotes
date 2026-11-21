@@ -9,12 +9,14 @@ final class WindowsSettingsPage {
     let recorder = ShortcutRecorder()
     let listGlobalRecorder = ShortcutRecorder()
     let bringForward = NSButton(checkboxWithTitle: String(localized: "Show notes when another app is active", comment: "Settings checkbox in Window Behavior. When on, a global shortcut or menu bar gesture used while another app is active shows notes instead of hiding them."), target: nil, action: nil)
+    let autoHideDelay = NSPopUpButton(frame: .zero, pullsDown: false)
     private let top = NSButton(checkboxWithTitle: String(localized: "Keep note windows on top", comment: "Settings checkbox that keeps note windows above other windows"), target: nil, action: nil)
     private let gesture = NSButton(checkboxWithTitle: String(localized: "Vertical menu-bar scroll shows notes", comment: "Settings checkbox for the vertical scroll gesture on the menu bar"), target: nil, action: nil)
     private let horizontalGesture = NSButton(checkboxWithTitle: String(localized: "Horizontal menu-bar scroll shows notes and the note list", comment: "Settings checkbox for the horizontal scroll gesture on the menu bar"), target: nil, action: nil)
     private(set) var view: NSView!
 
     var alwaysOnTopChanged: ((Bool) -> Void)?
+    var autoHideDelayChanged: ((AutoHideDelay) -> Void)?
     var bringForwardChanged: ((Bool) -> Void)?
     /// Emits the vertical and horizontal gesture choices.
     var gesturesChanged: ((_ vertical: Bool, _ horizontal: Bool) -> Void)?
@@ -27,14 +29,23 @@ final class WindowsSettingsPage {
         showShortcutStatus("")
         recorder.setAccessibilityLabel(String(localized: "Toggle notes shortcut", comment: "Accessibility label for the recorder of the global shortcut that shows or hides notes"))
         listGlobalRecorder.setAccessibilityLabel(String(localized: "Toggle notes and the note list shortcut", comment: "Accessibility label for the recorder of the global shortcut that shows or hides notes and the note list"))
+        let autoHideLabel = String(localized: "Hide notes after inactivity", comment: "Windows settings label for how long no RAMnotes window can have focus before note windows hide")
+        autoHideDelay.setAccessibilityLabel(autoHideLabel)
+        for delay in AutoHideDelay.allCases {
+            autoHideDelay.addItem(withTitle: delay.title)
+            autoHideDelay.lastItem?.tag = delay.rawValue
+        }
+        autoHideDelay.target = self
+        autoHideDelay.action = #selector(changeAutoHideDelay)
         show(settings)
         view = layout.page(String(localized: "Windows", comment: "Settings category and page title for window behavior, global shortcuts, and menu bar gestures"), sections: [
-            layout.section(String(localized: "Window Behavior", comment: "Settings section title"), [top, bringForward, layout.caption(String(localized: "Applies to global shortcuts and menu bar gestures.", comment: "Settings caption under Show notes when another app is active"))]),
+            layout.section(String(localized: "Window Behavior", comment: "Settings section title"), [top, layout.row(autoHideLabel, autoHideDelay), bringForward, layout.caption(String(localized: "Applies to global shortcuts and menu bar gestures.", comment: "Settings caption under Show notes when another app is active"))]),
             layout.section(String(localized: "Global Shortcuts", comment: "Settings section title"), [layout.row(String(localized: "Toggle notes", comment: "Settings row label for the global shortcut that shows or hides notes"), recorder), layout.row(String(localized: "Toggle notes and the note list", comment: "Settings row label for the global shortcut that shows or hides notes and the note list"), listGlobalRecorder), shortcutStatus]),
             layout.section(String(localized: "Menu Bar Gestures", comment: "Settings section title"), [gesture, horizontalGesture, layout.caption(String(localized: "Scroll again to hide them. Use a trackpad or a mouse with precise scrolling.", comment: "Settings explanation for the menu bar scroll gesture")), gestureStatus])])
     }
 
     func show(_ settings: AppSettings) {
+        autoHideDelay.selectItem(withTag: settings.autoHideDelay.rawValue)
         top.state = settings.alwaysOnTop ? .on : .off
         bringForward.state = settings.bringNotesForwardWhenInactive ? .on : .off
         recorder.chord = ShortcutChord(storedValue: settings.shortcut) ?? .default
@@ -52,10 +63,22 @@ final class WindowsSettingsPage {
         listGlobalRecorder.cancel()
     }
 
+    @objc private func changeAutoHideDelay() {
+        guard let item = autoHideDelay.selectedItem, let delay = AutoHideDelay(rawValue: item.tag) else { return }
+        autoHideDelayChanged?(delay)
+    }
+
     @objc private func changeTop() { alwaysOnTopChanged?(top.state == .on) }
     @objc private func changeBringForward() { bringForwardChanged?(bringForward.state == .on) }
     @objc private func changeGestures() {
         horizontalGesture.isEnabled = gesture.state == .on
         gesturesChanged?(gesture.state == .on, horizontalGesture.state == .on)
+    }
+}
+
+private extension AutoHideDelay {
+    var title: String {
+        guard let duration else { return String(localized: "Never", comment: "Hide notes after inactivity menu item that turns off automatic hiding of note windows") }
+        return duration.formatted(.units(allowed: [.minutes], width: .abbreviated))
     }
 }

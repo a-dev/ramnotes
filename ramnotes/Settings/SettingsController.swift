@@ -47,6 +47,7 @@ final class SettingsController: NSWindowController, NSWindowDelegate, NSTableVie
     var shortcutStatus: NSTextField { windows.shortcutStatus }
     var gestureStatus: NSTextField { windows.gestureStatus }
     var bringForwardCheckbox: NSButton { windows.bringForward }
+    var autoHideDelayPopUp: NSPopUpButton { windows.autoHideDelay }
     var recorder: ShortcutRecorder { windows.recorder }
     var listGlobalRecorder: ShortcutRecorder { windows.listGlobalRecorder }
     var appShortcutRecorders: [AppShortcut: ShortcutRecorder] { shortcuts.appShortcutRecorders }
@@ -119,6 +120,7 @@ final class SettingsController: NSWindowController, NSWindowDelegate, NSTableVie
                 settings.menuBarHorizontalGestureEnabled = horizontal
             }(())
         }
+        windows.autoHideDelayChanged = { [weak self] in self?.edit { $0.autoHideDelay = $1 }($0) }
         windows.bringForwardChanged = { [weak self] in self?.edit { $0.bringNotesForwardWhenInactive = $1 }($0) }
         shortcuts.appShortcutRecorded = { [weak self] in self?.changeAppShortcut($0, for: $1) }
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0"

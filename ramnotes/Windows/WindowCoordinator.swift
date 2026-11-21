@@ -28,6 +28,10 @@ final class WindowCoordinator: LifecycleEditors {
     private var editingLocks: Set<UUID> = []
     private var focusCounter: UInt64 = 0
     private var hidingGroup = false
+    private var autoHideTask: Task<Void, Never>?
+    /// Reads the focus and window state that decides whether the auto-hide countdown runs.
+    lazy var autoHideCondition: () -> AutoHideCondition = { [unowned self] in AutoHideCondition(noteWindows: windows.values.compactMap(\.window)) }
+    var autoHideCountdownRunning: Bool { autoHideTask != nil }
     private var geometryTasks: [NoteID: Task<Void, Never>] = [:]
     private(set) var closing: Set<NoteID> = []
     var settings = AppSettings() {
@@ -36,6 +40,10 @@ final class WindowCoordinator: LifecycleEditors {
                 controller.window?.level = settings.alwaysOnTop ? .floating : .normal
                 controller.editor.apply(settings)
                 controller.applyInterfaceScale(1.0)
+            }
+            if settings.autoHideDelay != oldValue.autoHideDelay {
+                cancelAutoHideTimer()
+                updateAutoHideTimer()
             }
         }
     }
@@ -344,10 +352,32 @@ final class WindowCoordinator: LifecycleEditors {
     var anyGroupVisible: Bool {
         listVisible() || windows.values.contains { $0.window?.isVisible == true }
     }
+    /// Starts, keeps, or cancels the auto-hide countdown. AppCoordinator calls it after every focus or window-visibility change.
+    func updateAutoHideTimer() {
+        guard let duration = settings.autoHideDelay.duration, autoHideCondition().countdownRuns else {
+            cancelAutoHideTimer()
+            return
+        }
+        guard autoHideTask == nil else { return }
+        autoHideTask = Task { [weak self] in
+            do { try await Task.sleep(for: duration) }
+            catch { return }
+            guard let self else { return }
+            autoHideTask = nil
+            if autoHideCondition().countdownRuns { perform(.hide) }
+        }
+    }
+
+    private func cancelAutoHideTimer() {
+        autoHideTask?.cancel()
+        autoHideTask = nil
+    }
+
     func perform(_ action: Action) {
         switch action {
         case .toggle: perform(anyGroupVisible ? .hide : .reveal)
         case .hide:
+            cancelAutoHideTimer()
             presentationGeneration = UUID()
             captureAllGeometry()
             // Ordering out the key window can briefly make another note key.
@@ -439,6 +469,7 @@ final class WindowCoordinator: LifecycleEditors {
     }
     func remove(_ id: NoteID) { geometryTasks[id]?.cancel(); geometryTasks[id] = nil; windows[id]?.window?.orderOut(nil); windows[id] = nil; if let token = notes[id]?.collectionToken { folderState.apply(.removed(id, token)) }; metadata.notes[id] = nil; retainedEdits[id] = nil; noticeEdits[id] = nil; openStateChanged?(); changed?() }
     func reset() {
+        cancelAutoHideTimer()
         presentationGeneration = UUID()
         for task in geometryTasks.values { task.cancel() }
         geometryTasks.removeAll()
@@ -481,5 +512,28 @@ final class WindowCoordinator: LifecycleEditors {
         defer { endEditingLock(lock) }
         for editor in windows.values.map(\.editor) { try await editor.deliverForQuit() }
         try await store.flushForQuit()
+    }
+}
+
+/// A snapshot of the state that decides whether the auto-hide countdown runs.
+struct AutoHideCondition: Equatable {
+    /// A note window is on screen and not minimized.
+    var noteWindowShown: Bool
+    var appHidden: Bool
+    /// A modal window or a sheet is open.
+    var dialogOpen: Bool
+    /// RAMnotes is active and one of its windows (a note window, the note list, or Settings) is key.
+    var appHasFocus: Bool
+
+    /// The countdown runs only while notes are on screen and no RAMnotes window has focus.
+    var countdownRuns: Bool { noteWindowShown && !appHidden && !dialogOpen && !appHasFocus }
+}
+
+extension AutoHideCondition {
+    @MainActor init(noteWindows: [NSWindow]) {
+        self.init(noteWindowShown: noteWindows.contains { $0.isVisible && !$0.isMiniaturized },
+                  appHidden: NSApp.isHidden,
+                  dialogOpen: NSApp.modalWindow != nil || NSApp.windows.contains { $0.isVisible && $0.attachedSheet != nil },
+                  appHasFocus: NSApp.isActive && NSApp.keyWindow != nil)
     }
 }

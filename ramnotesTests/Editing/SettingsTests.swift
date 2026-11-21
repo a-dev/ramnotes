@@ -84,6 +84,47 @@ final class SettingsTests: XCTestCase {
         XCTAssertEqual(controller.previousNoteRecorder.chord, .previousNote)
     }
 
+    func testAutoHideDelayDefaultsForOlderSettingsAndPersistsEveryChoice() throws {
+        let decoder = JSONDecoder()
+        XCTAssertEqual(try decoder.decode(AppSettings.self, from: Data("{}".utf8)).autoHideDelay, .threeMinutes)
+        for delay in AutoHideDelay.allCases {
+            var settings = AppSettings()
+            settings.autoHideDelay = delay
+            let saved = try JSONEncoder().encode(settings)
+            XCTAssertEqual(try decoder.decode(AppSettings.self, from: saved).autoHideDelay, delay)
+        }
+    }
+
+    func testAutoHideDelayPopUpListsEveryChoiceSavesAndReopensWithSavedState() throws {
+        let controller = SettingsController(settings: AppSettings())
+        var saved: AppSettings?
+        controller.changed = { saved = $0 }
+        let popUp = controller.autoHideDelayPopUp
+        XCTAssertEqual(popUp.itemArray.map(\.tag), AutoHideDelay.allCases.map(\.rawValue))
+        XCTAssertEqual(popUp.selectedTag(), AutoHideDelay.threeMinutes.rawValue)
+        popUp.selectItem(withTag: AutoHideDelay.never.rawValue)
+        _ = popUp.target?.perform(popUp.action, with: popUp)
+        XCTAssertEqual(saved?.autoHideDelay, .never)
+        controller.close()
+
+        let reopened = try SettingsController(settings: XCTUnwrap(saved))
+        defer { reopened.close() }
+        XCTAssertEqual(reopened.autoHideDelayPopUp.selectedTag(), AutoHideDelay.never.rawValue)
+    }
+
+    func testAutoHideCountdownRunsOnlyWhileNotesShowAndNoAppWindowHasFocus() {
+        let idle = AutoHideCondition(noteWindowShown: true, appHidden: false, dialogOpen: false, appHasFocus: false)
+        XCTAssertTrue(idle.countdownRuns, "notes on screen and no RAMnotes window focused")
+        var focused = idle; focused.appHasFocus = true
+        XCTAssertFalse(focused.countdownRuns, "a note window, the list, or Settings has focus")
+        var noNotes = idle; noNotes.noteWindowShown = false
+        XCTAssertFalse(noNotes.countdownRuns, "nothing to hide")
+        var hidden = idle; hidden.appHidden = true
+        XCTAssertFalse(hidden.countdownRuns)
+        var dialog = idle; dialog.dialogOpen = true
+        XCTAssertFalse(dialog.countdownRuns, "a sheet or modal dialog is open")
+    }
+
     func testBringForwardCheckboxSavesAndReopensWithSavedState() throws {
         let controller = SettingsController(settings: AppSettings())
         var saved: AppSettings?

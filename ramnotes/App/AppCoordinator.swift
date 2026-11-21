@@ -104,6 +104,13 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
             }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(displaysChanged), name: NSApplication.didChangeScreenParametersNotification, object: nil)
+        for name in [NSApplication.didResignActiveNotification, NSApplication.didBecomeActiveNotification,
+                     NSApplication.didHideNotification, NSApplication.didUnhideNotification,
+                     NSWindow.didResignKeyNotification, NSWindow.didBecomeKeyNotification,
+                     NSWindow.didMiniaturizeNotification, NSWindow.didDeminiaturizeNotification,
+                     NSWindow.didChangeOcclusionStateNotification, NSWindow.willCloseNotification] {
+            NotificationCenter.default.addObserver(self, selector: #selector(appWindowStateChanged), name: name, object: nil)
+        }
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains("--login-launch") { launchOrigin.receive([LaunchOrigin.loginURL]) }
         #endif
@@ -605,6 +612,12 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
     private var invocationRequest: ToggleRequest {
         ToggleRequest(bringForwardWhenInactive: settings.bringNotesForwardWhenInactive, appActive: NSApp.isActive)
     }
+    /// Focus or window visibility changed somewhere in the app.
+    @objc private func appWindowStateChanged() {
+        // Read the state after AppKit finishes moving the key window or closing the window.
+        Task { [weak self] in self?.windows?.updateAutoHideTimer() }
+    }
+
     private func toggleNotes(_ request: ToggleRequest = .toggle) {
         guard storageReady else { revealNotesWhenReady(); return }
         guard let windows else { showList(nil); return }
