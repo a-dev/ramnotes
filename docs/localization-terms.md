@@ -614,7 +614,7 @@ The translations still need native-speaker review. Update this list before chang
 
 - en: location operation
 - es: operación de ubicación
-- pt: operação de local
+- pt: mudança de local
 - de: Speicherortvorgang
 - fr: opération d’emplacement
 - ar: عملية الموقع

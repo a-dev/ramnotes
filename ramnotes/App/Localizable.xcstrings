@@ -178,7 +178,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ Recuperação"
+            "value" : "%@ (recuperação)"
           }
         },
         "zh-Hans" : {
@@ -1720,7 +1720,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uma operação de local precisa de reconciliação. Repita-a antes de alterar esta nota."
+            "value" : "Uma mudança de local não foi concluída. Tente de novo antes de alterar esta nota."
           }
         },
         "zh-Hans" : {
@@ -1767,7 +1767,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uma operação de local precisa ser repetida ou revisada."
+            "value" : "Uma mudança de local precisa ser repetida ou revisada."
           }
         },
         "zh-Hans" : {
@@ -1861,7 +1861,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Um lugar simples para notas em texto puro. Mantenha as notas em uma pasta de sua escolha, abra-as em janelas separadas e traga-as de volta com um atalho global ou um gesto na barra de menus."
+            "value" : "Um lugar simples para notas em texto puro. Guarde as notas em uma pasta que você escolher, abra cada uma em sua própria janela e traga todas de volta com um atalho global ou um gesto na barra de menus."
           }
         },
         "zh-Hans" : {
@@ -2237,7 +2237,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Resultados de Adicionar Arquivos Existentes"
+            "value" : "Resultado: Adicionar Arquivos Existentes"
           }
         },
         "zh-Hans" : {
@@ -2922,7 +2922,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aplica-se a atalhos globais e gestos da barra de menus."
+            "value" : "Vale para os atalhos globais e os gestos na barra de menus."
           }
         },
         "zh-Hans" : {
@@ -2969,7 +2969,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ao iniciar a sessão, o RAMnotes é executado em segundo plano sem abrir janelas. Use o atalho global para mostrar as notas ativas."
+            "value" : "Ao iniciar a sessão, o RAMnotes abre em segundo plano, sem janelas. Use o atalho global para mostrar as notas ativas."
           }
         },
         "zh-Hans" : {
@@ -3345,7 +3345,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não é possível alterar o local da nota"
+            "value" : "Não foi possível alterar o local da nota"
           }
         },
         "zh-Hans" : {
@@ -3392,7 +3392,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não é possível fechar: %@. Seu texto permanece aqui. Tente novamente ou exporte-o."
+            "value" : "Não foi possível fechar: %@. Seu texto continua aqui. Tente de novo ou exporte o texto."
           }
         },
         "zh-Hans" : {
@@ -3439,7 +3439,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não é possível criar a nota: %@"
+            "value" : "Não foi possível criar a nota: %@"
           }
         },
         "zh-Hans" : {
@@ -3486,7 +3486,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não é possível exportar: %@. Seu texto permanece aqui. Tente novamente ou exporte-o."
+            "value" : "Não foi possível exportar: %@. Seu texto continua aqui. Tente de novo ou exporte o texto."
           }
         },
         "zh-Hans" : {
@@ -3533,7 +3533,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não é possível mover para o Lixo: %@. Seu texto permanece aqui. Tente novamente ou exporte-o."
+            "value" : "Não foi possível mover para o Lixo: %@. Seu texto continua aqui. Tente de novo ou exporte o texto."
           }
         },
         "zh-Hans" : {
@@ -3580,7 +3580,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não é possível abrir as notas: %@. Os registros de recuperação continuam disponíveis abaixo. O RAMnotes se reconecta quando a pasta ficar disponível, ou escolha outra pasta em Ajustes."
+            "value" : "Não foi possível abrir as notas: %@. Os registros de recuperação continuam disponíveis abaixo. O RAMnotes reconecta quando a pasta voltar. Você também pode escolher outra pasta em Ajustes."
           }
         },
         "zh-Hans" : {
@@ -3627,7 +3627,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não é possível abrir a nota de recuperação: %@"
+            "value" : "Não foi possível abrir a nota de recuperação: %@"
           }
         },
         "zh-Hans" : {
@@ -3674,7 +3674,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não é possível remover da lista"
+            "value" : "Não foi possível remover da lista"
           }
         },
         "zh-Hans" : {
@@ -3721,7 +3721,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não é possível restaurar o acesso ao arquivo"
+            "value" : "Não foi possível restaurar o acesso ao arquivo"
           }
         },
         "zh-Hans" : {
@@ -3909,7 +3909,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alterada externamente • %@"
+            "value" : "Alterada fora do app • %@"
           }
         },
         "zh-Hans" : {
@@ -4521,7 +4521,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fechar sem salvar"
+            "value" : "Fechar sem Salvar"
           }
         },
         "zh-Hans" : {
@@ -4615,7 +4615,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fechar sem salvar…"
+            "value" : "Fechar sem Salvar…"
           }
         },
         "zh-Hans" : {
@@ -4803,7 +4803,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Clique com Comando pressionado para alternar notas; clique com Shift ou use Shift e as setas para selecionar um intervalo. Pressione Return para abrir as notas selecionadas ou Shift-F10 para ações em lote."
+            "value" : "Clique com Command para marcar ou desmarcar notas. Clique com Shift ou use Shift e as setas para selecionar um intervalo. Pressione Return para abrir as notas selecionadas ou Shift-F10 para ações em lote."
           }
         },
         "zh-Hans" : {
@@ -5132,7 +5132,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível solicitar o download do iCloud: %@. Abra a nota novamente para tentar outra vez."
+            "value" : "Não foi possível pedir o download ao iCloud: %@. Abra a nota de novo para tentar outra vez."
           }
         },
         "zh-Hans" : {
@@ -5180,7 +5180,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Crie notas em texto puro com Nova Nota (⌘N). As notas são salvas automaticamente. Use a lista de notas para buscar e reabrir notas, e Ajustes para escolher uma pasta, a aparência e os atalhos. Mover para o Lixo pede confirmação; restaure os arquivos pelo Finder. Use Visualizar para alterar o tamanho da fonte ou a tonalidade do fundo da nota ativa. Abra Comandos (⇧⌘?) em qualquer janela para navegar por todos os menus sem um ícone no Dock ou de status. Se o salvamento falhar, mantenha a nota aberta e use as ações de recuperação para exportar o texto."
+            "value" : "Crie notas em texto puro com Nova Nota (⌘N). As notas são salvas automaticamente. Na lista de notas, você busca e reabre notas. Em Ajustes, você escolhe a pasta, a aparência e os atalhos. Mover para o Lixo pede confirmação, e você pode restaurar os arquivos pelo Finder. No menu Visualizar, você muda o tamanho da fonte ou a tonalidade do fundo da nota ativa. Abra Comandos (⇧⌘?) em qualquer janela para ver todos os menus, mesmo sem ícone no Dock ou na barra de menus. Se não for possível salvar, deixe a nota aberta e use as ações de recuperação para exportar o texto."
           }
         },
         "zh-Hans" : {
@@ -5510,7 +5510,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A alteração da pasta padrão %@ precisa ser repetida: %@"
+            "value" : "A mudança da pasta padrão %@ precisa ser repetida: %@"
           }
         },
         "zh-Hans" : {
@@ -5557,7 +5557,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A pasta padrão não foi encontrada. Escolha uma pasta padrão abaixo."
+            "value" : "Pasta padrão não encontrada. Escolha uma abaixo."
           }
         },
         "zh-Hans" : {
@@ -5604,7 +5604,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A pasta padrão não foi encontrada. Escolha uma em Ajustes."
+            "value" : "Pasta padrão não encontrada. Escolha uma em Ajustes."
           }
         },
         "zh-Hans" : {
@@ -5745,7 +5745,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pasta de notas padrão: indisponível — escolha uma pasta."
+            "value" : "Pasta de notas padrão: indisponível. Escolha uma pasta."
           }
         },
         "zh-Hans" : {
@@ -6121,7 +6121,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ativado no macOS. O RAMnotes é aberto oculto ao iniciar a sessão."
+            "value" : "Ativado no macOS. O RAMnotes abre oculto quando você inicia a sessão."
           }
         },
         "zh-Hans" : {
@@ -6168,7 +6168,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Digite um nome de arquivo não vazio, sem separadores e com a extensão .txt."
+            "value" : "Digite um nome de arquivo terminado em .txt, sem barras (/) nem dois-pontos (:)."
           }
         },
         "zh-Hans" : {
@@ -6403,7 +6403,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Incompatibilidade de identidade na recuperação existente"
+            "value" : "A recuperação existente não corresponde a esta nota"
           }
         },
         "zh-Hans" : {
@@ -6544,7 +6544,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exporte uma cópia UTF-8 verificada. A exportação não altera a nota original nem o registro de recuperação."
+            "value" : "Exporte uma cópia verificada em UTF-8. A exportação não altera a nota original nem o registro de recuperação."
           }
         },
         "zh-Hans" : {
@@ -6873,7 +6873,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Acesso ao arquivo necessário"
+            "value" : "É necessário acesso ao arquivo"
           }
         },
         "zh-Hans" : {
@@ -6920,7 +6920,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Arquivo não localizado…"
+            "value" : "Arquivo não encontrado…"
           }
         },
         "zh-Hans" : {
@@ -7014,7 +7014,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O arquivo continua indisponível. Clique em Localizar Arquivo… para selecioná-lo."
+            "value" : "O arquivo continua indisponível. Clique em Localizar Arquivo… para escolhê-lo."
           }
         },
         "zh-Hans" : {
@@ -7437,7 +7437,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conclua a composição do texto antes de arrastar."
+            "value" : "Conclua a entrada de texto antes de arrastar."
           }
         },
         "zh-Hans" : {
@@ -7484,7 +7484,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conclua a composição do texto antes de exportar."
+            "value" : "Conclua a entrada de texto antes de exportar."
           }
         },
         "zh-Hans" : {
@@ -7531,7 +7531,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conclua a composição do texto ou as Ferramentas de Escrita antes de fechar."
+            "value" : "Conclua a entrada de texto ou termine de usar as Ferramentas de Escrita antes de fechar."
           }
         },
         "zh-Hans" : {
@@ -7625,7 +7625,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conclua as Ferramentas de Escrita antes de alterar a pasta padrão."
+            "value" : "Termine de usar as Ferramentas de Escrita antes de alterar a pasta padrão."
           }
         },
         "zh-Hans" : {
@@ -7672,7 +7672,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conclua as Ferramentas de Escrita antes de apagar a nota."
+            "value" : "Termine de usar as Ferramentas de Escrita antes de apagar a nota."
           }
         },
         "zh-Hans" : {
@@ -7719,7 +7719,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conclua as Ferramentas de Escrita antes de mover a nota."
+            "value" : "Termine de usar as Ferramentas de Escrita antes de mover a nota."
           }
         },
         "zh-Hans" : {
@@ -7766,7 +7766,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conclua as Ferramentas de Escrita antes de remover o rastreamento."
+            "value" : "Termine de usar as Ferramentas de Escrita antes de remover a nota da lista."
           }
         },
         "zh-Hans" : {
@@ -7813,7 +7813,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conclua as Ferramentas de Escrita antes de salvar uma cópia."
+            "value" : "Termine de usar as Ferramentas de Escrita antes de salvar uma cópia."
           }
         },
         "zh-Hans" : {
@@ -7907,7 +7907,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falha ao reconectar a pasta: %@"
+            "value" : "Não foi possível reconectar a pasta: %@"
           }
         },
         "zh-Hans" : {
@@ -7954,7 +7954,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Troca de pasta bloqueada: %@. Tente novamente ou exporte o texto não salvo."
+            "value" : "Não foi possível trocar de pasta: %@. Tente de novo ou exporte o texto não salvo."
           }
         },
         "zh-Hans" : {
@@ -8142,7 +8142,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O tamanho da fonte deve ser de 8–192 pontos. O espaçamento entre linhas deve ser de no mínimo o tamanho da fonte e no máximo 384 pontos."
+            "value" : "O tamanho da fonte deve ficar entre 8 e 192 pontos. O espaçamento entre linhas deve ser pelo menos igual ao tamanho da fonte e no máximo 384 pontos."
           }
         },
         "zh-Hans" : {
@@ -8613,7 +8613,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A rolagem horizontal na barra de menus mostra as notas e a lista de notas"
+            "value" : "Rolagem horizontal na barra de menus mostra as notas e a lista de notas"
           }
         },
         "zh-Hans" : {
@@ -9084,7 +9084,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Manter janelas de notas na frente"
+            "value" : "Manter as janelas de notas na frente"
           }
         },
         "zh-Hans" : {
@@ -9225,7 +9225,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A abertura ao iniciar a sessão ainda não foi configurada."
+            "value" : "A opção Abrir ao iniciar a sessão ainda não foi configurada."
           }
         },
         "zh-Hans" : {
@@ -9508,7 +9508,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O texto local foi mantido; o arquivo original está indisponível."
+            "value" : "O texto local foi mantido. O arquivo original está indisponível."
           }
         },
         "zh-Hans" : {
@@ -9555,7 +9555,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O texto local foi mantido. O arquivo original não está disponível."
+            "value" : "O texto local foi mantido. O arquivo original está indisponível."
           }
         },
         "zh-Hans" : {
@@ -9838,7 +9838,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A operação de local %@ precisa ser repetida ou revisada: %@"
+            "value" : "A mudança de local %@ precisa ser repetida ou revisada: %@"
           }
         },
         "zh-Hans" : {
@@ -9885,7 +9885,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auxiliar de início de sessão não encontrado. Execute um pacote do app RAMnotes íntegro."
+            "value" : "Auxiliar de início de sessão não encontrado. Abra uma cópia íntegra do app RAMnotes."
           }
         },
         "zh-Hans" : {
@@ -9932,7 +9932,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falha ao alterar a configuração de início no login: %@"
+            "value" : "Não foi possível alterar o início de sessão: %@"
           }
         },
         "zh-Hans" : {
@@ -10120,7 +10120,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O monitor de rolagem da barra de menus está indisponível. Verifique as restrições de acesso do macOS e, em seguida, desative e reative o gesto. A reabertura manual e o atalho continuam disponíveis."
+            "value" : "O gesto de rolagem na barra de menus não está funcionando. Verifique as restrições de acesso do macOS e depois desative e reative o gesto. Você ainda pode reabrir as notas manualmente ou com o atalho."
           }
         },
         "zh-Hans" : {
@@ -10214,7 +10214,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível salvar os metadados. Encerrar ou trocar de pasta pode estar bloqueado: %@"
+            "value" : "Não foi possível salvar os metadados. Talvez não seja possível encerrar o app ou trocar de pasta: %@"
           }
         },
         "zh-Hans" : {
@@ -11543,7 +11543,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@moved@ para o Lixo. Não foi possível mover %#@failed@. Consulte a lista de notas para obter detalhes."
+            "value" : "%#@moved@ para o Lixo. Não foi possível mover %#@failed@. Veja os detalhes na lista de notas."
           },
           "substitutions" : {
             "failed" : {
@@ -12635,7 +12635,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nenhum nome de arquivo livre"
+            "value" : "Nenhum nome de arquivo disponível"
           }
         },
         "zh-Hans" : {
@@ -12682,7 +12682,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nenhuma nota correspondente."
+            "value" : "Nenhuma nota encontrada."
           }
         },
         "zh-Hans" : {
@@ -12729,7 +12729,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lista de Notas"
+            "value" : "Lista de notas"
           }
         },
         "zh-Hans" : {
@@ -12870,7 +12870,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nota a mover para o Lixo"
+            "value" : "Nota a ser movida para o Lixo"
           }
         },
         "zh-Hans" : {
@@ -12964,7 +12964,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falha ao registrar o atalho de notas e lista de notas (%d). Escolha outro atalho."
+            "value" : "Não foi possível registrar o atalho de notas e lista de notas (%d). Escolha outro atalho."
           }
         },
         "zh-Hans" : {
@@ -13011,7 +13011,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falha ao registrar o atalho de notas e lista de notas (%d). Ainda usando %@. Escolha outro atalho."
+            "value" : "Não foi possível registrar o atalho de notas e lista de notas (%d). O atalho %@ continua ativo. Escolha outro atalho."
           }
         },
         "zh-Hans" : {
@@ -13105,7 +13105,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desativado ou desabilitado externamente no macOS."
+            "value" : "Desativado aqui ou no macOS."
           }
         },
         "zh-Hans" : {
@@ -13200,7 +13200,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Criação mais antiga primeiro"
+            "value" : "Criadas há mais tempo primeiro"
           }
         },
         "zh-Hans" : {
@@ -13247,7 +13247,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atualização mais antiga primeiro"
+            "value" : "Atualizadas há mais tempo primeiro"
           }
         },
         "zh-Hans" : {
@@ -13850,7 +13850,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abra a coleção para ler esta nota de recuperação. Os registros preservados estão disponíveis abaixo."
+            "value" : "Abra a coleção para ler esta nota de recuperação. Os registros preservados estão abaixo."
           }
         },
         "zh-Hans" : {
@@ -13897,7 +13897,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Original ausente"
+            "value" : "Original não encontrado"
           }
         },
         "zh-Hans" : {
@@ -13944,7 +13944,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Original não encontrado; texto local preservado: %@"
+            "value" : "Original não encontrado. Texto local preservado: %@"
           }
         },
         "zh-Hans" : {
@@ -14228,7 +14228,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pendente — continua automaticamente quando o RAMnotes estiver ativo novamente."
+            "value" : "Pendente. Continua automaticamente na próxima vez que o RAMnotes estiver ativo."
           }
         },
         "zh-Hans" : {
@@ -14322,7 +14322,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A permissão para gravar na pasta de notas foi negada."
+            "value" : "Sem permissão para gravar na pasta de notas."
           }
         },
         "zh-Hans" : {
@@ -14699,7 +14699,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Encerramento bloqueado: %@. Tente novamente ou exporte o texto não salvo."
+            "value" : "Não foi possível encerrar: %@. Tente de novo ou exporte o texto não salvo."
           }
         },
         "zh-Hans" : {
@@ -14840,7 +14840,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O RAMnotes não consegue encontrar este arquivo. Remover este item não apaga nenhum arquivo."
+            "value" : "O RAMnotes não encontra este arquivo. Remover este item não apaga nenhum arquivo."
           }
         },
         "zh-Hans" : {
@@ -15263,7 +15263,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Incompatibilidade de identidade na recuperação"
+            "value" : "A recuperação não corresponde a esta nota"
           }
         },
         "zh-Hans" : {
@@ -15451,7 +15451,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Há texto de recuperação disponível para %@. Abra a nota de recuperação na lista de notas."
+            "value" : "Há texto de recuperação para %@. Abra a nota de recuperação na lista de notas."
           }
         },
         "zh-Hans" : {
@@ -15498,7 +15498,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Há texto de recuperação disponível para %@. Use Abrir Texto Preservado na nota."
+            "value" : "Há texto de recuperação para %@. Use Abrir Texto Preservado na nota."
           }
         },
         "zh-Hans" : {
@@ -16476,7 +16476,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falha ao salvar: %@. Uma cópia de recuperação foi preservada."
+            "value" : "Não foi possível salvar: %@. Uma cópia de recuperação foi preservada."
           }
         },
         "zh-Hans" : {
@@ -16523,7 +16523,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falha ao salvar: %@. Mantenha esta janela aberta. O salvamento será tentado novamente de forma automática; exporte o texto para manter uma cópia."
+            "value" : "Não foi possível salvar: %@. Mantenha esta janela aberta. O RAMnotes tenta salvar de novo automaticamente. Exporte o texto para guardar uma cópia."
           }
         },
         "zh-Hans" : {
@@ -16711,7 +16711,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salvando edições e trocando de pasta…"
+            "value" : "Salvando alterações e trocando de pasta…"
           }
         },
         "zh-Hans" : {
@@ -16805,7 +16805,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Role novamente para ocultá-las. Use um trackpad ou um mouse com rolagem precisa."
+            "value" : "Role de novo para ocultá-las. Use um trackpad ou um mouse com rolagem precisa."
           }
         },
         "zh-Hans" : {
@@ -17136,7 +17136,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecione o arquivo .txt da nota. Selecionar um arquivo diferente vincula esta nota a esse arquivo. As edições mantidas continuam disponíveis na recuperação."
+            "value" : "Selecione o arquivo .txt da nota. Se você escolher outro arquivo, a nota passa a usar esse arquivo. As alterações mantidas continuam disponíveis na recuperação."
           }
         },
         "zh-Hans" : {
@@ -17418,7 +17418,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falha ao registrar o atalho (%d). Escolha outro atalho. A reabertura manual e Mostrar/Ocultar Notas continuam disponíveis."
+            "value" : "Não foi possível registrar o atalho (%d). Escolha outro atalho. Você ainda pode reabrir as notas manualmente ou usar Mostrar/Ocultar Notas."
           }
         },
         "zh-Hans" : {
@@ -17465,7 +17465,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falha ao registrar o atalho (%d). Ainda usando %@. Escolha outro atalho. A reabertura manual e Mostrar/Ocultar Notas continuam disponíveis."
+            "value" : "Não foi possível registrar o atalho (%d). O atalho %@ continua ativo. Escolha outro atalho. Você ainda pode reabrir as notas manualmente ou usar Mostrar/Ocultar Notas."
           }
         },
         "zh-Hans" : {
@@ -18311,7 +18311,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A sessão da coleção mudou. Tente novamente na coleção atual."
+            "value" : "A sessão da coleção mudou. Tente de novo na coleção atual."
           }
         },
         "zh-Hans" : {
@@ -18498,7 +18498,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O arquivo não está mais ausente, então o RAMnotes mantém esta nota na lista."
+            "value" : "O arquivo foi encontrado, então o RAMnotes mantém esta nota na lista."
           }
         },
         "zh-Hans" : {
@@ -18545,7 +18545,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O arquivo não é UTF-8 válido."
+            "value" : "O arquivo não está em UTF-8 válido."
           }
         },
         "zh-Hans" : {
@@ -18592,7 +18592,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A operação de local interrompida não tem evidência verificada de identidade ou revisão. O registro foi preservado para revisão."
+            "value" : "Não foi possível confirmar o arquivo nem a versão da mudança de local interrompida. O registro foi preservado para revisão."
           }
         },
         "zh-Hans" : {
@@ -18639,7 +18639,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A alteração de local foi interrompida. Salve novamente para repetir a operação registrada."
+            "value" : "A mudança de local foi interrompida. Salve de novo para tentar outra vez."
           }
         },
         "zh-Hans" : {
@@ -18686,7 +18686,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A alteração de local foi interrompida. Salve novamente para repetir a operação registrada. %@"
+            "value" : "A mudança de local foi interrompida. Salve de novo para tentar outra vez. %@"
           }
         },
         "zh-Hans" : {
@@ -18733,7 +18733,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A movimentação precisa ser repetida ou revisada."
+            "value" : "A transferência precisa ser repetida ou revisada."
           }
         },
         "zh-Hans" : {
@@ -18780,7 +18780,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A transferência foi interrompida. Escolha Mover Para… novamente para tentar outra vez."
+            "value" : "A transferência foi interrompida. Escolha Mover Para… de novo para tentar outra vez."
           }
         },
         "zh-Hans" : {
@@ -18827,7 +18827,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A transferência foi interrompida. Escolha Mover Para… novamente para tentar outra vez. %@"
+            "value" : "A transferência foi interrompida. Escolha Mover Para… de novo para tentar outra vez. %@"
           }
         },
         "zh-Hans" : {
@@ -18921,7 +18921,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O local da nota mudou. Tente novamente com o local atual."
+            "value" : "O local da nota mudou. Tente de novo a partir do local atual."
           }
         },
         "zh-Hans" : {
@@ -19062,7 +19062,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O original foi alterado externamente. Seu texto local está preservado em uma nota de recuperação."
+            "value" : "O original foi alterado fora do RAMnotes. Seu texto local está preservado em uma nota de recuperação."
           }
         },
         "zh-Hans" : {
@@ -19203,7 +19203,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O original está indisponível. Abra o texto preservado; o RAMnotes se reconecta quando a pasta voltar."
+            "value" : "O original está indisponível. Abra o texto preservado. O RAMnotes reconecta quando a pasta voltar."
           }
         },
         "zh-Hans" : {
@@ -19250,7 +19250,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A nota original está em %@. Esta janela mantém o texto carregado do registro de recuperação local."
+            "value" : "A nota original está em %@. Esta janela mostra o texto carregado do registro de recuperação local."
           }
         },
         "zh-Hans" : {
@@ -19297,7 +19297,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A nota original está em %@. Esta janela mantém o texto carregado do registro de recuperação local. %@"
+            "value" : "A nota original está em %@. Esta janela mostra o texto carregado do registro de recuperação local. %@"
           }
         },
         "zh-Hans" : {
@@ -19344,7 +19344,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O diretório do registro de recuperação não pode ser a pasta de notas"
+            "value" : "A pasta do registro de recuperação não pode ser a pasta de notas"
           }
         },
         "zh-Hans" : {
@@ -19438,7 +19438,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O texto que não pôde ser salvo será perdido. O arquivo mantém o último texto salvo. Para manter seu texto, use Exportar ou Salvar uma Cópia."
+            "value" : "O texto que não foi salvo será perdido. O arquivo fica com o último texto salvo. Para não perder seu texto, use Exportar ou Salvar uma Cópia."
           }
         },
         "zh-Hans" : {
@@ -19532,7 +19532,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esta nota está indisponível: %@. Todas as suas alterações foram salvas antes que isso acontecesse."
+            "value" : "Esta nota está indisponível: %@. Todas as suas alterações foram salvas antes disso."
           }
         },
         "zh-Hans" : {
@@ -19579,7 +19579,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esta nota está indisponível. Localize o arquivo ou aguarde até que ele fique disponível."
+            "value" : "Esta nota está indisponível. Localize o arquivo ou espere até que ele volte a ficar disponível."
           }
         },
         "zh-Hans" : {
@@ -20096,7 +20096,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Status de item de início de sessão do macOS desconhecido. Use Atualizar Status de Início de Sessão."
+            "value" : "Status do item de início de sessão desconhecido no macOS. Use Atualizar Status de Início de Sessão."
           }
         },
         "zh-Hans" : {
@@ -20707,7 +20707,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seu texto está preservado separadamente. Abra a cópia de recuperação antes de continuar."
+            "value" : "Seu texto foi preservado à parte. Abra a cópia de recuperação antes de continuar."
           }
         },
         "zh-Hans" : {
