@@ -3,15 +3,17 @@
     <channel>
         <title>RAMnotes</title>
         <item>
-            <title>1.0.0</title>
-            <pubDate>Mon, 16 Nov 2026 14:43:24 +0400</pubDate>
-            <sparkle:version>1</sparkle:version>
-            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <title>1.1.0</title>
+            <pubDate>Sun, 22 Nov 2026 00:10:58 +0400</pubDate>
+            <sparkle:version>2</sparkle:version>
+            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h2>RAMnotes 1.0.0</h2>
-<p>First direct release of RAMnotes.</p>
+            <description><![CDATA[<ul>
+  <li>RAMnotes can now hide note windows after a period of inactivity. Choose the delay in Settings → Windows.</li>
+  <li>Improved translations across the app.</li>
+</ul>
 ]]></description>
-            <enclosure url="https://github.com/a-dev/ramnotes/releases/download/1.0.0-1/RAMnotes-1.0.0-1.zip" length="4294870" type="application/octet-stream" sparkle:edSignature="Hu8PbBwTY/G1MHV4TSNzqcyA8D28l0FetYhN7Dd/RIXsLLizkH5sOXuYDnKjyMqKL1/VryburM+/6INjsKj/AQ=="/>
+            <enclosure url="https://github.com/a-dev/ramnotes/releases/download/1.1.0-2/RAMnotes-1.1.0-2.zip" length="4302517" type="application/octet-stream" sparkle:edSignature="OmxdyMJTxTUnaRBWHp46PavDs4HB4NIxAR/N34rMHM7D9noRWWJeyr+LwKVyhxY1zUdvOBibZBuUHa5qUh2XCQ=="/>
         </item>
     </channel>
 </rss>
