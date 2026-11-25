@@ -180,7 +180,7 @@ final class WindowCoordinator: LifecycleEditors {
             let rhs = metadata.notes[$1.id]?.focusOrder ?? 0
             return lhs == rhs ? $0.id.rawValue.uuidString < $1.id.rawValue.uuidString : lhs > rhs
         }
-        guard let selected = eligible.first else { showList?(); return }
+        guard !eligible.isEmpty else { showList?(); return }
         let ordered = Array(eligible.reversed())
         let guards = ordered.map { note in
             let editor = windows[note.id]?.editor
@@ -198,7 +198,20 @@ final class WindowCoordinator: LifecycleEditors {
             guard presentationGeneration == generation else { return }
             results = Dictionary(ordered.map { ($0.id, .failure(error)) }, uniquingKeysWith: { lhs, _ in lhs })
         }
-        for (note, revision, positionRevision) in guards {
+        guard presentationGeneration == generation else { return }
+        let presentable = guards.filter { note, _, _ in
+            if flushFailures[note.id] != nil { return windows[note.id] != nil }
+            switch results[note.id] {
+            case .success(let verified):
+                if canPresent(verified) { return true }
+                acceptFileObservation(verified)
+                return false
+            case .failure: return windows[note.id] != nil
+            case nil: return false
+            }
+        }
+        guard let selected = presentable.last?.0 else { return }
+        for (note, revision, positionRevision) in presentable {
             guard presentationGeneration == generation else { return }
             let result = flushFailures[note.id].map { .failure($0) } ?? results[note.id]
             guard let result else { continue }
@@ -212,9 +225,12 @@ final class WindowCoordinator: LifecycleEditors {
         present(note, new: new, focus: focus)
     }
 
+    private func canPresent(_ note: NoteSnapshot) -> Bool {
+        note.availability != .trashed && (note.availability == .available || retainedEdits[note.id] != nil)
+    }
+
     private func present(_ note: NoteSnapshot, new: Bool = false, focus: Bool = true) {
-        guard note.availability != .trashed,
-              note.availability == .available || retainedEdits[note.id] != nil else { showList?(); return }
+        guard canPresent(note) else { showList?(); return }
         folderState.apply(.changed(note))
         if metadata.notes[note.id] == nil { metadata.notes[note.id] = NoteWindowMetadata(isOpen: new) }
         metadata.notes[note.id]?.isOpen = true

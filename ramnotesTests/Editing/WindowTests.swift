@@ -923,6 +923,24 @@ final class WindowTests: XCTestCase {
         XCTAssertNotNil(coordinator.metadata.notes[note.id]?.frame)
     }
 
+    func testVerifiedRevealSkipsMissingOpenNoteWithoutShowingList() async throws {
+        let prepared = try await makeWindowNotes(count: 2)
+        let coordinator = WindowCoordinator(store: prepared.store)
+        defer { coordinator.perform(.hide) }
+        coordinator.folderState.replace(with: Dictionary(uniqueKeysWithValues: prepared.notes.map { ($0.id, $0) }))
+        let available = prepared.notes[0], missing = prepared.notes[1]
+        for note in prepared.notes { coordinator.metadata.notes[note.id] = NoteWindowMetadata(isOpen: true) }
+        coordinator.metadata.notes[missing.id]?.focusOrder = 10
+        try FileManager.default.removeItem(at: missing.fileURL)
+        coordinator.showList = { XCTFail("An unavailable open note revealed the list") }
+
+        await coordinator.revealVerified()
+
+        XCTAssertEqual(coordinator.requestedFocus, available.id)
+        XCTAssertEqual(coordinator.windows[available.id]?.window?.isVisible, true)
+        XCTAssertNil(coordinator.windows[missing.id])
+    }
+
     func testRevealRestoresOnlyActiveNotesAndFallsBackToList() async throws {
         let prepared = try await makeWindowNotes(count: 3)
         let coordinator = WindowCoordinator(store: prepared.store)

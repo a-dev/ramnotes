@@ -10,7 +10,7 @@ The product name, generated filenames, default folder name, and stored keys stay
 
 ## Reveal and windows
 
-Manual launch and reopen show the open notes. If none are open, the note list appears. Login launch stays hidden. Closing a note removes it from the open group. Hiding the group preserves its windows and focus order.
+Manual launch and reopen show the open notes. If none are open, the note list appears. Login launch stays hidden. Closing a note removes it from the open group. Hiding the group preserves its windows and focus order. During group reveal, an open note that cannot be shown does not open the note list. Focus goes to the most recently focused note that can be shown.
 
 Control-Backslash toggles the group. Control-Command-Backslash includes the list and focuses search. Either toggle hides a visible group. By default, a global shortcut or gesture from another active app always reveals its target. Change this behavior in Settings > Windows.
 
