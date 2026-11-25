@@ -12694,7 +12694,7 @@
       }
     },
     "Note list" : {
-      "comment" : "Header button tooltip and accessibility label that shows the note list window\nTitle of the note list window and its visible heading\nView menu item that shows the note list window",
+      "comment" : "Header button tooltip and accessibility label that shows the note list window\nTitle of the note list window and its visible heading",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -17617,53 +17617,6 @@
         }
       }
     },
-    "Show note list" : {
-      "comment" : "Settings: name of the shortcut that shows the note list",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "إظهار قائمة الملاحظات"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Notizliste anzeigen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mostrar la lista de notas"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Afficher la liste des notes"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "メモリストを表示"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mostrar lista de notas"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "显示笔记列表"
-          }
-        }
-      }
-    },
     "Show notes when another app is active" : {
       "comment" : "Settings checkbox in Window Behavior. When on, a global shortcut or menu bar gesture used while another app is active shows notes instead of hiding them.",
       "localizations" : {
@@ -19633,6 +19586,53 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此快捷键已被占用。请换一个组合。"
+          }
+        }
+      }
+    },
+    "Toggle note list" : {
+      "comment" : "View menu and Shortcuts settings command. Opens or focuses the note list, and hides it when it already has focus.",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إظهار أو إخفاء قائمة الملاحظات"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notizliste ein- oder ausblenden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar u ocultar la lista de notas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher ou masquer la liste des notes"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メモリストの表示を切り替える"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar ou ocultar a lista de notas"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示或隐藏笔记列表"
           }
         }
       }

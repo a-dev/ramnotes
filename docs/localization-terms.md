@@ -523,6 +523,17 @@ The translations still need native-speaker review. Update this list before chang
 - ja: メモの表示/非表示
 - zh-Hans: 显示/隐藏笔记
 
+### Toggle note list
+
+- en: Toggle note list
+- es: Mostrar u ocultar la lista de notas
+- pt: Mostrar ou ocultar a lista de notas
+- de: Notizliste ein- oder ausblenden
+- fr: Afficher ou masquer la liste des notes
+- ar: إظهار أو إخفاء قائمة الملاحظات
+- ja: メモリストの表示を切り替える
+- zh-Hans: 显示或隐藏笔记列表
+
 ### default notes folder
 
 - en: default notes folder

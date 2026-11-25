@@ -377,7 +377,7 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
             newNote: { [weak self] in self?.newNote(nil) },
             addExistingFiles: { [weak self] in self?.addExistingFiles(nil) },
             trashActiveNote: { [weak self] in self?.trashActiveNote(nil) },
-            showList: { [weak self] in self?.showList(nil) },
+            toggleList: { [weak self] in self?.toggleList() },
             nextNote: { [weak self] in self?.nextNote(nil) },
             previousNote: { [weak self] in self?.previousNote(nil) },
             toggleNotes: { [weak self] in self?.toggleNotes() },
@@ -448,6 +448,11 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
         showList(sender)
         discovery.focus()
     }
+    private func toggleList() {
+        if list.window?.isKeyWindow == true { list.hide() }
+        else { showList(nil) }
+    }
+
     private func showList(_ sender: Any?) {
         if lifecycle.state == .idle || lifecycle.state == .loading {
             revealNotesWhenReady()

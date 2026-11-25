@@ -523,15 +523,36 @@ final class WorkflowTests: XCTestCase {
         try UITestFixtureInput.replace(text, in: editor)
         let note = app.windows.containing(.textView, identifier: "Note text").firstMatch
         XCTAssertTrue(list.staticTexts[text].waitForExistence(timeout: 10))
+        list.buttons[XCUIIdentifierCloseWindow].click()
+        XCTAssertTrue(list.waitForNonExistence(timeout: 5))
         // The independent Settings window keeps the app active while the group is hidden.
-        list.buttons["Settings"].click()
+        app.typeKey(",", modifierFlags: .command)
+        let settings = app.windows["Settings"]
+        XCTAssertTrue(settings.waitForExistence(timeout: 5))
+        settings.staticTexts["Windows"].click()
+        let vertical = settings.checkBoxes["Vertical menu-bar scroll shows notes"]
+        let horizontal = settings.checkBoxes["Horizontal menu-bar scroll shows notes and the note list"]
+        vertical.click()
+        horizontal.click()
+        XCTAssertEqual(vertical.value as? Int, 1)
+        XCTAssertEqual(horizontal.value as? Int, 1)
         toggle(app)
         let hidden = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in !note.exists && !list.exists }, object: app)
         XCTAssertEqual(XCTWaiter.wait(for: [hidden], timeout: 5), .completed)
         toggle(app)
         let revealed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in note.isHittable }, object: app)
         XCTAssertEqual(XCTWaiter.wait(for: [revealed], timeout: 5), .completed)
-        note.buttons["Note list"].click()
+        XCTAssertFalse(list.exists, "Toggle notes must keep the closed note list hidden")
+        app.typeKey("l", modifierFlags: .command)
+        XCTAssertTrue(list.waitForExistence(timeout: 5))
+        app.typeKey(",", modifierFlags: .command)
+        app.typeKey("l", modifierFlags: .command)
+        XCTAssertTrue(list.exists, "Toggle note list must keep an unfocused list open")
+        app.typeKey("l", modifierFlags: .command)
+        XCTAssertTrue(list.waitForNonExistence(timeout: 5))
+        XCTAssertTrue(note.exists)
+        app.typeKey("l", modifierFlags: .command)
+        XCTAssertTrue(list.waitForExistence(timeout: 5))
         let search = list.searchFields["Search notes"]
         app.typeText("SAPPHIRE integration")
         XCTAssertEqual(search.value as? String, "SAPPHIRE integration")

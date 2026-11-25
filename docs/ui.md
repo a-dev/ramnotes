@@ -7,7 +7,7 @@ The Commands button in the note list opens the app menus. Shift-Command-? opens 
 | Default shortcut | Action |
 | --- | --- |
 | Command-N | Create a note |
-| Command-L | Show the note list |
+| Command-L | Show or focus the note list. Hide it if it already has focus. |
 | Command-F | Find text in the current note |
 | Shift-Command-F | Search the collection |
 | Command-] or Command-[ | Open the next or previous note |

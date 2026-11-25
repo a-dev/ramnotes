@@ -6,7 +6,7 @@ enum AppShortcut: CaseIterable, Sendable {
     case noteList, nextNote, previousNote, moveToTrash, increaseFont, decreaseFont, resetFont
     var title: String {
         switch self {
-        case .noteList: String(localized: "Show note list", comment: "Settings: name of the shortcut that shows the note list")
+        case .noteList: String(localized: "Toggle note list", comment: "View menu and Shortcuts settings command. Opens or focuses the note list, and hides it when it already has focus.")
         case .nextNote: String(localized: "Next note", comment: "Settings: name of the shortcut that moves to the next note")
         case .previousNote: String(localized: "Previous note", comment: "Settings: name of the shortcut that moves to the previous note")
         case .moveToTrash: String(localized: "Move note to Trash", comment: "Settings: name of the shortcut that moves the note to the Trash")

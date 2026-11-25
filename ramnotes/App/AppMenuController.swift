@@ -12,7 +12,7 @@ struct AppMenuCommands {
     var newNote: () -> Void
     var addExistingFiles: () -> Void
     var trashActiveNote: () -> Void
-    var showList: () -> Void
+    var toggleList: () -> Void
     var nextNote: () -> Void
     var previousNote: () -> Void
     var toggleNotes: () -> Void
@@ -140,7 +140,7 @@ final class AppMenuController: NSObject, NSMenuItemValidation {
         }
         viewMenu.addItem(withTitle: String(localized: "Background Tint", comment: "View submenu title for choosing the note's background color"), action: nil, keyEquivalent: "").submenu = tintMenu
         viewMenu.addItem(.separator())
-        noteListMenuItem = viewMenu.addItem(withTitle: String(localized: "Note list", comment: "View menu item that shows the note list window"), action: #selector(showList(_:)), keyEquivalent: "")
+        noteListMenuItem = viewMenu.addItem(withTitle: AppShortcut.noteList.title, action: #selector(toggleList(_:)), keyEquivalent: "")
         noteListMenuItem?.target = self
         commandItems[.noteList] = noteListMenuItem
         for (command, title, action) in [(AppShortcut.nextNote, String(localized: "Next Note", comment: "View menu item that moves focus to the next open note"), #selector(nextNote(_:))), (.previousNote, String(localized: "Previous Note", comment: "View menu item that moves focus to the previous open note"), #selector(previousNote(_:)))] {
@@ -181,7 +181,7 @@ final class AppMenuController: NSObject, NSMenuItemValidation {
                 switch AppShortcut.allCases.first(where: { self.settings().chord(for: $0) == chord }) {
                 case .nextNote: self.commands.nextNote()
                 case .previousNote: self.commands.previousNote()
-                case .noteList: self.commands.showList()
+                case .noteList: self.commands.toggleList()
                 case .moveToTrash:
                     guard self.state().canTrash else { return false }
                     self.commands.trashActiveNote()
@@ -211,7 +211,7 @@ final class AppMenuController: NSObject, NSMenuItemValidation {
     private func commandMenuTitle(_ command: AppShortcut) -> String {
         switch command {
         case .moveToTrash: String(localized: "Move to Trash…", comment: "File menu item that moves the active note's file to the Trash. Use the system term for Trash.")
-        case .noteList: String(localized: "Note list", comment: "View menu item that shows the note list window")
+        case .noteList: AppShortcut.noteList.title
         case .nextNote: String(localized: "Next Note", comment: "View menu item that moves focus to the next open note")
         case .previousNote: String(localized: "Previous Note", comment: "View menu item that moves focus to the previous open note")
         case .increaseFont: String(localized: "Increase Font Size", comment: "View menu item")
@@ -229,7 +229,7 @@ final class AppMenuController: NSObject, NSMenuItemValidation {
     @objc private func trashActiveNote(_ sender: Any?) { commands.trashActiveNote() }
     @objc private func changeFont(_ sender: NSMenuItem) { commands.changeFontSize(sender.tag) }
     @objc private func changeTint(_ sender: NSMenuItem) { commands.changeTint(sender) }
-    @objc private func showList(_ sender: Any?) { commands.showList() }
+    @objc private func toggleList(_ sender: Any?) { commands.toggleList() }
     @objc private func nextNote(_ sender: Any?) { commands.nextNote() }
     @objc private func previousNote(_ sender: Any?) { commands.previousNote() }
     @objc private func toggleNotes(_ sender: Any?) { commands.toggleNotes() }
